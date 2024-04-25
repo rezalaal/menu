@@ -1,0 +1,24 @@
+{
+    "platform": "laravel",
+    "app": "coral",
+    "laravel": {
+        "phpVersion": "8.2",
+        "buildAssets": true,
+        "configCache": true,
+        "timezone": "Asia/Tehran"
+    },
+    "port": 80,
+    "disks": [
+        {
+            "name": "storage",
+            "mountTo": "storage"
+        },
+        {
+            "name": "tmp",
+            "mountTo": "/tmp"
+        }
+    ],
+    "cron": [
+        "* * * * * cd /var/www/html && php artisan schedule:run >> /dev/null 2>&1"
+    ]
+}
