@@ -11,8 +11,7 @@ class CategoryScrollList extends Component
     public $categoryId;
 
     public function mount($categoryId)
-    {
-        $this->categoryId = $categoryId;
+    {        
         $this->categories = Category::all();
     }
 
