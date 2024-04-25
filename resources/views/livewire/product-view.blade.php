@@ -4,6 +4,7 @@
         ::{{ $product->name }}
     </h1>
     <livewire:search-input />
+    <livewire:category-scroll-list :categoryId="$product->category->id">
     <div class="pt-4 mx-4">
         @if ($product->getFirstMediaUrl() == null)
             <img class=" rounded-3xl object-center aspect-[1/1] md:aspect-auto w-full shadow-2xl" src="{{ config('app.url').'/images/category.jpg' }}" alt="Product Picture">    
