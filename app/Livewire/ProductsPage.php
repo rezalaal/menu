@@ -16,7 +16,9 @@ class ProductsPage extends Component
         $this->categoryName = $category->name;
         $this->categoryId = $category->id;
         $this->title = config('app.name') ." :: ". $category->name;
+
     }
+
 
     public function render()
     {
