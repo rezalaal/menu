@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'iransans-regular';      
+    src: url(../fonts/woff2/IRANSansX-Regular.woff2) format('woff2');
+  }
+@font-face {
+    font-family: 'iransans-black';        
+    src: url(../fonts/woff2/IRANSansX-Black.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'iransans-bold';        
+    src: url(../fonts/woff2/IRANSansX-Bold.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'iransans-extrabold';        
+    src: url(../fonts/woff2/IRANSansX-ExtraBold.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'iransans-thin';        
+    src: url(../fonts/woff2/IRANSansX-Thin.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'iransans-ultralight';        
+    src: url(../fonts/woff2/IRANSansX-UltraLight.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'dastnevis';
+    src: url(../fonts/otf/danstevis.otf);
+}
+
+.farsi-number {
+    -moz-font-feature-settings: "ss02";
+    -webkit-font-feature-settings: "ss02";
+    font-feature-settings: "ss02";
+}
