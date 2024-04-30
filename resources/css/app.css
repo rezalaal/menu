@@ -37,3 +37,7 @@
     -webkit-font-feature-settings: "ss02";
     font-feature-settings: "ss02";
 }
+
+.gradient-text {
+    @apply text-transparent bg-gradient-to-r from-lime-950 via-lime-600 to-lime-900  bg-clip-text
+}
