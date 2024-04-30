@@ -1,7 +1,7 @@
 <div class="font-iransans-regular bg-gradient-to-b from-coral-from to-coral-to h-screen flex flex-col md:flex-row justify-around items-center gap-y-2 overflow-hidden">   
    <div class="flex flex-col items-center">      
       <img class="rounded-full mt-4 w-72 h-72 md:w-100 md:h-100 lg:w-100 lg:h-100 xl:w-100 xl:h-100 2xl:w-100 2xl:h-100 shadow-2xl" src="{{ $tableImageUrl }}" alt="plate of food">
-      <span class="font-mallanna text-6xl pt-6 text-white text-shadow lg:text-9xl">{{ $settings['title'] }}</span>
+      <span class="font-mallanna text-6xl pt-6 lg:text-9xl text-shadow gradient-text animate-gradient">{{ $settings['title'] }}</span>
       <span class="pt-4 text-white font-dastnevis text-2xl" dir="rtl">{{ $tableName }}</span>
    </div>   
    <div>
