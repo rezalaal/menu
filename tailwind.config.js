@@ -21,9 +21,24 @@ export default {
       gray: colors.gray,
       emerald: colors.emerald,
       indigo: colors.indigo,
+      purple: colors.purple,
+      pink: colors.pink,
       yellow: colors.yellow,
     },
     extend: {
+      keyframes: {
+        gradient: {
+          "0%": {
+            backgroudPosition: "0% 50%",
+          },
+          "100%": {
+            backgroudPosition: "100% 50%",
+          }
+        }
+      },
+      animation:{
+        gradient: "gradient 6s linear infinite"
+      },
       fontFamily: {        
         'mallanna': ['"Mallanna"'],
         'iransans-regular': ['iransans-regular'],
