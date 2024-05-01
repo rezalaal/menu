@@ -29,10 +29,10 @@ export default {
       keyframes: {
         gradient: {
           "0%": {
-            backgroudPosition: "0% 50%",
+            backgroundPosition: "0% 50%",
           },
           "100%": {
-            backgroudPosition: "100% 50%",
+            backgroundPosition: "100% 50%",
           }
         }
       },
