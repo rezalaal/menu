@@ -48,7 +48,7 @@ class EditCategory extends EditRecord implements HasTable
             ->query(Product::orderBy('sort_order')->where('category_id', $this->getRecord()->id))
             ->columns([
                 TextColumn::make('name')
-                    ->label('عنوان دسته بندی')
+                    ->label('عنوان محصول')
                     ->searchable(),
                 TextInputColumn::make('sort_order')
                     ->rules(['required', 'numeric','min:0'])
