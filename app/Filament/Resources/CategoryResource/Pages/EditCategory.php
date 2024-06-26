@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CategoryResource;
+use Filament\Tables\Columns\TextInputColumn;
 use Illuminate\Database\Eloquent\Collection;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -49,8 +50,9 @@ class EditCategory extends EditRecord implements HasTable
                 TextColumn::make('name')
                     ->label('عنوان دسته بندی')
                     ->searchable(),
-                TextColumn::make('sort_order')
-                    ->label('ترتیب')
+                TextInputColumn::make('sort_order')
+                    ->rules(['required', 'numeric','min:0'])
+                    ->label('ترتیب'),
             ])
             ->actions([
                 Action::make('Up')
