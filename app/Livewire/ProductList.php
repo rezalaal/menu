@@ -11,7 +11,7 @@ class ProductList extends Component
 
     public function mount(Category $category)
     {
-        $this->products = $category->products;
+        $this->products = $category->products()->orderBy('sort_order')->get();
     }
 
     public function render()

@@ -8,6 +8,8 @@ use App\Models\Category;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CategoryResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -33,13 +35,18 @@ class CategoryResource extends Resource
                     ->required(),
                 SpatieMediaLibraryFileUpload::make('image')  
                     ->label('تصویر')                  
-                    ->conversion('thumb')
+                    ->conversion('thumb'),
+                Forms\Components\TextInput::make('sort_order')
+                    ->label('ترتیب')
+                    ->integer()
+
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->query(Category::orderBy('sort_order'))
             ->columns([
                 SpatieMediaLibraryImageColumn::make('image')
                     ->circular()
@@ -47,6 +54,9 @@ class CategoryResource extends Resource
                     ->conversion('thumb'),
                 Tables\Columns\TextColumn::make('name')
                     ->label('عنوان دسته بندی')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('sort_order')
+                    ->label('ترتیب')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاریخ ایجاد')
@@ -64,6 +74,22 @@ class CategoryResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('Up')
+                    ->icon('heroicon-o-arrow-up')
+                    ->iconButton()
+                    ->action(function (Model $record) {
+                        if($record->sort_order !=0) {
+                            $record->sort_order -= 1;
+                            $record->save();
+                        }                        
+                    }),
+                Action::make('Down')
+                    ->icon('heroicon-o-arrow-down')
+                    ->iconButton()
+                    ->action(function (Model $record) {                        
+                        $record->sort_order += 1;
+                        $record->save();
+                    })
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -17,7 +17,7 @@
         <link rel="manifest" href="/manifest.json" />
         <title>{{ $title ?? 'Coral Food کورال فود' }}</title>
     </head>
-    <body>        
+    <body class="bg-coral-to">        
         {{ $slot }}
     </body>
 </html>

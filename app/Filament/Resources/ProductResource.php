@@ -8,6 +8,8 @@ use App\Models\Product;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ProductResource\Pages;
@@ -46,13 +48,17 @@ class ProductResource extends Resource
                     ->required(),
                 SpatieMediaLibraryFileUpload::make('image')  
                     ->label('تصویر')                  
-                    ->conversion('thumb')
+                    ->conversion('thumb'),
+                Forms\Components\TextInput::make('sort_order')
+                    ->label('ترتیب')
+                    ->integer()
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->query(Product::orderBy('sort_order'))
             ->columns([
                 SpatieMediaLibraryImageColumn::make('image')
                     ->circular()
@@ -85,6 +91,9 @@ class ProductResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('sort_order')
+                    ->label('ترتیب')
+                    ->searchable(),
             ])
             ->filters([
                 SelectFilter::make('category')
@@ -94,6 +103,22 @@ class ProductResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('Up')
+                    ->icon('heroicon-o-arrow-up')
+                    ->iconButton()
+                    ->action(function (Model $record) {
+                        if($record->sort_order !=0) {
+                            $record->sort_order -= 1;
+                            $record->save();
+                        }                        
+                    }),
+                Action::make('Down')
+                    ->icon('heroicon-o-arrow-down')
+                    ->iconButton()
+                    ->action(function (Model $record) {                        
+                        $record->sort_order += 1;
+                        $record->save();
+                    })
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

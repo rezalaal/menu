@@ -9,6 +9,7 @@
         "filament/filament": "^3.2",
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "filament/spatie-laravel-settings-plugin": "^3.2",
+        "filament/widgets": "^3.2",
         "hekmatinasser/verta": "^8.4",
         "lara-zeus/popover": "^1.1",
         "lara-zeus/qr": "^1.1",

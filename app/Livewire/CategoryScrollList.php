@@ -12,7 +12,7 @@ class CategoryScrollList extends Component
 
     public function mount($categoryId)
     {        
-        $this->categories = Category::all();
+        $this->categories = Category::orderBy('sort_order')->get();
     }
 
     public function category($id)

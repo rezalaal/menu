@@ -12,7 +12,7 @@ class CategoryList extends Component
 
     public function mount() 
     {
-        $this->categories = Category::all();
+        $this->categories = Category::orderBy('sort_order')->get();
         $this->title = "منو :: ". config('app.name');
     }
 
