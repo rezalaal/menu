@@ -11,6 +11,7 @@
         @else
             <img class=" rounded-3xl object-center aspect-[1/1] shadow-2xl" src="{{ $product->getFirstMediaUrl() }}" alt="Product Picture">    
         @endif 
+        <h3 class="text-justify font-dastnevis text-3xl text-lime-950 pt-4">{{ $product->name }}</h3>
         <h3 class="text-justify font-dastnevis text-2xl text-lime-950 pt-4">{{ $product->description}}</h3>
         <div class="flex flex-row justify-between items-center pt-4">
             <span class="font-dastnevis text-2xl text-lime-800">قیمت </span>
