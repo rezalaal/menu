@@ -91,9 +91,9 @@ class ProductResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('sort_order')
-                    ->label('ترتیب')
-                    ->searchable(),
+                Tables\Columns\TextInputColumn::make('sort_order')
+                    ->rules(['required', 'numeric','min:0'])
+                    ->label('ترتیب'),
             ])
             ->filters([
                 SelectFilter::make('category')

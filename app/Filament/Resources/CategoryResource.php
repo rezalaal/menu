@@ -55,9 +55,9 @@ class CategoryResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('عنوان دسته بندی')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('sort_order')
-                    ->label('ترتیب')
-                    ->searchable(),
+                Tables\Columns\TextInputColumn::make('sort_order')
+                    ->rules(['required', 'numeric','min:0'])
+                    ->label('ترتیب'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاریخ ایجاد')
                     ->dateTime()
