@@ -9,7 +9,7 @@ use App\Livewire\ProfilePage;
 use App\Livewire\SearchPage;
 use Illuminate\Support\Facades\Route;
 
-
+// Routes
 Route::get('/table/{id}', \App\Livewire\Table::class);
 Route::get('/', \App\Livewire\CategoryPage::class);
 Route::get('/products/{category}', ProductsPage::class);
