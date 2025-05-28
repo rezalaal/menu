@@ -2,7 +2,7 @@
     "platform": "laravel",
     "app": "coral",
     "laravel": {
-        "phpVersion": "8.2",
+        "phpVersion": "8.3",
         "buildAssets": true,
         "configCache": true,
         "timezone": "Asia/Tehran"
