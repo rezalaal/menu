@@ -11,8 +11,6 @@
 /bootstrap/cache/*
 !bootstrap/cache/.gitignore
 
-# Laravel storage (except necessary .gitignore)
-storage/*
 
 # IDEs and editors
 .idea
@@ -41,3 +39,10 @@ tests/*.log
 #SQLITE
 /database/*.sqlite
 !database/.gitkeep
+
+
+/storage/*
+!/storage/.gitignore
+!/storage/app/public
+!/storage/framework
+!/storage/logs
