@@ -33,11 +33,6 @@ yarn-debug.log
 yarn-error.log
 pnpm-lock.yaml
 
-# Optional: if using Laravel Mix or Vite
-/public/js
-/public/css
-/public/js/*
-/public/build
 
 # PHPUnit
 .phpunit.result.cache

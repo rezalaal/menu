@@ -1,0 +1,41 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-Ebagu8Lf.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/fonts/otf/danstevis.otf": {
+    "file": "assets/danstevis-Byk1UOzQ.otf",
+    "src": "resources/fonts/otf/danstevis.otf"
+  },
+  "resources/fonts/woff2/IRANSansX-Black.woff2": {
+    "file": "assets/IRANSansX-Black-CLjY1HGT.woff2",
+    "src": "resources/fonts/woff2/IRANSansX-Black.woff2"
+  },
+  "resources/fonts/woff2/IRANSansX-Bold.woff2": {
+    "file": "assets/IRANSansX-Bold-ve7K97Ap.woff2",
+    "src": "resources/fonts/woff2/IRANSansX-Bold.woff2"
+  },
+  "resources/fonts/woff2/IRANSansX-ExtraBold.woff2": {
+    "file": "assets/IRANSansX-ExtraBold-BvtA-Pnn.woff2",
+    "src": "resources/fonts/woff2/IRANSansX-ExtraBold.woff2"
+  },
+  "resources/fonts/woff2/IRANSansX-Regular.woff2": {
+    "file": "assets/IRANSansX-Regular-BnOsNOel.woff2",
+    "src": "resources/fonts/woff2/IRANSansX-Regular.woff2"
+  },
+  "resources/fonts/woff2/IRANSansX-Thin.woff2": {
+    "file": "assets/IRANSansX-Thin-Cr3C3pH6.woff2",
+    "src": "resources/fonts/woff2/IRANSansX-Thin.woff2"
+  },
+  "resources/fonts/woff2/IRANSansX-UltraLight.woff2": {
+    "file": "assets/IRANSansX-UltraLight-DDHr1lB4.woff2",
+    "src": "resources/fonts/woff2/IRANSansX-UltraLight.woff2"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-D2jpX1vH.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
