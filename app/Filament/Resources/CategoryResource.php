@@ -28,14 +28,21 @@ class CategoryResource extends Resource
 
     public static function form(Form $form): Form
     {
+        info("Edit category form");
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->label('عنوان دسته بندی')
                     ->required(),
                 SpatieMediaLibraryFileUpload::make('image')  
+                    ->beforeStateDehydrated(function() {
+                        info("image upload dehydrated");
+                    })
                     ->label('تصویر')                  
-                    ->conversion('thumb'),
+                    // ->conversion('thumb')
+                    ->afterStateUpdated(function ($state) {
+                        info('Uploaded file info:', ['state' => $state]);
+                    }),
                 Forms\Components\TextInput::make('sort_order')
                     ->label('ترتیب')
                     ->integer()
@@ -50,8 +57,8 @@ class CategoryResource extends Resource
             ->columns([
                 SpatieMediaLibraryImageColumn::make('image')
                     ->circular()
-                    ->label('تصویر')
-                    ->conversion('thumb'),
+                    ->label('تصویر'),
+                    // ->conversion('thumb'),
                 Tables\Columns\TextColumn::make('name')
                     ->label('عنوان دسته بندی')
                     ->searchable(),
