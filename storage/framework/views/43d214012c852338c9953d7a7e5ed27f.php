@@ -40,3 +40,4 @@
         </a>
     </div>
 </div>
+<?php /**PATH /home/Happy/Projects/Laravel/coral/coral/resources/views/livewire/footer-menu.blade.php ENDPATH**/ ?>
