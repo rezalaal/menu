@@ -46,7 +46,7 @@ class CategoryResource extends Resource
                 Forms\Components\TextInput::make('sort_order')
                     ->label('ترتیب')
                     ->integer()
-
+                    ->rules(['nullable', 'numeric','min:0'])
             ]);
     }
 

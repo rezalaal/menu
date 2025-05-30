@@ -25,11 +25,4 @@ class Category extends Model implements HasMedia
         return $this->hasMany(Product::class);
     }
 
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('thumb')
-            ->width(300)
-            ->height(300)
-            ->sharpen(10);
-    }
 }
