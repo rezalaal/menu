@@ -2,29 +2,26 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use App\Models\Category;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
-use Filament\Tables\Actions\Action;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CategoryResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\CategoryResource\RelationManagers;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use App\Filament\Resources\CategoryResource\RelationManagers;
+use App\Models\Category;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
-
     protected static ?string $label = "دسته بندی";
-    protected static ?string $pluralLabel = "دسته بندی";
+    protected static ?string $pluralLabel = "دسته بندی ها";
 
     public static function form(Form $form): Form
     {
@@ -46,7 +43,6 @@ class CategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            // ->query(Category::orderBy('sort_order'))
             ->columns([
                 SpatieMediaLibraryImageColumn::make('image')
                     ->circular()
@@ -54,10 +50,7 @@ class CategoryResource extends Resource
                     // ->conversion('thumb'),
                 Tables\Columns\TextColumn::make('name')
                     ->label('عنوان دسته بندی')
-                    ->searchable(),
-                // Tables\Columns\TextInputColumn::make('sort_order')
-                //     ->rules(['required', 'numeric','min:0'])
-                //     ->label('ترتیب'),
+                    ->searchable(),                
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاریخ ایجاد')
                     ->dateTime()
@@ -74,23 +67,6 @@ class CategoryResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                // Tables\Actions\DeleteAction::make(),
-                // Action::make('Up')
-                //     ->icon('heroicon-o-arrow-up')
-                //     ->iconButton()
-                //     ->action(function (Model $record) {
-                //         if($record->sort_order !=0) {
-                //             $record->sort_order -= 1;
-                //             $record->save();
-                //         }                        
-                //     }),
-                // Action::make('Down')
-                //     ->icon('heroicon-o-arrow-down')
-                //     ->iconButton()
-                //     ->action(function (Model $record) {                        
-                //         $record->sort_order += 1;
-                //         $record->save();
-                //     })
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
