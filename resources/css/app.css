@@ -38,6 +38,16 @@
     font-feature-settings: "ss02";
 }
 
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+
 .gradient-text {
     @apply text-transparent bg-gradient-to-r from-lime-950 via-lime-600 to-lime-900  bg-clip-text
 }
