@@ -1,236 +1,138 @@
-[2025-05-29 09:46:08] local.DEBUG: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phpPoXZHJ"}} 
-[2025-05-29 09:52:24] local.DEBUG: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phpEg5y03"}} 
-[2025-05-29 10:02:05] local.INFO: Edit category form  
-[2025-05-29 10:02:09] local.INFO: Edit category form  
-[2025-05-29 10:02:09] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phpUX4NGk"}} 
-[2025-05-29 10:13:11] local.INFO: Edit category form  
-[2025-05-29 10:13:13] local.INFO: Edit category form  
-[2025-05-29 10:13:33] local.INFO: Edit category form  
-[2025-05-29 10:13:36] local.INFO: Edit category form  
-[2025-05-29 10:13:36] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phpGsnI97"}} 
-[2025-05-29 10:21:19] local.INFO: Edit category form  
-[2025-05-29 10:21:21] local.INFO: Edit category form  
-[2025-05-29 10:21:37] local.INFO: Edit category form  
-[2025-05-29 10:21:41] local.INFO: Edit category form  
-[2025-05-29 10:21:41] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phpLz8nFl"}} 
-[2025-05-29 10:21:52] local.INFO: Edit category form  
-[2025-05-29 10:21:54] local.INFO: Edit category form  
-[2025-05-29 10:21:56] local.INFO: Edit category form  
-[2025-05-29 10:22:01] local.INFO: Edit category form  
-[2025-05-29 10:22:04] local.INFO: Edit category form  
-[2025-05-29 10:24:38] local.INFO: Edit category form  
-[2025-05-29 10:27:15] local.INFO: Edit category form  
-[2025-05-29 10:27:17] local.INFO: Edit category form  
-[2025-05-29 10:27:32] local.INFO: Edit category form  
-[2025-05-29 10:27:33] local.INFO: Edit category form  
-[2025-05-29 10:27:38] local.INFO: Edit category form  
-[2025-05-29 10:27:40] local.INFO: Edit category form  
-[2025-05-29 10:31:59] local.INFO: Edit category form  
-[2025-05-29 10:32:04] local.INFO: Edit category form  
-[2025-05-29 10:32:10] local.INFO: Edit category form  
-[2025-05-29 10:32:12] local.INFO: Edit category form  
-[2025-05-30 06:52:27] local.INFO: Edit category form  
-[2025-05-30 06:52:30] local.INFO: Edit category form  
-[2025-05-30 06:52:49] local.INFO: Edit category form  
-[2025-05-30 06:52:56] local.INFO: Edit category form  
-[2025-05-30 06:52:56] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phpzEkiGp"}} 
-[2025-05-30 06:53:42] local.INFO: Edit category form  
-[2025-05-30 06:53:43] local.INFO: Edit category form  
-[2025-05-30 06:53:54] local.INFO: Edit category form  
-[2025-05-30 06:55:51] local.INFO: Edit category form  
-[2025-05-30 03:31:09] local.INFO: Edit category form  
-[2025-05-30 03:31:10] local.INFO: Edit category form  
-[2025-05-30 03:31:17] local.INFO: Edit category form  
-[2025-05-30 03:31:17] local.INFO: image upload dehydrated  
-[2025-05-30 03:31:17] local.ERROR: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: categories.sort_order (Connection: sqlite, SQL: insert into "categories" ("name", "sort_order", "updated_at", "created_at") values (نوشیدنی گرم, ?, 2025-05-30 03:31:17, 2025-05-30 03:31:17)) {"userId":1,"exception":"[object] (Illuminate\\Database\\QueryException(code: 23000): SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: categories.sort_order (Connection: sqlite, SQL: insert into \"categories\" (\"name\", \"sort_order\", \"updated_at\", \"created_at\") values (نوشیدنی گرم, ?, 2025-05-30 03:31:17, 2025-05-30 03:31:17)) at /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Connection.php:825)
+[2025-05-30 07:19:25] local.INFO: Edit category form  
+[2025-05-30 07:19:27] local.INFO: Edit category form  
+[2025-05-30 07:19:56] local.INFO: Edit category form  
+[2025-05-30 07:20:04] local.INFO: Edit category form  
+[2025-05-30 07:20:05] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phpdsqNiN"}} 
+[2025-05-30 07:20:25] local.INFO: Edit category form  
+[2025-05-30 07:20:34] local.INFO: Edit category form  
+[2025-05-30 07:20:36] local.INFO: Edit category form  
+[2025-05-30 07:30:22] local.INFO: Edit category form  
+[2025-05-30 07:30:27] local.INFO: Edit category form  
+[2025-05-30 07:30:34] local.INFO: Edit category form  
+[2025-05-30 07:30:39] local.INFO: Edit category form  
+[2025-05-30 07:30:39] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phptcnFDN"}} 
+[2025-05-30 07:30:52] local.INFO: Edit category form  
+[2025-05-30 07:30:57] local.INFO: Edit category form  
+[2025-05-30 07:30:58] local.INFO: Edit category form  
+[2025-05-30 07:31:04] local.INFO: Edit category form  
+[2025-05-30 07:31:06] local.INFO: Edit category form  
+[2025-05-30 07:31:14] local.INFO: Edit category form  
+[2025-05-30 07:31:14] local.INFO: image upload dehydrated  
+[2025-05-30 07:31:21] local.INFO: Edit category form  
+[2025-05-30 07:31:25] local.INFO: Edit category form  
+[2025-05-30 07:31:34] local.INFO: Edit category form  
+[2025-05-30 07:31:38] local.INFO: Edit category form  
+[2025-05-30 07:31:38] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phpGUDKo2"}} 
+[2025-05-30 16:25:50] local.INFO: Edit category form  
+[2025-05-30 16:25:53] local.INFO: Edit category form  
+[2025-05-30 16:26:09] local.INFO: Edit category form  
+[2025-05-30 16:26:11] local.INFO: Edit category form  
+[2025-05-30 16:27:32] local.INFO: Edit category form  
+[2025-05-30 16:27:35] local.INFO: Edit category form  
+[2025-05-30 16:27:35] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phpsvm8Lp"}} 
+[2025-05-30 16:27:57] local.INFO: Edit category form  
+[2025-05-30 16:27:59] local.INFO: Edit category form  
+[2025-05-31 07:43:20] local.INFO: Edit category form  
+[2025-05-31 07:43:22] local.INFO: Edit category form  
+[2025-05-31 07:45:18] local.INFO: Edit category form  
+[2025-05-31 07:45:20] local.INFO: Edit category form  
+[2025-05-31 07:45:20] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/php3ABduI"}} 
+[2025-05-31 11:29:53] local.INFO: Edit category form  
+[2025-05-31 11:29:56] local.INFO: Edit category form  
+[2025-05-31 11:30:03] local.INFO: Edit category form  
+[2025-05-31 11:30:05] local.INFO: Edit category form  
+[2025-05-31 11:30:06] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/php7R6xSC"}} 
+[2025-05-31 11:46:54] local.ERROR: Class "App\Models\TestItem" not found {"userId":11,"exception":"[object] (Error(code: 0): Class \"App\\Models\\TestItem\" not found at /media/disk2/coral/coral/vendor/filament/filament/src/Resources/Resource.php:340)
 [stacktrace]
-#0 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Connection.php(779): Illuminate\\Database\\Connection->runQueryCallback()
-#1 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Connection.php(560): Illuminate\\Database\\Connection->run()
-#2 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Connection.php(524): Illuminate\\Database\\Connection->statement()
-#3 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Query/Processors/Processor.php(32): Illuminate\\Database\\Connection->insert()
-#4 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3766): Illuminate\\Database\\Query\\Processors\\Processor->processInsertGetId()
-#5 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(2120): Illuminate\\Database\\Query\\Builder->insertGetId()
-#6 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1359): Illuminate\\Database\\Eloquent\\Builder->__call()
-#7 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1324): Illuminate\\Database\\Eloquent\\Model->insertAndSetId()
-#8 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1163): Illuminate\\Database\\Eloquent\\Model->performInsert()
-#9 /home/Happy/Projects/Laravel/coral/coral/vendor/filament/filament/src/Resources/Pages/CreateRecord.php(175): Illuminate\\Database\\Eloquent\\Model->save()
-#10 /home/Happy/Projects/Laravel/coral/coral/vendor/filament/filament/src/Resources/Pages/CreateRecord.php(92): Filament\\Resources\\Pages\\CreateRecord->handleRecordCreation()
-#11 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Filament\\Resources\\Pages\\CreateRecord->create()
-#12 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
-#13 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure()
-#14 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
-#15 /home/Happy/Projects/Laravel/coral/coral/vendor/livewire/livewire/src/Wrapped.php(23): Illuminate\\Container\\BoundMethod::call()
-#16 /home/Happy/Projects/Laravel/coral/coral/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(474): Livewire\\Wrapped->__call()
-#17 /home/Happy/Projects/Laravel/coral/coral/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(101): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->callMethods()
-#18 /home/Happy/Projects/Laravel/coral/coral/vendor/livewire/livewire/src/LivewireManager.php(102): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->update()
-#19 /home/Happy/Projects/Laravel/coral/coral/vendor/livewire/livewire/src/Mechanisms/HandleRequests/HandleRequests.php(94): Livewire\\LivewireManager->update()
-#20 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(47): Livewire\\Mechanisms\\HandleRequests\\HandleRequests->handleUpdate()
-#21 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Route.php(266): Illuminate\\Routing\\ControllerDispatcher->dispatch()
-#22 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Route.php(212): Illuminate\\Routing\\Route->runController()
-#23 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
-#24 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(170): Illuminate\\Routing\\Router->{closure:Illuminate\\Routing\\Router::runRouteWithinStack():807}()
-#25 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():168}()
-#26 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()
-#27 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#28 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle()
-#29 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#30 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle()
-#31 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#32 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest()
-#33 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Session\\Middleware\\StartSession->handle()
-#34 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#35 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle()
-#36 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#37 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle()
-#38 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(127): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#39 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then()
-#40 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack()
-#41 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute()
-#42 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute()
-#43 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch()
-#44 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(170): Illuminate\\Foundation\\Http\\Kernel->{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():198}()
-#45 /home/Happy/Projects/Laravel/coral/coral/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():168}()
-#46 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle()
-#47 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(27): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#48 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle()
-#49 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(47): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#50 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle()
-#51 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#52 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Http\\Middleware\\ValidatePostSize->handle()
-#53 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#54 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle()
-#55 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#56 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Http\\Middleware\\HandleCors->handle()
-#57 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#58 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Http\\Middleware\\TrustProxies->handle()
-#59 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#60 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle()
-#61 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(127): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#62 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then()
-#63 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
-#64 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\\Foundation\\Http\\Kernel->handle()
-#65 /home/Happy/Projects/Laravel/coral/coral/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest()
-#66 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('...')
-#67 {main}
-
-[previous exception] [object] (PDOException(code: 23000): SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: categories.sort_order at /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Connection.php:571)
-[stacktrace]
-#0 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Connection.php(571): PDOStatement->execute()
-#1 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Connection.php(812): Illuminate\\Database\\Connection->{closure:Illuminate\\Database\\Connection::statement():560}()
-#2 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Connection.php(779): Illuminate\\Database\\Connection->runQueryCallback()
-#3 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Connection.php(560): Illuminate\\Database\\Connection->run()
-#4 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Connection.php(524): Illuminate\\Database\\Connection->statement()
-#5 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Query/Processors/Processor.php(32): Illuminate\\Database\\Connection->insert()
-#6 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3766): Illuminate\\Database\\Query\\Processors\\Processor->processInsertGetId()
-#7 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(2120): Illuminate\\Database\\Query\\Builder->insertGetId()
-#8 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1359): Illuminate\\Database\\Eloquent\\Builder->__call()
-#9 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1324): Illuminate\\Database\\Eloquent\\Model->insertAndSetId()
-#10 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1163): Illuminate\\Database\\Eloquent\\Model->performInsert()
-#11 /home/Happy/Projects/Laravel/coral/coral/vendor/filament/filament/src/Resources/Pages/CreateRecord.php(175): Illuminate\\Database\\Eloquent\\Model->save()
-#12 /home/Happy/Projects/Laravel/coral/coral/vendor/filament/filament/src/Resources/Pages/CreateRecord.php(92): Filament\\Resources\\Pages\\CreateRecord->handleRecordCreation()
-#13 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Filament\\Resources\\Pages\\CreateRecord->create()
-#14 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
-#15 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure()
-#16 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
-#17 /home/Happy/Projects/Laravel/coral/coral/vendor/livewire/livewire/src/Wrapped.php(23): Illuminate\\Container\\BoundMethod::call()
-#18 /home/Happy/Projects/Laravel/coral/coral/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(474): Livewire\\Wrapped->__call()
-#19 /home/Happy/Projects/Laravel/coral/coral/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(101): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->callMethods()
-#20 /home/Happy/Projects/Laravel/coral/coral/vendor/livewire/livewire/src/LivewireManager.php(102): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->update()
-#21 /home/Happy/Projects/Laravel/coral/coral/vendor/livewire/livewire/src/Mechanisms/HandleRequests/HandleRequests.php(94): Livewire\\LivewireManager->update()
-#22 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(47): Livewire\\Mechanisms\\HandleRequests\\HandleRequests->handleUpdate()
-#23 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Route.php(266): Illuminate\\Routing\\ControllerDispatcher->dispatch()
-#24 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Route.php(212): Illuminate\\Routing\\Route->runController()
-#25 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
-#26 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(170): Illuminate\\Routing\\Router->{closure:Illuminate\\Routing\\Router::runRouteWithinStack():807}()
-#27 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():168}()
-#28 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()
-#29 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#30 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle()
-#31 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#32 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle()
-#33 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#34 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest()
-#35 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Session\\Middleware\\StartSession->handle()
-#36 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#37 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle()
-#38 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#39 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle()
-#40 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(127): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#41 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then()
-#42 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack()
-#43 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute()
-#44 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute()
-#45 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch()
-#46 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(170): Illuminate\\Foundation\\Http\\Kernel->{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():198}()
-#47 /home/Happy/Projects/Laravel/coral/coral/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():168}()
-#48 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle()
-#49 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(27): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#50 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle()
-#51 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(47): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#52 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle()
-#53 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#54 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Http\\Middleware\\ValidatePostSize->handle()
-#55 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#56 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle()
-#57 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#58 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Http\\Middleware\\HandleCors->handle()
-#59 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#60 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Http\\Middleware\\TrustProxies->handle()
-#61 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#62 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle()
-#63 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(127): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():184}:185}()
-#64 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then()
-#65 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
-#66 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\\Foundation\\Http\\Kernel->handle()
-#67 /home/Happy/Projects/Laravel/coral/coral/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest()
-#68 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('...')
-#69 {main}
+#0 /media/disk2/coral/coral/vendor/filament/filament/src/Resources/Pages/ListRecords.php(328): Filament\\Resources\\Resource::getEloquentQuery()
+#1 /media/disk2/coral/coral/vendor/filament/filament/src/Resources/Pages/ListRecords.php(245): Filament\\Resources\\Pages\\ListRecords->getTableQuery()
+#2 /media/disk2/coral/coral/vendor/filament/support/src/Concerns/EvaluatesClosures.php(35): Filament\\Resources\\Pages\\ListRecords->{closure:Filament\\Resources\\Pages\\ListRecords::makeTable():245}()
+#3 /media/disk2/coral/coral/vendor/filament/tables/src/Table/Concerns/HasQuery.php(67): Filament\\Support\\Components\\Component->evaluate()
+#4 /media/disk2/coral/coral/vendor/filament/tables/src/Table/Concerns/HasRecords.php(76): Filament\\Tables\\Table->getQuery()
+#5 /media/disk2/coral/coral/vendor/filament/tables/src/Concerns/HasFilters.php(33): Filament\\Tables\\Table->getModel()
+#6 /media/disk2/coral/coral/vendor/filament/tables/src/Concerns/InteractsWithTable.php(60): Filament\\Resources\\Pages\\ListRecords->getTableFiltersForm()
+#7 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Filament\\Resources\\Pages\\ListRecords->bootedInteractsWithTable()
+#8 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#9 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#10 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#11 /media/disk2/coral/coral/vendor/livewire/livewire/src/Wrapped.php(23): Illuminate\\Container\\BoundMethod::call()
+#12 /media/disk2/coral/coral/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(144): Livewire\\Wrapped->__call()
+#13 /media/disk2/coral/coral/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(24): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->callTraitHook()
+#14 /media/disk2/coral/coral/vendor/livewire/livewire/src/ComponentHook.php(19): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->mount()
+#15 /media/disk2/coral/coral/vendor/livewire/livewire/src/ComponentHookRegistry.php(45): Livewire\\ComponentHook->callMount()
+#16 /media/disk2/coral/coral/vendor/livewire/livewire/src/EventBus.php(60): Livewire\\ComponentHookRegistry::{closure:Livewire\\ComponentHookRegistry::boot():39}()
+#17 /media/disk2/coral/coral/vendor/livewire/livewire/src/helpers.php(98): Livewire\\EventBus->trigger()
+#18 /media/disk2/coral/coral/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(50): Livewire\\trigger()
+#19 /media/disk2/coral/coral/vendor/livewire/livewire/src/LivewireManager.php(73): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->mount()
+#20 /media/disk2/coral/coral/vendor/livewire/livewire/src/Features/SupportPageComponents/HandlesPageComponents.php(17): Livewire\\LivewireManager->mount()
+#21 /media/disk2/coral/coral/vendor/livewire/livewire/src/Features/SupportPageComponents/SupportPageComponents.php(117): Livewire\\Component->{closure:Livewire\\Features\\SupportPageComponents\\HandlesPageComponents::__invoke():14}()
+#22 /media/disk2/coral/coral/vendor/livewire/livewire/src/Features/SupportPageComponents/HandlesPageComponents.php(14): Livewire\\Features\\SupportPageComponents\\SupportPageComponents::interceptTheRenderOfTheComponentAndRetreiveTheLayoutConfiguration()
+#23 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): Livewire\\Component->__invoke()
+#24 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Route.php(260): Illuminate\\Routing\\ControllerDispatcher->dispatch()
+#25 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Route.php(206): Illuminate\\Routing\\Route->runController()
+#26 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(806): Illuminate\\Routing\\Route->run()
+#27 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->{closure:Illuminate\\Routing\\Router::runRouteWithinStack():805}()
+#28 /media/disk2/coral/coral/vendor/filament/filament/src/Http/Middleware/DispatchServingFilamentEvent.php(15): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():142}()
+#29 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Filament\\Http\\Middleware\\DispatchServingFilamentEvent->handle()
+#30 /media/disk2/coral/coral/vendor/filament/filament/src/Http/Middleware/DisableBladeIconComponents.php(14): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#31 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Filament\\Http\\Middleware\\DisableBladeIconComponents->handle()
+#32 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#33 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()
+#34 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#35 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle()
+#36 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Session/Middleware/AuthenticateSession.php(67): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#37 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\AuthenticateSession->handle()
+#38 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(64): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#39 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Auth\\Middleware\\Authenticate->handle()
+#40 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#41 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle()
+#42 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#43 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest()
+#44 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle()
+#45 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#46 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle()
+#47 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#48 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle()
+#49 /media/disk2/coral/coral/vendor/filament/filament/src/Http/Middleware/SetUpPanel.php(19): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#50 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Filament\\Http\\Middleware\\SetUpPanel->handle()
+#51 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#52 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Pipeline\\Pipeline->then()
+#53 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack()
+#54 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\\Routing\\Router->runRoute()
+#55 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute()
+#56 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch()
+#57 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():197}()
+#58 /media/disk2/coral/coral/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():142}()
+#59 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle()
+#60 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#61 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#62 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle()
+#63 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#64 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#65 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle()
+#66 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#67 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle()
+#68 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#69 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle()
+#70 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#71 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle()
+#72 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#73 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle()
+#74 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():158}:159}()
+#75 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then()
+#76 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
+#77 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1183): Illuminate\\Foundation\\Http\\Kernel->handle()
+#78 /media/disk2/coral/coral/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest()
+#79 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(16): require_once('...')
+#80 {main}
 "} 
-[2025-05-30 03:35:38] local.INFO: Edit category form  
-[2025-05-30 03:35:39] local.INFO: Edit category form  
-[2025-05-30 03:35:46] local.INFO: Edit category form  
-[2025-05-30 03:35:46] local.INFO: Edit category form  
-[2025-05-30 03:35:51] local.INFO: Edit category form  
-[2025-05-30 03:35:51] local.INFO: image upload dehydrated  
-[2025-05-30 03:35:51] local.INFO: Edit category form  
-[2025-05-30 03:35:52] local.INFO: Edit category form  
-[2025-05-30 03:36:24] local.INFO: Edit category form  
-[2025-05-30 03:36:24] local.INFO: Edit category form  
-[2025-05-30 03:36:30] local.INFO: Edit category form  
-[2025-05-30 03:36:31] local.INFO: Edit category form  
-[2025-05-30 03:36:31] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phpcmt06hepbf3k3UgcTvk"}} 
-[2025-05-30 03:36:33] local.INFO: Edit category form  
-[2025-05-30 03:36:33] local.INFO: image upload dehydrated  
-[2025-05-30 03:36:33] local.INFO: Edit category form  
-[2025-05-31 11:00:56] local.INFO: Edit category form  
-[2025-05-31 11:00:58] local.INFO: Edit category form  
-[2025-05-31 11:01:06] local.INFO: Edit category form  
-[2025-05-31 11:01:11] local.INFO: Edit category form  
-[2025-05-31 11:01:11] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/php11s004e5no71cXK0r8S"}} 
-[2025-05-31 11:01:12] local.INFO: Edit category form  
-[2025-05-31 11:01:14] local.INFO: Edit category form  
-[2025-05-31 11:01:24] local.INFO: Edit category form  
-[2025-05-31 11:01:24] local.INFO: image upload dehydrated  
-[2025-05-31 11:09:00] local.INFO: Edit category form  
-[2025-05-31 11:09:03] local.INFO: Edit category form  
-[2025-05-31 11:09:09] local.INFO: Edit category form  
-[2025-05-31 11:09:09] local.INFO: image upload dehydrated  
-[2025-05-31 11:09:19] local.INFO: Edit category form  
-[2025-05-31 11:09:26] local.INFO: Edit category form  
-[2025-05-31 11:09:57] local.INFO: Edit category form  
-[2025-05-31 11:09:59] local.INFO: Edit category form  
-[2025-05-31 11:10:09] local.INFO: Edit category form  
-[2025-05-31 11:10:14] local.INFO: Edit category form  
-[2025-05-31 11:10:15] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phpps9jkig193tv6mSgsfo"}} 
-[2025-05-31 11:10:16] local.INFO: Edit category form  
-[2025-05-31 11:10:29] local.INFO: Edit category form  
-[2025-05-31 11:10:32] local.INFO: Edit category form  
-[2025-05-31 11:10:32] local.INFO: Uploaded file info: {"state":{"Livewire\\Features\\SupportFileUploads\\TemporaryUploadedFile":"/tmp/phps0st2usblha64mkOKEY"}} 
-[2025-05-31 11:10:35] local.INFO: Edit category form  
-[2025-05-31 11:10:35] local.INFO: image upload dehydrated  
-[2025-05-31 11:10:58] local.INFO: Edit category form  
-[2025-05-31 11:11:01] local.INFO: Edit category form  
-[2025-05-31 11:11:05] local.INFO: Edit category form  
-[2025-05-31 11:11:07] local.INFO: Edit category form  
-[2025-05-31 11:11:09] local.INFO: Edit category form  
-[2025-05-31 11:11:11] local.INFO: Edit category form  
+[2025-05-31 11:47:31] local.ERROR: Uncaught Error: Class "App\Models\TestItem" not found in Command line code:1
+Stack trace:
+#0 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught Error: Class \"App\\Models\\TestItem\" not found in Command line code:1
+Stack trace:
+#0 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 {main}
+"} 
