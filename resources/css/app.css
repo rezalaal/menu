@@ -3,27 +3,27 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'iransans-regular';      
+    font-family: 'iransans-regular';
     src: url(../fonts/woff2/IRANSansX-Regular.woff2) format('woff2');
   }
 @font-face {
-    font-family: 'iransans-black';        
+    font-family: 'iransans-black';
     src: url(../fonts/woff2/IRANSansX-Black.woff2) format('woff2');
 }
 @font-face {
-    font-family: 'iransans-bold';        
+    font-family: 'iransans-bold';
     src: url(../fonts/woff2/IRANSansX-Bold.woff2) format('woff2');
 }
 @font-face {
-    font-family: 'iransans-extrabold';        
+    font-family: 'iransans-extrabold';
     src: url(../fonts/woff2/IRANSansX-ExtraBold.woff2) format('woff2');
 }
 @font-face {
-    font-family: 'iransans-thin';        
+    font-family: 'iransans-thin';
     src: url(../fonts/woff2/IRANSansX-Thin.woff2) format('woff2');
 }
 @font-face {
-    font-family: 'iransans-ultralight';        
+    font-family: 'iransans-ultralight';
     src: url(../fonts/woff2/IRANSansX-UltraLight.woff2) format('woff2');
 }
 
@@ -40,4 +40,37 @@
 
 .gradient-text {
     @apply text-transparent bg-gradient-to-r from-lime-950 via-lime-600 to-lime-900  bg-clip-text
+}
+
+
+.egg-container {
+    width: 20vmin;
+    aspect-ratio: 1 / 1;
+    position: relative;
+}
+
+.egg-shape {
+    width: 100%;
+    height: 100%;
+    mask-image: url('/images/egg.svg');
+    -webkit-mask-image: url('/images/egg.svg');
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+    background-color: white;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40%;
+}
+
+
+
+@media (max-width: 600px) {
+    .egg-container {
+        width: 40vmin;
+    }
 }

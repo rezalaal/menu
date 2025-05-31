@@ -1,18 +1,14 @@
-<div class="mt-4 px-4 grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7  gap-6">
+<div class="px-4 grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
     @foreach ($categories as $category)
-        <div class="mt-4 cursor-pointer ">
-            @if ($category->getFirstMediaUrl() == null)
-                <a href="/products/{{ $category->id }}" wire:navigate>
-                    <img class="rounded-full w-28 h-28 md:w-60 md:h-60" src="{{ config('app.url').'/images/category.jpg' }}" alt="Menu Picture">    
-                </a>
-            @else
-                <a href="/products/{{ $category->id }}" wire:navigate>
-                    <img class="rounded-full w-28 h-28 md:w-60 md:h-60" src="{{ $category->getFirstMediaUrl() }}" alt="Menu Picture">    
-                </a>
-            @endif
-            
+        <div class="flex flex-col items-center">
             <a href="/products/{{ $category->id }}" wire:navigate>
-                <h3 class="text-center text-lime-950 font-dastnevis pt-4">{{ $category->name }}</h3>
+                <div class="egg-container">
+                    <div class="egg-shape" style="background-image: url('{{ $category->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}')">
+                    </div>
+                </div>
+            </a>
+            <a href="/products/{{ $category->id }}" wire:navigate>
+                <h3 class="-mt-4 text-center text-lime-950 font-dastnevis">{{ $category->name }}</h3>
             </a>
         </div>
     @endforeach
