@@ -74,6 +74,7 @@ class CategoryResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
                 Action::make('Up')
                     ->icon('heroicon-o-arrow-up')
                     ->iconButton()
