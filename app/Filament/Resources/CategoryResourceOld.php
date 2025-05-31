@@ -4,18 +4,18 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use App\Models\Category;
 use Filament\Forms;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CategoryResource extends Resource
+class CategoryResourceOld extends Resource
 {
     protected static ?string $model = Category::class;
 
@@ -35,8 +35,8 @@ class CategoryResource extends Resource
                     ->conversion('thumb'),
                 Forms\Components\TextInput::make('sort_order')
                     ->label('ترتیب')
-                    ->numeric()
-                    ->default(0),
+                    ->integer()
+                    ->rules(['nullable', 'numeric','min:0'])
             ]);
     }
 
@@ -46,21 +46,21 @@ class CategoryResource extends Resource
             ->columns([
                 SpatieMediaLibraryImageColumn::make('image')
                     ->circular()
-                    ->label('تصویر')
-                 ->conversion('thumb'),
+                    ->label('تصویر'),
+                    // ->conversion('thumb'),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('عنوان دسته بندی')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('تاریخ ایجاد')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('تاریخ ویرایش')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('sort_order')
-                    ->numeric()
-                    ->sortable(),
             ])
             ->filters([
                 //
