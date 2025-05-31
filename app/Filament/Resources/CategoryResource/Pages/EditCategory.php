@@ -42,38 +42,38 @@ class EditCategory extends EditRecord implements HasTable
         ];
     }    
     
-    public function table(Table $table): Table
-    {
-        return $table
-            ->query(Product::orderBy('sort_order')->where('category_id', $this->getRecord()->id))
-            ->columns([
-                TextColumn::make('name')
-                    ->label('عنوان محصول')
-                    ->searchable(),
-                TextInputColumn::make('sort_order')
-                    ->rules(['required', 'numeric','min:0'])
-                    ->label('ترتیب'),
-            ])
-            ->actions([
-                Action::make('Up')
-                    ->icon('heroicon-o-arrow-up')
-                    ->iconButton()
-                    ->action(function (Model $record) {
-                        if($record->sort_order !=0) {
-                            $record->sort_order -= 1;
-                            $record->save();
-                        }                        
-                    }),
-                Action::make('Down')
-                    ->icon('heroicon-o-arrow-down')
-                    ->iconButton()
-                    ->action(function (Model $record) {                        
-                        $record->sort_order += 1;
-                        $record->save();
-                    })
-            ])
-            ->defaultSort('sort_order', 'asc')
-            ->paginated(false);
-    }
+    // public function table(Table $table): Table
+    // {
+    //     return $table
+    //         // ->query(Product::orderBy('sort_order')->where('category_id', $this->getRecord()->id))
+    //         ->columns([
+    //             TextColumn::make('name')
+    //                 ->label('عنوان محصول')
+    //                 ->searchable(),
+    //             TextInputColumn::make('sort_order')
+    //                 ->rules(['required', 'numeric','min:0'])
+    //                 ->label('ترتیب'),
+    //         ])
+    //         ->actions([
+    //             Action::make('Up')
+    //                 ->icon('heroicon-o-arrow-up')
+    //                 ->iconButton()
+    //                 ->action(function (Model $record) {
+    //                     if($record->sort_order !=0) {
+    //                         $record->sort_order -= 1;
+    //                         $record->save();
+    //                     }                        
+    //                 }),
+    //             Action::make('Down')
+    //                 ->icon('heroicon-o-arrow-down')
+    //                 ->iconButton()
+    //                 ->action(function (Model $record) {                        
+    //                     $record->sort_order += 1;
+    //                     $record->save();
+    //                 })
+    //         ])
+    //         ->defaultSort('sort_order', 'asc')
+    //         ->paginated(false);
+    // }
     
 }
