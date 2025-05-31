@@ -31,14 +31,14 @@ class TestItemResource extends Resource
                     ->label('عنوان دسته بندی')
                     ->required(),
                 SpatieMediaLibraryFileUpload::make('image')  
-                    ->beforeStateDehydrated(function() {
-                        info("image upload dehydrated");
-                    })
+                    // ->beforeStateDehydrated(function() {
+                    //     info("image upload dehydrated");
+                    // })
                     ->label('تصویر')                  
-                    // ->conversion('thumb')
-                    ->afterStateUpdated(function ($state) {
-                        info('Uploaded file info:', ['state' => $state]);
-                    }),
+                    ->conversion('thumb'),
+                    // ->afterStateUpdated(function ($state) {
+                    //     info('Uploaded file info:', ['state' => $state]);
+                    // }),
                 Forms\Components\TextInput::make('sort_order')
                     ->label('ترتیب')
                     ->integer()

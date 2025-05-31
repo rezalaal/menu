@@ -55,9 +55,9 @@ class CategoryResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('عنوان دسته بندی')
                     ->searchable(),
-                Tables\Columns\TextInputColumn::make('sort_order')
-                    ->rules(['required', 'numeric','min:0'])
-                    ->label('ترتیب'),
+                // Tables\Columns\TextInputColumn::make('sort_order')
+                //     ->rules(['required', 'numeric','min:0'])
+                //     ->label('ترتیب'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاریخ ایجاد')
                     ->dateTime()
@@ -74,23 +74,23 @@ class CategoryResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                Action::make('Up')
-                    ->icon('heroicon-o-arrow-up')
-                    ->iconButton()
-                    ->action(function (Model $record) {
-                        if($record->sort_order !=0) {
-                            $record->sort_order -= 1;
-                            $record->save();
-                        }                        
-                    }),
-                Action::make('Down')
-                    ->icon('heroicon-o-arrow-down')
-                    ->iconButton()
-                    ->action(function (Model $record) {                        
-                        $record->sort_order += 1;
-                        $record->save();
-                    })
+                // Tables\Actions\DeleteAction::make(),
+                // Action::make('Up')
+                //     ->icon('heroicon-o-arrow-up')
+                //     ->iconButton()
+                //     ->action(function (Model $record) {
+                //         if($record->sort_order !=0) {
+                //             $record->sort_order -= 1;
+                //             $record->save();
+                //         }                        
+                //     }),
+                // Action::make('Down')
+                //     ->icon('heroicon-o-arrow-down')
+                //     ->iconButton()
+                //     ->action(function (Model $record) {                        
+                //         $record->sort_order += 1;
+                //         $record->save();
+                //     })
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
