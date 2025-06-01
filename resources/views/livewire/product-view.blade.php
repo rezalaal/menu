@@ -1,5 +1,5 @@
-<div dir="rtl" class="bg-gradient-to-b from-coral-from to-coral-to h-full pb-48 flex flex-col md:items-center">
-    <h1 class="font-dastnevis text-2xl mt-10 px-4 text-white">
+<div dir="rtl" class="bg-gradient-to-b from-coral-from to-coral-to h-full pb-16 flex flex-col md:items-center">
+    <h1 class="font-dastnevis text-2xl mt-4 px-4 text-white">
         <a href="/products/{{ $product->category->id }}">{{ $product->category->name }}</a>
         ::{{ $product->name }}
     </h1>
