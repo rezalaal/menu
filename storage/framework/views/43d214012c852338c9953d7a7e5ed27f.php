@@ -1,4 +1,4 @@
-<div class="z-50 bg-footer h-12 opacity-95 w-full max-w-md shadow-1 gap-12 px-9 fixed bottom-0 left-1/2 transform translate-x-[-50%] text-white flex justify-evenly items-center fixed-footer">
+<div class="z-50 bg-footer h-12 opacity-95 w-full max-w-md shadow-1 gap-12 px-9 pt-4 pb-8 fixed bottom-0 left-1/2 transform translate-x-[-50%] text-white flex justify-evenly items-center fixed-footer">
     <div>
         <a href="/" wire:navigate>
             <!-- home -->

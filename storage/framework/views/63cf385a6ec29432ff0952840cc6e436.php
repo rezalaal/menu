@@ -18,6 +18,10 @@
         <title><?php echo e($title ?? 'Coral Food کورال فود'); ?></title>
     </head>
     <body class="bg-coral-to">        
+        <header class="bg-[#f0f0f0] h-10 w-full shadow-md flex items-center justify-center text-footer text-xl font-iransans-thin">
+            Coral Food Online Menu
+        </header>
+
         <?php echo e($slot); ?>
 
     </body>

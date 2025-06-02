@@ -1,12 +1,12 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-32_gYvT5.css",
+    "file": "assets/app-Cj3-SUHR.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
-  "resources/fonts/otf/danstevis.otf": {
-    "file": "assets/danstevis-Byk1UOzQ.otf",
-    "src": "resources/fonts/otf/danstevis.otf"
+  "resources/fonts/otf/dastnevis.otf": {
+    "file": "assets/dastnevis-Byk1UOzQ.otf",
+    "src": "resources/fonts/otf/dastnevis.otf"
   },
   "resources/fonts/woff2/IRANSansX-Black.woff2": {
     "file": "assets/IRANSansX-Black-CLjY1HGT.woff2",
