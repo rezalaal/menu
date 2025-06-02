@@ -12,15 +12,17 @@
         <meta name="theme-color" content="#ffffff">
         @vite('resources/css/app.css')
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&family=Mallanna&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Sacramento&display=swap" rel="stylesheet">
         <link rel="manifest" href="/manifest.json" />
         <title>{{ $title ?? 'Coral Food کورال فود' }}</title>
     </head>
-    <body class="bg-coral-to">        
-        <header class="bg-[#f0f0f0] h-10 w-full shadow-md flex items-center justify-center text-footer text-xl font-iransans-thin">
-            Coral Food Online Menu
+    <body class="bg-coral-to">
+        <header class="bg-[#cce0a1] h-16 w-full shadow-md flex items-center justify-between px-4">
+            <img src="/images/logo.png" alt="Logo" class="h-10 w-auto rounded-md" />
+            <span class="text-footer text-xl font-iransans-thin">Coral Food Online Menu</span>
         </header>
+
 
         {{ $slot }}
     </body>
