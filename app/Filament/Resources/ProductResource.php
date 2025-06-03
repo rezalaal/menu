@@ -17,6 +17,13 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Actions\Action AS FormAction;
+use App\Services\OpenAiService;
+use Filament\Notifications\Notification;
+
+
 
 class ProductResource extends Resource
 {
@@ -30,29 +37,65 @@ class ProductResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->label('عنوان محصول')
-                    ->required(),
-                Forms\Components\TextInput::make('description')
-                    ->label('توضیحات')
-                    ->required(),
-                Forms\Components\TextInput::make('price')
-                    ->label('قیمت به تومان')
-                    ->required()
-                    ->numeric()
-                    ->prefix('$'),
-                Forms\Components\Select::make('category_id')
-                    ->label('دسته بندی')
-                    ->relationship('category', 'name')
-                    ->required(),
-                SpatieMediaLibraryFileUpload::make('image')  
-                    ->label('تصویر')                  
-                    ->conversion('thumb'),
-                Forms\Components\TextInput::make('sort_order')
-                    ->label('ترتیب')
-                    ->integer()
-            ]);
+        ->schema([
+            Forms\Components\TextInput::make('name')
+                ->label('عنوان محصول')
+                ->required(),
+
+            Grid::make()
+                ->columns(12)
+                ->schema([
+                    RichEditor::make('description')
+                        ->label('توضیحات')
+                        ->nullable()
+                        ->columnSpan(10),
+
+                    Forms\Components\Actions::make([
+                        FormAction::make('generate_description')
+                            ->label('تولید خودکار با AI')
+                            ->icon('heroicon-m-sparkles')
+                            ->action(function ($state, callable $set, callable $get) {
+                                $title = $get('name');
+                                
+                                if (!$title) {
+                                    Notification::make()
+                                        ->title('عنوان پیام')
+                                        ->body('متن پیام')
+                                        ->warning()
+                                        ->send();
+
+                                    return;
+                                }
+
+                                // سرویس OpenAI را صدا بزن
+                                $openAi = app(OpenAiService::class);
+                                $generated = $openAi->generateProductDescription($title);
+
+                                $set('description', $generated); // مقداردهی به فیلد description
+                            }),
+                    ])
+                    ->columnSpan(2),
+                ]),
+
+            Forms\Components\TextInput::make('price')
+                ->label('قیمت به تومان')
+                ->required()
+                ->numeric()
+                ->prefix('تومان'),
+
+            Forms\Components\Select::make('category_id')
+                ->label('دسته بندی')
+                ->relationship('category', 'name')
+                ->required(),
+
+            Forms\Components\SpatieMediaLibraryFileUpload::make('image')
+                ->label('تصویر')
+                ->conversion('thumb'),
+
+            Forms\Components\TextInput::make('sort_order')
+                ->label('ترتیب')
+                ->integer(),
+        ]);
     }
 
     public static function table(Table $table): Table
