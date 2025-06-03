@@ -46,4 +46,7 @@ return [
     */
 
     'request_timeout' => env('OPENAI_REQUEST_TIMEOUT', 30),
+
+
+    'model_id' => env('OPENAI_MODEL_ID'),
 ];

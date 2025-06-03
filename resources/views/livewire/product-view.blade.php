@@ -24,10 +24,18 @@
 
             <div class="m-4">
                 <h3 class="text-xl font-dastnevis text-lime-900 pt-4 text-center">{{ $product->name }}</h3>
+                @php
+                    use Illuminate\Support\Str;
+                @endphp
 
-                <p class="text-base text-justify text-gray-700 pt-2 leading-relaxed font-dastnevis">
-                    {{ $product->description }}
-                </p>
+                <div class="prose max-w-none">
+                    {!! Str::markdown($product->description) !!}
+                </div>
+
+
+{{--                <p class="text-base text-justify text-gray-700 pt-2 leading-relaxed font-dastnevis">--}}
+{{--                    {{ $product->description }}--}}
+{{--                </p>--}}
 
                 <div class="flex justify-between items-center pt-4 text-lime-800 text-lg font-dastnevis">
                     <span>قیمت:</span>

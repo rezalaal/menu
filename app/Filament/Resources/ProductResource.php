@@ -22,6 +22,7 @@ use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Actions\Action AS FormAction;
 use App\Services\OpenAiService;
 use Filament\Notifications\Notification;
+use Filament\Forms\Components\MarkdownEditor;
 
 
 
@@ -45,7 +46,7 @@ class ProductResource extends Resource
             Grid::make()
                 ->columns(12)
                 ->schema([
-                    RichEditor::make('description')
+                    MarkdownEditor::make('description')
                         ->label('توضیحات')
                         ->nullable()
                         ->columnSpan(10),
@@ -56,7 +57,7 @@ class ProductResource extends Resource
                             ->icon('heroicon-m-sparkles')
                             ->action(function ($state, callable $set, callable $get) {
                                 $title = $get('name');
-                                
+
                                 if (!$title) {
                                     Notification::make()
                                         ->title('عنوان پیام')
@@ -153,12 +154,12 @@ class ProductResource extends Resource
                         if($record->sort_order !=0) {
                             $record->sort_order -= 1;
                             $record->save();
-                        }                        
+                        }
                     }),
                 Action::make('Down')
                     ->icon('heroicon-o-arrow-down')
                     ->iconButton()
-                    ->action(function (Model $record) {                        
+                    ->action(function (Model $record) {
                         $record->sort_order += 1;
                         $record->save();
                     })
