@@ -1,4 +1,4 @@
-<div class="mt-4 px-4 pb-96 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+<div class="mt-4 px-4 pb-96 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
     @foreach ($products as $product)
         <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col justify-between">
             <!-- تصویر محصول با نسبت 16:9 -->

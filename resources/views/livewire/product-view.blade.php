@@ -5,7 +5,7 @@
     </h1>
     <livewire:search-input />
     <livewire:category-scroll-list :categoryId="$product->category->id">
-    <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col justify-center mx-4">
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col justify-center mx-4" wire:loading.remove>
         @if ($product->getFirstMediaUrl() == null)
             <div class="aspect-[16/9] overflow-hidden">
                 <img
@@ -47,5 +47,8 @@
                 </div>
             </div>
     </div>
+        <div wire:loading>
+            @livewire('placeholder')
+        </div>
     <livewire:footer-menu />
 </div>

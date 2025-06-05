@@ -33,15 +33,32 @@ unset($__split);
 if (isset($__slots)) unset($__slots);
 ?>
 
-    
+        <div wire:loading>
+            <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('placeholder');
+
+$__html = app('livewire')->mount($__name, $__params, 'lw-3080600434-2', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
+        </div>
 
     <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];
 };
-[$__name, $__params] = $__split('product-list', ['category' => $categoryId]);
+[$__name, $__params] = $__split('product-list', ['category' => $categoryId,'wire:loading.remove' => true]);
 
-$__html = app('livewire')->mount($__name, $__params, 'lw-3080600434-2', $__slots ?? [], get_defined_vars());
+$__html = app('livewire')->mount($__name, $__params, 'lw-3080600434-3', $__slots ?? [], get_defined_vars());
 
 echo $__html;
 
@@ -57,7 +74,7 @@ $__split = function ($name, $params = []) {
 };
 [$__name, $__params] = $__split('footer-menu', []);
 
-$__html = app('livewire')->mount($__name, $__params, 'lw-3080600434-3', $__slots ?? [], get_defined_vars());
+$__html = app('livewire')->mount($__name, $__params, 'lw-3080600434-4', $__slots ?? [], get_defined_vars());
 
 echo $__html;
 

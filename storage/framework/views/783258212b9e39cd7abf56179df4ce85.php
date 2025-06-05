@@ -36,7 +36,7 @@ unset($__params);
 unset($__split);
 if (isset($__slots)) unset($__slots);
 ?>
-    <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col justify-center mx-4">
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col justify-center mx-4" wire:loading.remove>
         <!--[if BLOCK]><![endif]--><?php if($product->getFirstMediaUrl() == null): ?>
             <div class="aspect-[16/9] overflow-hidden">
                 <img
@@ -94,13 +94,31 @@ if (isset($__slots)) unset($__slots);
                 </div>
             </div>
     </div>
+        <div wire:loading>
+            <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('placeholder');
+
+$__html = app('livewire')->mount($__name, $__params, 'lw-1174044069-3', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
+        </div>
     <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];
 };
 [$__name, $__params] = $__split('footer-menu', []);
 
-$__html = app('livewire')->mount($__name, $__params, 'lw-1174044069-3', $__slots ?? [], get_defined_vars());
+$__html = app('livewire')->mount($__name, $__params, 'lw-1174044069-4', $__slots ?? [], get_defined_vars());
 
 echo $__html;
 

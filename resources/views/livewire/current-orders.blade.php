@@ -1,4 +1,4 @@
-<div class="p-4 text-white md:w-screen ">
+<div class="p-4 text-white">
 <span wire:loading class="loading loading-dots loading-lg pt-2 text-white"></span>
     @foreach($orders as $order)
         <div wire:click="order({{$order->id}})" class="cursor-pointer flex flex-col p-4 gap-2 text-2xl bg-lime-100 mt-4 text-lime-950 font-dastnevis rounded-2xl shadow-xl">
@@ -22,6 +22,6 @@
                 <span>میز</span>
                 <span>{{ $order->table->name }}</span>
             </div>
-        </div>        
+        </div>
     @endforeach
 </div>

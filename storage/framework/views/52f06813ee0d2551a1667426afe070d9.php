@@ -6,3 +6,4 @@
     </svg>
     <p class="text-lime-100 mt-4 text-xl font-dastnevis">در حال بارگذاری...</p>
 </div>
+<?php /**PATH /home/Happy/Projects/Laravel/coral/coral/resources/views/livewire/placeholder.blade.php ENDPATH**/ ?>

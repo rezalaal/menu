@@ -3,8 +3,10 @@
     <livewire:search-input />
     <livewire:category-scroll-list :categoryId="$categoryId">
 
-    
+        <div wire:loading>
+            @livewire('placeholder')
+        </div>
 
-    <livewire:product-list :category="$categoryId" />
+    <livewire:product-list :category="$categoryId" wire:loading.remove/>
     <livewire:footer-menu />
 </div>
