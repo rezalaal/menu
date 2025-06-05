@@ -1,5 +1,5 @@
-<div class="z-50 bg-footer h-12 opacity-95 w-full max-w-md shadow-1 gap-12 px-9 py-8 fixed bottom-0 left-1/2 transform translate-x-[-50%] text-white flex justify-evenly items-center fixed-footer">
-    <div>
+<div class="block sm:hidden z-50 bg-footer h-12 opacity-95 w-full shadow-1 gap-12 px-9 py-8 fixed bottom-0 left-0 text-white flex justify-evenly items-center">
+<div>
         <a href="/" wire:navigate>
             <!-- home -->
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

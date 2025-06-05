@@ -1,6 +1,6 @@
 <div class="relative mx-4 md:px-4 mt-4">
 
-    <input wire:model.live="search" class="border-1 font-dastnevis placeholder-lime-900 border-lime-950 rounded-lg bg-white w-full text-xl outline-0 px-4 py-2 shadow-2xl text-lime-800" type="search" placeholder="جستجو">
+    <input wire:model.live="search" class="border-1 font-dastnevis placeholder-lime-900 border-lime-950 rounded-lg bg-[#ECFAE5] w-full text-xl outline-0 px-4 py-2 shadow-2xl text-lime-800" type="search" placeholder="جستجو">
     <span wire:loading class="loading loading-dots loading-lg pt-2 text-white"></span>
     <!--[if BLOCK]><![endif]--><?php if($products): ?>
 

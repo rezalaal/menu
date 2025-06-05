@@ -1,4 +1,4 @@
-<div dir="rtl" class="bg-gradient-to-b from-coral-from to-coral-to min-h-screen pb-16 flex flex-col md:items-center">
+<div dir="rtl" class="mb-10 bg-gradient-to-b from-coral-from to-coral-to min-h-screen pb-16 flex flex-col md:items-center">
     <h1 class="font-dastnevis text-2xl mt-4 px-4 text-white">
         <a href="/products/<?php echo e($product->category->id); ?>"><?php echo e($product->category->name); ?></a>
         ::<?php echo e($product->name); ?>
@@ -59,7 +59,7 @@ if (isset($__slots)) unset($__slots);
                     use Illuminate\Support\Str;
                 ?>
 
-                <div class="prose max-w-none">
+                <div class="prose max-w-none font-dastnevis mb-10 ">
                     <?php echo Str::markdown($product->description); ?>
 
                 </div>
