@@ -1,15 +1,32 @@
-<div class="-z-50">
+<div class="z-10 w-full max-w-sm mx-auto px-4">
     <!--[if BLOCK]><![endif]--><?php if($loggedIn): ?>
         <!--[if BLOCK]><![endif]--><?php if($onCartItems): ?>
-            <div wire:loading.remove class="flex justify-center items-center mt-4">
-                <button wire:click="increase" wire:loading.remove class="w-full text-center bg-lime-100 hover:bg-lime-200 text-lime-900 font-dastnevis py-2 px-4 rounded-xl shadow">+</button>
-                <span class="font-iransans-extrabold farsi-number text-lime-900 text-2xl mx-2 font-black"><?php echo e($qty); ?></span>
-                <button wire:click="decrease" wire:loading.remove class="w-full text-center bg-lime-100 hover:bg-lime-200 text-lime-900 font-dastnevis py-2 px-4 rounded-xl shadow ">-</button>
+            <div wire:loading.remove class="grid grid-cols-3 gap-2 mt-4 items-center text-center">
+                <button wire:click="increase"
+                        class="bg-lime-600 hover:bg-lime-700 text-white text-xl font-dastnevis py-2 rounded-xl shadow-lg transition duration-200">
+                    +
+                </button>
+
+                <span class="font-iransans-bold farsi-number text-lime-900 text-2xl">
+                    <?php echo e($qty); ?>
+
+                </span>
+
+                <button wire:click="decrease"
+                        class="bg-yellow-200 hover:bg-yellow-300 text-lime-950 text-xl font-dastnevis py-2 rounded-xl shadow-lg transition duration-200">
+                    -
+                </button>
+
             </div>
-            <span wire:loading class="loading loading-dots loading-lg pt-2 text-white"></span>
+
+            <span wire:loading class="block text-center pt-2 text-sm text-gray-600">در حال بروزرسانی...</span>
+
         <?php else: ?>
-            <button wire:click="add" wire:loading.remove class="w-full text-center bg-lime-100 hover:bg-lime-200 text-lime-900 font-dastnevis py-2 px-4 rounded-xl shadow">انتخاب</button>
-            <span wire:loading class="loading loading-dots loading-lg pt-2 text-white"></span>
+            <button wire:click="add"
+                    class="w-full bg-lime-600 hover:bg-lime-700 text-white text-xl font-dastnevis py-3 rounded-xl shadow-lg mt-4 transition duration-200">
+                انتخاب
+            </button>
+            <span wire:loading class="block text-center pt-2 text-sm text-gray-600">در حال افزودن...</span>
         <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 </div>

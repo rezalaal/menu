@@ -29,21 +29,22 @@
             @endforeach
 
             @if ($total > 0)
-                <div class="w-full max-w-sm mx-4 mt-4 border-dotted border-2 border-lime-950"></div>
+                <div class="w-[80%] bg-lime-100/70 rounded-2xl shadow-inner p-6 flex flex-col items-center gap-4 mx-6">
+                    <div class="w-full max-w-sm border-b border-lime-400 pb-2 flex justify-between items-center text-xl">
+                        <span class="font-dastnevis text-lime-800">جمع کل</span>
+                        <span class="font-iransans-bold farsi-number text-lime-950">{{ number_format($total) }} <span class="font-dastnevis">تومان</span></span>
+                    </div>
 
-                <div class="w-full max-w-sm px-4 mt-4 flex justify-between items-center text-lg">
-                    <span class="font-dastnevis">جمع:</span>
-                    <span class="font-iransans-bold farsi-number">{{ number_format($total) }} <span class="font-dastnevis">تومان</span></span>
+                    <div class="w-full max-w-sm border-b border-lime-400 pb-2 flex justify-between items-center text-lg">
+                        <span class="font-dastnevis text-lime-800">میز</span>
+                        <span class="font-iransans-bold text-lime-950">{{ $table }}</span>
+                    </div>
+
+                    <button wire:click="addToBag" wire:loading.remove class="w-full max-w-sm mt-4 bg-lime-700 hover:bg-lime-800 text-white font-dastnevis text-xl py-3 rounded-xl shadow-lg transition">
+                        ثبت سفارش
+                    </button>
                 </div>
 
-                <div class="w-full max-w-sm px-4 mt-2 flex justify-between items-center text-lg">
-                    <span class="font-dastnevis">میز:</span>
-                    <span class="font-iransans-bold">{{ $table }}</span>
-                </div>
-
-                <button wire:click="addToBag" wire:loading.remove class="w-full max-w-sm mt-6 bg-white text-lime-950 font-dastnevis text-xl py-3 rounded-xl shadow-xl">
-                    ثبت سفارش
-                </button>
                 <div wire:loading class="pt-4 text-white font-dastnevis text-lg">در حال ثبت سفارش...</div>
             @else
                 <div class="flex flex-col items-center justify-center mt-10">

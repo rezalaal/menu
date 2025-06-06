@@ -52,3 +52,12 @@
     @apply text-transparent bg-gradient-to-r from-lime-950 via-lime-600 to-lime-900  bg-clip-text
 }
 
+.no-spinner::-webkit-inner-spin-button,
+.no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.no-spinner {
+    -moz-appearance: textfield;
+}

@@ -5,31 +5,37 @@
     @if ($products)
 
         @foreach ($products as $product)
-        <div class="mt-4 pb-4 px-4 bg-lime-100 rounded-3xl">
-            <div class="relative top-50 flex flex-cols gap-4 items-center">
-                <div class="mt-4 cursor-pointer">
-                    @if ($product->getFirstMediaUrl() == null)
-                        <a href="/product/{{ $product->id }}" wire:navigate>
-                            <img class=" rounded-xl w-36 h-36 object-center aspect-[1/1] shadow-2xl" src="{{ config('app.url').'/images/category.jpg' }}" alt="Product Picture">
-                        </a>
-                    @else
-                        <a href="/product/{{ $product->id }}" wire:navigate>
-                            <img class=" rounded-xl w-36 h-36 object-center aspect-[1/1] shadow-2xl" src="{{ $product->getFirstMediaUrl() }}" alt="Product Picture">
-                        </a>
-                    @endif
-                </div>
-                <div>
-                    <a href="/product/{{ $product->id }}" wire:navigate>
-                        <h3 class="text-xl text-right font-dastnevis pt-1">{{ $product->name }}</h3>
+            <div class="mt-4 pb-4 px-4 bg-lime-100 rounded-3xl shadow-md">
+                <div class="grid grid-cols-[auto_1fr] gap-4 items-start">
+                    <a href="/product/{{ $product->id }}" wire:navigate class="block mt-2">
+                        <img
+                            class="rounded-2xl w-28 h-28 object-cover shadow-lg"
+                            src="{{ $product->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}"
+                            alt="Product Picture"
+                        >
                     </a>
-                    <div class="flex justify-around p-2 text-xl font-iransans-bold text-lime-800">
-                        <span class="farsi-number">{{ number_format($product->price) }}</span>
-                        <span class="font-dastnevis px-4">تومان</span>
+
+                    <div class="flex flex-col justify-between h-full pt-2">
+                        <a href="/product/{{ $product->id }}" wire:navigate>
+                            <h3 class="text-right font-dastnevis text-xl text-lime-950 leading-snug mt-1">
+                                {{ $product->name }}
+                            </h3>
+                        </a>
+
+                        <div class="flex justify-between items-center mt-3">
+                            <div class="text-lime-800 font-iransans-bold text-lg">
+                                <span class="farsi-number">{{ number_format($product->price) }}</span>
+                                <span class="font-dastnevis ml-1">تومان</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <livewire:add-to-cart-button :product="$product"/>
+                        </div>
                     </div>
-                    <livewire:add-to-cart-button :product="$product"/>
                 </div>
             </div>
-        </div>
+
         @endforeach
 
     @endif

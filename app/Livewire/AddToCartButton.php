@@ -28,7 +28,7 @@ class AddToCartButton extends Component
             'cart_id' => $this->user?->cart?->id,
             'product_id' => $this->product->id
         ])->first();
-        
+
         if($cartItem) {
             $this->onCartItems = true;
             $this->qty = $cartItem->qty;
@@ -40,20 +40,20 @@ class AddToCartButton extends Component
      */
     public function add()
     {
-                
+
         if(!$this->user) {
             return redirect()->to('/table/1');
         }
-        
+
         if(!$this->user->cart) {
             Cart::createNew($this->user);
         }
-        
+
         $cartItem = CartItem::where([
             'cart_id' => $this->user->cart?->id,
             'product_id' => $this->product->id
         ])->first();
-        
+
         if(!$cartItem) {
             $cartItem = CartItem::create([
                 'cart_id' => $this->user->cart?->id,
@@ -63,6 +63,7 @@ class AddToCartButton extends Component
         }
         $this->onCartItems = true;
         $this->qty = $cartItem->qty;
+        $this->dispatch('cart-updated');
     }
 
     public function increase():void
@@ -75,7 +76,7 @@ class AddToCartButton extends Component
         $cartItem?->update([
             'qty' => $this->qty
         ]);
-        
+        $this->dispatch('cart-updated');
     }
 
     public function decrease(): void
@@ -95,6 +96,7 @@ class AddToCartButton extends Component
             $cartItem?->delete();
             $this->onCartItems = false;
         }
+        $this->dispatch('cart-updated');
     }
 
     public function render(): View

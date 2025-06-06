@@ -65,10 +65,6 @@ if (isset($__slots)) unset($__slots);
                 </div>
 
 
-
-
-
-
                 <div class="flex justify-between items-center pt-4 text-lime-800 text-lg font-dastnevis">
                     <span>قیمت:</span>
                     <span class="farsi-number"><?php echo e(number_format($product->price)); ?> تومان</span>

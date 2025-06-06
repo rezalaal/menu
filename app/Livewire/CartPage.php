@@ -46,6 +46,8 @@ class CartPage extends Component
         $this->cartItems = CartItem::with('product')
                 ->where('cart_id', $item->cart->id)
                 ->get();
+
+        $this->dispatch('cart-updated');
     }
 
     public function decrease(CartItem $item):void
@@ -61,15 +63,16 @@ class CartPage extends Component
         ]);
 
         if($qty <= 0 ) {
-            $cartItem->delete();            
+            $cartItem->delete();
         }
         $this->cartItems = CartItem::with('product')
                 ->where('cart_id', $item->cart->id)
                 ->get();
+        $this->dispatch('cart-updated');
     }
     /**
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
-     */    
+     */
     public function addToBag()
     {
         $tableId = session()->get('tableId');

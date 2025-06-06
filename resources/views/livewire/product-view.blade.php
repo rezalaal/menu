@@ -33,10 +33,6 @@
                 </div>
 
 
-{{--                <p class="text-base text-justify text-gray-700 pt-2 leading-relaxed font-dastnevis">--}}
-{{--                    {{ $product->description }}--}}
-{{--                </p>--}}
-
                 <div class="flex justify-between items-center pt-4 text-lime-800 text-lg font-dastnevis">
                     <span>قیمت:</span>
                     <span class="farsi-number">{{ number_format($product->price) }} تومان</span>
