@@ -63,6 +63,12 @@
             <h3 class="text-lime-800 text-2xl font-dastnevis font-black mt-2">سبد خرید خالی است</h3>
         </div>
     @endif
-    <livewire:call-waiter />
+
+    @auth
+        @if(session()->has('tableId'))
+            <livewire:call-waiter />
+        @endif
+    @endauth
+
     <livewire:footer-menu />
 </div>

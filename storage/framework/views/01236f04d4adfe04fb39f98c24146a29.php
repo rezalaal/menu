@@ -78,7 +78,10 @@ if (isset($__slots)) unset($__slots);
             <h3 class="text-lime-800 text-2xl font-dastnevis font-black mt-2">سبد خرید خالی است</h3>
         </div>
     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-    <?php
+
+    <!--[if BLOCK]><![endif]--><?php if(auth()->guard()->check()): ?>
+        <!--[if BLOCK]><![endif]--><?php if(session()->has('tableId')): ?>
+            <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];
 };
@@ -94,6 +97,9 @@ unset($__params);
 unset($__split);
 if (isset($__slots)) unset($__slots);
 ?>
+        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+
     <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];
