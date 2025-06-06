@@ -78,14 +78,29 @@ if (isset($__slots)) unset($__slots);
             <h3 class="text-lime-800 text-2xl font-dastnevis font-black mt-2">سبد خرید خالی است</h3>
         </div>
     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+    <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('call-waiter', []);
 
+$__html = app('livewire')->mount($__name, $__params, 'lw-1661218748-1', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
     <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];
 };
 [$__name, $__params] = $__split('footer-menu', []);
 
-$__html = app('livewire')->mount($__name, $__params, 'lw-1661218748-1', $__slots ?? [], get_defined_vars());
+$__html = app('livewire')->mount($__name, $__params, 'lw-1661218748-2', $__slots ?? [], get_defined_vars());
 
 echo $__html;
 

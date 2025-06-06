@@ -10,9 +10,11 @@ class CategoryList extends Component
     public $categories;
     public $title;
 
-    public function mount() 
+    public function mount()
     {
-        $this->categories = Category::orderBy('sort_order')->get();
+        $this->categories = Category::withCount('products')
+            ->orderBy('sort_order')
+            ->get();
         $this->title = "منو :: ". config('app.name');
     }
 

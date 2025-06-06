@@ -7,6 +7,7 @@ use App\Livewire\ProductView;
 use App\Livewire\ProductsPage;
 use App\Livewire\ProfilePage;
 use App\Livewire\SearchPage;
+use App\Livewire\WaiterPage;
 use Illuminate\Support\Facades\Route;
 
 // Routes
@@ -19,3 +20,4 @@ Route::get('/orders', OrderPage::class);
 Route::get('/orders/{order}', OrderView::class);
 Route::get('/search', SearchPage::class);
 Route::get('/profile', ProfilePage::class);
+Route::get('/waiter', WaiterPage::class);

@@ -1,11 +1,22 @@
-<div class="px-4 mt-4 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+<div class="px-4 mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
     @foreach ($categories as $category)
-        <a href="/products/{{ $category->id }}" wire:navigate class="flex flex-col items-center space-y-2">
-            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-lime-600 shadow-md">
-                <img src="{{ $category->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}" alt="{{ $category->name }}"
-                     class="w-full h-full object-cover object-center">
+        <a href="/products/{{ $category->id }}" wire:navigate
+           class="group relative rounded-xl overflow-hidden shadow-xl transform hover:scale-105 transition duration-300 bg-white">
+            <img src="{{ $category->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}"
+                 alt="{{ $category->name }}"
+                 class="w-full h-36 object-cover object-center">
+
+            {{-- دسته‌بندی --}}
+            <div class="absolute bottom-0 w-full bg-lime-800/40 backdrop-blur-sm text-white text-center py-2">
+                <h3 class="font-dastnevis text-md truncate px-2" title="{{ $category->name }}">{{ $category->name }}</h3>
             </div>
-            <h3 class="text-center text-lime-950 font-dastnevis text-sm">{{ $category->name }}</h3>
+
+
+
+            {{-- تعداد محصولات --}}
+            <div class="absolute top-2 left-2 bg-white text-lime-800 text-xs px-2 py-0.5 rounded-full shadow font-dastnevis farsi-number">
+                {{ $category->products_count ?? 0 }}
+            </div>
         </a>
     @endforeach
 </div>
