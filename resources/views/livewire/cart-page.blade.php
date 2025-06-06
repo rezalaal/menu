@@ -64,11 +64,11 @@
         </div>
     @endif
 
-    @auth
-        @if(session()->has('tableId'))
-            <livewire:call-waiter />
-        @endif
-    @endauth
+{{--    @auth--}}
+{{--        @if(session()->has('tableId'))--}}
+{{--            <livewire:call-waiter />--}}
+{{--        @endif--}}
+{{--    @endauth--}}
 
     <livewire:footer-menu />
 </div>

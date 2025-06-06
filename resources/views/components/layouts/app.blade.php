@@ -37,5 +37,6 @@
         <div class="max-w-screen-sm mx-auto">
             {{ $slot }}
         </div>
+
     </body>
 </html>

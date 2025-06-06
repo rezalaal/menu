@@ -15,6 +15,7 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "alpinejs": "^3.14.9",
         "laravel-echo": "^2.1.5",
         "openai": "^5.0.2",
         "pusher-js": "^8.4.0"

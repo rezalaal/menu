@@ -79,26 +79,11 @@ if (isset($__slots)) unset($__slots);
         </div>
     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
-    <!--[if BLOCK]><![endif]--><?php if(auth()->guard()->check()): ?>
-        <!--[if BLOCK]><![endif]--><?php if(session()->has('tableId')): ?>
-            <?php
-$__split = function ($name, $params = []) {
-    return [$name, $params];
-};
-[$__name, $__params] = $__split('call-waiter', []);
 
-$__html = app('livewire')->mount($__name, $__params, 'lw-1661218748-1', $__slots ?? [], get_defined_vars());
 
-echo $__html;
 
-unset($__html);
-unset($__name);
-unset($__params);
-unset($__split);
-if (isset($__slots)) unset($__slots);
-?>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+
+
 
     <?php
 $__split = function ($name, $params = []) {
@@ -106,7 +91,7 @@ $__split = function ($name, $params = []) {
 };
 [$__name, $__params] = $__split('footer-menu', []);
 
-$__html = app('livewire')->mount($__name, $__params, 'lw-1661218748-2', $__slots ?? [], get_defined_vars());
+$__html = app('livewire')->mount($__name, $__params, 'lw-1661218748-1', $__slots ?? [], get_defined_vars());
 
 echo $__html;
 

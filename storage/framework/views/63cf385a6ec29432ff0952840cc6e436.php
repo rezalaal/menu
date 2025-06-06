@@ -38,6 +38,7 @@
             <?php echo e($slot); ?>
 
         </div>
+
     </body>
 </html>
 <?php /**PATH /home/Happy/Projects/Laravel/coral/coral/resources/views/components/layouts/app.blade.php ENDPATH**/ ?>
