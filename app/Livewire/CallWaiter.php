@@ -9,13 +9,14 @@ class CallWaiter extends Component
 {
     public ?Table $table = null;
 
+
     public function mount(): void
     {
         $tableId = Session::get('tableId');
         if ($tableId) {
             $this->table = Table::find($tableId);
         }
-        
+
     }
 
     public function callWaiter(): void
