@@ -1,4 +1,4 @@
-<div wire:poll.5s class="p-6 bg-white rounded shadow max-w-xl mx-auto mt-10">
+<div wire:poll.5s class="p-6 bg-white rounded shadow max-w-xl mx-auto mt-10 h-screen">
     <h2 class="text-xl font-bold mb-4 text-gray-700">📋 وضعیت میزها</h2>
 
     <!--[if BLOCK]><![endif]--><?php if($calledTables->isEmpty()): ?>
@@ -16,8 +16,6 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
         </ul>
     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-
-    
 
 </div>
 <?php /**PATH /home/Happy/Projects/Laravel/coral/coral/resources/views/livewire/waiter-page.blade.php ENDPATH**/ ?>
