@@ -1,22 +1,19 @@
-<div dir="rtl" class="text-center mt-10 p-6">
-    <h1 class="text-2xl font-bold mb-6 text-lime-950">صفحه گارسون</h1>
+<div wire:poll.5s class="p-6 bg-white rounded shadow max-w-xl mx-auto mt-10">
+    <h2 class="text-xl font-bold mb-4 text-gray-700">📋 وضعیت میزها</h2>
 
-    @if($notification)
-        <div class="text-red-600 text-xl font-bold mb-4">{{ $notification }}</div>
+    @if($calledTables->isEmpty())
+        <p class="text-gray-500">هیچ میزی در حال حاضر درخواست گارسون ندارد.</p>
     @else
-        <div class="text-gray-600">منتظر صدا زدن گارسون...</div>
+        <ul class="space-y-3">
+            @foreach($calledTables as $table)
+                <li class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded flex justify-between items-center">
+                    <span>🛎️ میز <strong>{{ $table->name }}</strong> نیاز به گارسون دارد!</span>
+                    <button wire:click="markAsHandled({{ $table->id }})"
+                            class="bg-lime-600 hover:bg-lime-700 text-white px-3 py-1 rounded">
+                        رسیدگی شد ✅
+                    </button>
+                </li>
+            @endforeach
+        </ul>
     @endif
-
-    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
-    <script>
-        document.addEventListener('livewire:load', function () {
-            window.Echo.channel('waiter-channel')
-                .listen('.waiter-called', function (data) {
-                    Livewire.emit('waiterCalled', data.tableId);
-                    // اگر خواستی، صدای بوق هم پخش کن
-                    // new Audio('/sounds/beep.mp3').play();
-                });
-        });
-    </script>
-
 </div>

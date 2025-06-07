@@ -1,39 +1,33 @@
 <?php
-
 namespace App\Livewire;
 
-use Illuminate\View\View;
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Table;
 use Illuminate\Support\Facades\Session;
-use App\Events\WaiterCalled;
 
 class CallWaiter extends Component
 {
-    public $tableId;
+    public ?Table $table = null;
 
-    public function mount():void
+    public function mount(): void
     {
-        $this->tableId = Session::get('tableId');
+        $tableId = Session::get('tableId');
+        if ($tableId) {
+            $this->table = Table::find($tableId);
+        }
+        
     }
 
-    public function notifyWaiter(): void
+    public function callWaiter(): void
     {
-        if (!$this->tableId) {
-            $this->dispatch('alert', message: 'لطفاً بارکد روی میز را اسکن کنید.');
-            return;
+        if ($this->table && !$this->table->called_waiter) {
+            $this->table->called_waiter = true;
+            $this->table->save();
         }
-
-        event(new WaiterCalled($this->tableId));
-        $this->dispatch('alert', message: "گارسون برای میز شماره {$this->tableId} صدا زده شد.");
     }
 
-    public function render():View
+    public function render()
     {
-        if (!Auth::check() || !$this->tableId) {
-            return view('livewire.empty');
-        }
-
         return view('livewire.call-waiter');
     }
 }

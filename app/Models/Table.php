@@ -14,8 +14,10 @@ class Table extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $fillable = [
-        'name'
+        'name',
+        'called_waiter',
     ];
+
 
     public function orders():HasMany
     {

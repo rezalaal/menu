@@ -12,8 +12,8 @@
                 <div class="bg-white rounded-2xl shadow-lg w-full max-w-sm mx-4 my-2 p-4 flex gap-4">
                     <a href="/product/{{ $item->product->id }}">
                         <img class="rounded-xl w-24 h-24 object-cover aspect-[1/1]"
-                             src="{{ $item->product->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}"
-                             alt="Product Picture">
+                            src="{{ $item->product->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}"
+                            alt="Product Picture">
                     </a>
                     <div class="flex flex-col justify-between flex-grow">
                         <h3 class="text-xl font-dastnevis font-black text-lime-950">{{ $item->product->name }}</h3>
@@ -64,11 +64,11 @@
         </div>
     @endif
 
-{{--    @auth--}}
-{{--        @if(session()->has('tableId'))--}}
-{{--            <livewire:call-waiter />--}}
-{{--        @endif--}}
-{{--    @endauth--}}
+    @auth
+        @if(session()->has('tableId'))
+            <livewire:call-waiter />
+        @endif
+    @endauth
 
     <livewire:footer-menu />
 </div>

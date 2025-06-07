@@ -3,21 +3,36 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Table;
+use Illuminate\Support\Collection;
 
 class WaiterPage extends Component
 {
-    public $notification = '';
+    public Collection $calledTables;
 
-    protected $listeners = ['waiterCalled' => 'showNotification'];
-
-    public function showNotification($tableId)
+    public function mount(): void
     {
-        $this->notification = "گارسون برای میز شماره {$tableId} صدا زده شد!";
+        $this->calledTables = collect();
+    }
+
+    public function getCalledTables(): void
+    {
+        $this->calledTables = Table::where('called_waiter', true)->get();
+    }
+
+    public function markAsHandled(int $tableId): void
+    {
+        $table = Table::find($tableId);
+        if ($table) {
+            $table->called_waiter = false;
+            $table->save();
+        }
     }
 
     public function render()
     {
+        $this->getCalledTables();
+
         return view('livewire.waiter-page');
     }
 }
-
