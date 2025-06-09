@@ -9,10 +9,8 @@
     </p>
 
     <!-- نوار جستجو -->
-    <livewire:search-input />
-
-    <!-- اسکرول دسته‌بندی با حالت sticky -->
-    <div class="sticky top-16 z-10 bg-coral-to/90 backdrop-blur-md shadow-md">
+    <div class="sticky top-12 z-20 w-full bg-coral-to/80 backdrop-blur-md shadow-sm">
+        <livewire:search-input />
         <livewire:category-scroll-list :categoryId="$categoryId" />
     </div>
 
