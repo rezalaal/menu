@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon/favicon-16x16.png') }}">
@@ -23,7 +23,7 @@
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <title>{{ $title ?? 'Coral Food کورال فود' }}</title>
 </head>
-<body class="bg-coral-to" 
+<body class="bg-coral-to"
       x-data="{ navigating: false, showLoader: false }"
       x-init="
         window.addEventListener('livewire:navigating', () => {
@@ -40,7 +40,7 @@
 
     <!-- Header -->
     <header class="bg-[#cce0a1] h-16 w-full shadow-md flex items-center justify-between px-4">
-        <img src="/images/logo.png" alt="Logo" class="h-10 w-auto rounded-md" />
+        <img src="{{ asset('images/logo.png')}}" alt="Logo" class="h-10 w-auto rounded-md" />
         <nav dir="rtl" class="hidden sm:block">
             <ul class="flex justify-center space-x-6 rtl:space-x-reverse py-4 text-gray-700 font-medium">
                 <li><a href="/" class="hover:text-lime-700">خانه</a></li>
