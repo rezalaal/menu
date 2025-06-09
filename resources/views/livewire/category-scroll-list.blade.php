@@ -3,7 +3,7 @@
      class="flex flex-col w-full overflow-hidden">
 
     <template x-if="loading">
-        <div class="bg-yellow-100 text-yellow-800 p-2 text-center rounded shadow mb-2">
+        <div class="bg-yellow-100 text-yellow-800 p-2 text-center rounded shadow mb-2 font-dastnevis">
             در حال بارگذاری دسته‌بندی، لطفاً صبر کنید...
         </div>
     </template>
