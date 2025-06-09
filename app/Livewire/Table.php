@@ -7,7 +7,6 @@ use Livewire\Component;
 use App\Settings\GeneralSettings;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class Table extends Component
 {
@@ -17,6 +16,7 @@ class Table extends Component
     public $tableImageUrl;
     public $settings;
     public $loggedIn = false;
+
 
     #[Validate(['mobile' => 'required|regex:/^09[0-9]{9}$/'],message:[
         'required' => 'شماره تلفن همراه خود را وارد کنید',
@@ -63,9 +63,10 @@ class Table extends Component
         
         User::checkUsername($this->mobile);
         $this->loggedIn = true;
-        session()->flash('success', '✅ ورود با موفقیت انجام شد.');
-        return redirect('/');
+        $this->dispatch('login-successful', mobile: $this->mobile);
+        return redirect()->to('/');
     }
+
 
     public function logoff()
     {
