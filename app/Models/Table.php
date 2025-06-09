@@ -23,5 +23,11 @@ class Table extends Model implements HasMedia
     {
         return $this->hasMany(Order::class);
     }
-    
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('videos')->acceptsFile(function ($file) {
+            return $file->mimeType === 'video/mp4';
+        });
+    }
 }

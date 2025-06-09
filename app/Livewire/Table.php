@@ -16,6 +16,7 @@ class Table extends Component
     public $tableImageUrl;
     public $settings;
     public $loggedIn = false;
+    public $tableVideoUrl;
 
 
     #[Validate(['mobile' => 'required|regex:/^09[0-9]{9}$/'],message:[
@@ -24,8 +25,8 @@ class Table extends Component
     ])]
     public $mobile;
 
-    public function mount($id, GeneralSettings $settings) 
-    {      
+    public function mount($id, GeneralSettings $settings)
+    {
         if(auth()->user()) {
             $this->loggedIn = true;
         }
@@ -35,7 +36,7 @@ class Table extends Component
         if(!$table) {
             return abort(404);
         }
-        
+
         session()->put('tableId', $this->tableId);
 
         if($table->getFirstMediaUrl() == null){
@@ -43,7 +44,11 @@ class Table extends Component
         }else{
             $this->tableImageUrl = $table->getFirstMediaUrl();
         }
-        
+
+        $videoUrl = $table->getFirstMediaUrl('videos');
+        $this->tableVideoUrl = $videoUrl ?: null;
+
+
         $this->tableName = $table->name ?? '';
         $this->title .= " به کورال فود خوش آمدید :: ". $this->tableName;
         $this->settings = [
@@ -60,7 +65,7 @@ class Table extends Component
         }
 
         $this->validate();
-        
+
         User::checkUsername($this->mobile);
         $this->loggedIn = true;
         $this->dispatch('login-successful', mobile: $this->mobile);
@@ -73,9 +78,9 @@ class Table extends Component
         Auth::logout();
         $this->loggedIn = false;
     }
-    
+
     public function render()
-    {        
+    {
         return view('livewire.table')
             ->title($this->title);
     }

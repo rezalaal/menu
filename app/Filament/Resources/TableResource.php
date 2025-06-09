@@ -36,10 +36,18 @@ class TableResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->label('نام')
                     ->required(),
-                SpatieMediaLibraryFileUpload::make('image')  
-                    ->label('تصویر')                  
-                    ->conversion('thumb')
-
+                SpatieMediaLibraryFileUpload::make('image')
+                    ->label('تصویر')
+                    ->conversion('thumb'),
+                SpatieMediaLibraryFileUpload::make('video')
+                    ->label('ویدیو')
+                    ->acceptedFileTypes(['video/mp4'])
+                    ->maxSize(2048)
+                    ->directory('videos')
+                    ->visibility('public')
+                    ->preserveFilenames()
+                    ->collection('videos')
+                    ->previewable(true),
             ]);
     }
 
@@ -69,16 +77,16 @@ class TableResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->toggleable()
-                 
+
                     // main options
                     ->trigger('click') // support click and hover
                     ->placement('right') // for more: https://alpinejs.dev/plugins/anchor#positioning
                     ->offset(10) // int px, for more: https://alpinejs.dev/plugins/anchor#offset
                     ->popOverMaxWidth('none')
                     ->icon('heroicon-o-qr-code') // show custom icon
-                 
+
                     // direct HTML content
-                    ->content(fn($record) => new HtmlString(Qr::render(data:config('app.url').'/table/'.$record->id)))                                  
+                    ->content(fn($record) => new HtmlString(Qr::render(data:config('app.url').'/table/'.$record->id)))
             ])
             ->filters([
                //
