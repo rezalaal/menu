@@ -26,11 +26,6 @@
             </button>
 
             <span wire:loading class="block text-center pt-2 text-sm text-gray-600">در حال افزودن...</span>
-        @endif
-    @else
-        <button disabled
-                class="w-full bg-gray-400 text-white text-xl font-dastnevis py-3 rounded-xl shadow-lg mt-4 cursor-not-allowed">
-            ابتدا وارد شوید
-        </button>
+        @endif   
     @endif
 </div>
