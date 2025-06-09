@@ -3,7 +3,7 @@
         @if ($onCartItems)
             <div wire:loading.remove class="grid grid-cols-3 gap-2 mt-4 items-center text-center">
                 <button wire:click="increase"
-                        class="bg-lime-600 hover:bg-lime-700 text-white text-xl font-dastnevis py-2 rounded-xl shadow-lg transition duration-200">
+                        class="bg-lime-600 hover:bg-lime-700 text-white text-xl font-dastnevis py-3 rounded-xl shadow-lg transition duration-200 touch-manipulation">
                     +
                 </button>
 
@@ -12,10 +12,9 @@
                 </span>
 
                 <button wire:click="decrease"
-                        class="bg-yellow-200 hover:bg-yellow-300 text-lime-950 text-xl font-dastnevis py-2 rounded-xl shadow-lg transition duration-200">
+                        class="bg-yellow-200 hover:bg-yellow-300 text-lime-950 text-xl font-dastnevis py-3 rounded-xl shadow-lg transition duration-200 touch-manipulation">
                     -
                 </button>
-
             </div>
 
             <span wire:loading class="block text-center pt-2 text-sm text-gray-600">در حال بروزرسانی...</span>
@@ -23,9 +22,14 @@
         @else
             <button wire:click="add"
                     class="w-full bg-lime-600 hover:bg-lime-700 text-white text-xl font-dastnevis py-3 rounded-xl shadow-lg mt-4 transition duration-200">
-                انتخاب
+                افزودن به سفارش
             </button>
             <span wire:loading class="block text-center pt-2 text-sm text-gray-600">در حال افزودن...</span>
         @endif
+    @else
+        <button disabled
+                class="w-full bg-gray-400 text-white text-xl font-dastnevis py-3 rounded-xl shadow-lg mt-4 cursor-not-allowed">
+            ابتدا وارد شوید
+        </button>
     @endif
 </div>

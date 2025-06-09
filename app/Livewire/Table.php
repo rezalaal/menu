@@ -63,7 +63,8 @@ class Table extends Component
         
         User::checkUsername($this->mobile);
         $this->loggedIn = true;
-        return redirect()->to('/');
+        session()->flash('success', '✅ ورود با موفقیت انجام شد.');
+        return redirect('/');
     }
 
     public function logoff()

@@ -1,4 +1,4 @@
-<div class="relative mt-4 w-full px-4">
+<div class="relative mt-4 w-full px-4 mb-2">
 
     <input wire:model.live="search" class="border-1 font-dastnevis placeholder-lime-900 border-lime-950 rounded-lg bg-[#ECFAE5] w-full text-xl outline-0 px-4 py-2 shadow-2xl text-lime-800" type="search" placeholder="جستجو">
     <span wire:loading class="loading loading-dots loading-lg pt-2 text-white"></span>

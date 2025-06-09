@@ -1,4 +1,4 @@
-<div dir="rtl" class="bg-gradient-to-b from-coral-from to-coral-to min-h-screen pb-48 flex flex-col items-center">
+<div dir="rtl" class="bg-gradient-to-b from-coral-from to-coral-to min-h-screen pb-48 flex flex-col items-center space-y-4">
     <h1 class="font-dastnevis font-black text-3xl mt-10 px-4 text-white">سبد خرید</h1>
     <livewire:search-input />
 
@@ -9,7 +9,7 @@
             @endphp
 
             @foreach ($cartItems as $item)
-                <div class="bg-white rounded-2xl shadow-lg w-full max-w-sm mx-4 my-2 p-4 flex gap-4">
+                <div class="bg-white rounded-2xl shadow-lg w-full max-w-sm mx-4 my-2 p-4 flex gap-4 transition-transform hover:scale-[1.01]">
                     <a href="/product/{{ $item->product->id }}">
                         <img class="rounded-xl w-24 h-24 object-cover aspect-[1/1]"
                             src="{{ $item->product->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}"
@@ -23,6 +23,10 @@
                             <button wire:click="increase({{ $item->id }})" class="bg-lime-100 text-lime-950 w-8 h-8 rounded-full text-xl">+</button>
                             <span class="font-iransans-bold farsi-number">{{ $item->qty }}</span>
                             <button wire:click="decrease({{ $item->id }})" class="bg-lime-100 text-lime-950 w-8 h-8 rounded-full text-xl">-</button>
+                        </div>
+                        <div class="text-right mt-2">
+                            <button wire:click="remove({{ $item->id }})"
+                                    class="text-sm text-red-600 hover:text-red-800 font-iransans">حذف</button>
                         </div>
                     </div>
                 </div>
