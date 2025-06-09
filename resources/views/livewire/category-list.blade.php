@@ -14,9 +14,10 @@
 
 
             {{-- تعداد محصولات --}}
-            <div class="absolute top-2 left-2 bg-white text-lime-800 text-xs px-2 py-0.5 rounded-full shadow font-dastnevis farsi-number">
+            <div class="absolute top-2 left-2 px-2 border-1 border-lime-800 py-0.5 bg-lime-200 text-lime-800 text-xs flex justify-center items-center rounded-full shadow font-dastnevis farsi-number">
                 {{ $category->products_count ?? 0 }}
             </div>
         </a>
     @endforeach
+
 </div>

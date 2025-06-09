@@ -17,6 +17,7 @@ class CategoryScrollList extends Component
 
     public function category($id)
     {
+        $this->dispatch('category-loading');
         return redirect()->to("/products/". $id);
     }
 

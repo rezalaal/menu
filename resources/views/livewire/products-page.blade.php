@@ -7,10 +7,10 @@
     <p class="text-xs text-center text-white/80 mt-2 px-4">
         برای مشاهده محصولات، دسته مورد نظر را انتخاب یا به پایین اسکرول کنید.
     </p>
-
+    <livewire:search-input />
     <!-- نوار جستجو -->
     <div class="sticky top-12 z-20 w-full bg-coral-to/80 backdrop-blur-md shadow-sm">
-        <livewire:search-input />
+        
         <livewire:category-scroll-list :categoryId="$categoryId" />
     </div>
 

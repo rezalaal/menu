@@ -23,11 +23,7 @@
                             <button wire:click="increase({{ $item->id }})" class="bg-lime-100 text-lime-950 w-8 h-8 rounded-full text-xl">+</button>
                             <span class="font-iransans-bold farsi-number">{{ $item->qty }}</span>
                             <button wire:click="decrease({{ $item->id }})" class="bg-lime-100 text-lime-950 w-8 h-8 rounded-full text-xl">-</button>
-                        </div>
-                        <div class="text-right mt-2">
-                            <button wire:click="remove({{ $item->id }})"
-                                    class="text-sm text-red-600 hover:text-red-800 font-iransans">حذف</button>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
             @endforeach

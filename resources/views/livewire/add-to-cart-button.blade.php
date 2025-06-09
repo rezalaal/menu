@@ -21,9 +21,10 @@
 
         @else
             <button wire:click="add"
-                    class="w-full bg-lime-600 hover:bg-lime-700 text-white text-xl font-dastnevis py-3 rounded-xl shadow-lg mt-4 transition duration-200">
+                class="w-full bg-lime-600 hover:bg-lime-700 text-white text-base font-dastnevis py-2 rounded-lg shadow-md mt-4 transition duration-200">
                 افزودن به سفارش
             </button>
+
             <span wire:loading class="block text-center pt-2 text-sm text-gray-600">در حال افزودن...</span>
         @endif
     @else

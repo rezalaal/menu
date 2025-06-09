@@ -10,10 +10,10 @@
     <h1 class="font-dastnevis text-2xl mt-2 px-4 text-white text-center">
         {{ $product->category->name }} :: {{ $product->name }}
     </h1>
-
+    <livewire:search-input />
     <!-- نوار جستجو -->
     <div class="sticky top-12 z-20 w-full bg-coral-to/80 backdrop-blur-md shadow-sm">
-        <livewire:search-input />
+        
         <livewire:category-scroll-list :categoryId="$product->category->id" />
     </div>
 
