@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 // Routes
 Route::get('/table/{id}', \App\Livewire\Table::class);
-Route::get('/', \App\Livewire\CategoryPage::class);
+Route::get('/', \App\Livewire\CategoryPage::class)->name('home');
 Route::get('/products/{category}', ProductsPage::class);
 Route::get('/product/{product}', ProductView::class);
 Route::get('/cart', CartPage::class);

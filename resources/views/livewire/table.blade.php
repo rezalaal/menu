@@ -33,12 +33,13 @@
 
 
     @guest
-            <livewire:login-form/>
-        @endguest
+        {{-- <livewire:login-form/> --}}
+        <livewire:one-time-password :redirect-to="route('home')">
+    @endguest
 
-        @auth
-            <a wire:navigate href="/" class="font-dastnevis text-center text-lime-800 hover:text-lime-100 bg-[#FF2D20]/10">جهت مشاهده منو کلیک کنید</a>
-        @endauth
+    @auth
+        <a wire:navigate href="/" class="font-dastnevis text-center text-lime-800 hover:text-lime-100 bg-[#FF2D20]/10">جهت مشاهده منو کلیک کنید</a>
+    @endauth
 
         <!-- اطلاعات تماس -->
         <div class="w-full flex justify-around text-lime-900 text-sm flex-wrap gap-6 mt-4 mb-4">

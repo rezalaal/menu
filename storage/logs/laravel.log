@@ -526,3 +526,160 @@
 #105 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('...')
 #106 {main}
 "} 
+[2025-06-10 09:29:28] production.ERROR: syntax error, unexpected token "]" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"]\" at /media/disk2/coral/coral/config/services.php:34)
+[stacktrace]
+#0 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->{closure:Illuminate\\Foundation\\Bootstrap\\LoadConfiguration::loadConfigurationFile():96}()
+#1 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(77): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFile()
+#2 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(38): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#3 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#4 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#5 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#6 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#7 {main}
+"} 
+[2025-06-10 09:29:39] production.ERROR: syntax error, unexpected token "]" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"]\" at /media/disk2/coral/coral/config/services.php:35)
+[stacktrace]
+#0 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->{closure:Illuminate\\Foundation\\Bootstrap\\LoadConfiguration::loadConfigurationFile():96}()
+#1 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(77): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFile()
+#2 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(38): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#3 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#4 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#5 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#6 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#7 {main}
+"} 
+[2025-06-10 09:29:43] production.ERROR: Too few arguments to function env(), 0 passed in /media/disk2/coral/coral/config/services.php on line 34 and at least 1 expected {"exception":"[object] (ArgumentCountError(code: 0): Too few arguments to function env(), 0 passed in /media/disk2/coral/coral/config/services.php on line 34 and at least 1 expected at /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/helpers.php:153)
+[stacktrace]
+#0 /media/disk2/coral/coral/config/services.php(34): env()
+#1 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): require('...')
+#2 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->{closure:Illuminate\\Foundation\\Bootstrap\\LoadConfiguration::loadConfigurationFile():96}()
+#3 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(77): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFile()
+#4 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(38): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#5 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#6 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#7 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#8 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 {main}
+"} 
+[2025-06-10 09:29:44] production.ERROR: Too few arguments to function env(), 0 passed in /media/disk2/coral/coral/config/services.php on line 34 and at least 1 expected {"exception":"[object] (ArgumentCountError(code: 0): Too few arguments to function env(), 0 passed in /media/disk2/coral/coral/config/services.php on line 34 and at least 1 expected at /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/helpers.php:153)
+[stacktrace]
+#0 /media/disk2/coral/coral/config/services.php(34): env()
+#1 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): require('...')
+#2 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->{closure:Illuminate\\Foundation\\Bootstrap\\LoadConfiguration::loadConfigurationFile():96}()
+#3 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(77): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFile()
+#4 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(38): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#5 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#6 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#7 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#8 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 {main}
+"} 
+[2025-06-10 09:29:44] production.ERROR: Too few arguments to function env(), 0 passed in /media/disk2/coral/coral/config/services.php on line 34 and at least 1 expected {"exception":"[object] (ArgumentCountError(code: 0): Too few arguments to function env(), 0 passed in /media/disk2/coral/coral/config/services.php on line 34 and at least 1 expected at /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/helpers.php:153)
+[stacktrace]
+#0 /media/disk2/coral/coral/config/services.php(34): env()
+#1 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): require('...')
+#2 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->{closure:Illuminate\\Foundation\\Bootstrap\\LoadConfiguration::loadConfigurationFile():96}()
+#3 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(77): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFile()
+#4 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(38): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#5 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#6 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#7 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#8 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 {main}
+"} 
+[2025-06-10 09:29:48] production.ERROR: Expected name to be a non-empty string. {"exception":"[object] (InvalidArgumentException(code: 0): Expected name to be a non-empty string. at /media/disk2/coral/coral/vendor/vlucas/phpdotenv/src/Repository/AdapterRepository.php:65)
+[stacktrace]
+#0 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/Env.php(101): Dotenv\\Repository\\AdapterRepository->get()
+#1 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/Env.php(77): Illuminate\\Support\\Env::getOption()
+#2 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/helpers.php(155): Illuminate\\Support\\Env::get()
+#3 /media/disk2/coral/coral/config/services.php(34): env()
+#4 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): require('...')
+#5 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->{closure:Illuminate\\Foundation\\Bootstrap\\LoadConfiguration::loadConfigurationFile():96}()
+#6 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(77): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFile()
+#7 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(38): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#8 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#9 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#10 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#11 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#12 {main}
+"} 
+[2025-06-10 09:29:49] production.ERROR: Expected name to be a non-empty string. {"exception":"[object] (InvalidArgumentException(code: 0): Expected name to be a non-empty string. at /media/disk2/coral/coral/vendor/vlucas/phpdotenv/src/Repository/AdapterRepository.php:65)
+[stacktrace]
+#0 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/Env.php(101): Dotenv\\Repository\\AdapterRepository->get()
+#1 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/Env.php(77): Illuminate\\Support\\Env::getOption()
+#2 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/helpers.php(155): Illuminate\\Support\\Env::get()
+#3 /media/disk2/coral/coral/config/services.php(34): env()
+#4 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): require('...')
+#5 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->{closure:Illuminate\\Foundation\\Bootstrap\\LoadConfiguration::loadConfigurationFile():96}()
+#6 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(77): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFile()
+#7 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(38): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#8 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#9 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#10 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#11 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#12 {main}
+"} 
+[2025-06-10 09:29:49] production.ERROR: Expected name to be a non-empty string. {"exception":"[object] (InvalidArgumentException(code: 0): Expected name to be a non-empty string. at /media/disk2/coral/coral/vendor/vlucas/phpdotenv/src/Repository/AdapterRepository.php:65)
+[stacktrace]
+#0 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/Env.php(101): Dotenv\\Repository\\AdapterRepository->get()
+#1 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/Env.php(77): Illuminate\\Support\\Env::getOption()
+#2 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/helpers.php(155): Illuminate\\Support\\Env::get()
+#3 /media/disk2/coral/coral/config/services.php(34): env()
+#4 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): require('...')
+#5 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->{closure:Illuminate\\Foundation\\Bootstrap\\LoadConfiguration::loadConfigurationFile():96}()
+#6 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(77): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFile()
+#7 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(38): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#8 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#9 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#10 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#11 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#12 {main}
+"} 
+[2025-06-10 09:29:53] production.ERROR: Expected name to be a non-empty string. {"exception":"[object] (InvalidArgumentException(code: 0): Expected name to be a non-empty string. at /media/disk2/coral/coral/vendor/vlucas/phpdotenv/src/Repository/AdapterRepository.php:65)
+[stacktrace]
+#0 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/Env.php(101): Dotenv\\Repository\\AdapterRepository->get()
+#1 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/Env.php(77): Illuminate\\Support\\Env::getOption()
+#2 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/helpers.php(155): Illuminate\\Support\\Env::get()
+#3 /media/disk2/coral/coral/config/services.php(34): env()
+#4 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): require('...')
+#5 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->{closure:Illuminate\\Foundation\\Bootstrap\\LoadConfiguration::loadConfigurationFile():96}()
+#6 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(77): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFile()
+#7 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(38): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#8 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#9 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#10 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#11 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#12 {main}
+"} 
+[2025-06-10 09:29:54] production.ERROR: Expected name to be a non-empty string. {"exception":"[object] (InvalidArgumentException(code: 0): Expected name to be a non-empty string. at /media/disk2/coral/coral/vendor/vlucas/phpdotenv/src/Repository/AdapterRepository.php:65)
+[stacktrace]
+#0 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/Env.php(101): Dotenv\\Repository\\AdapterRepository->get()
+#1 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/Env.php(77): Illuminate\\Support\\Env::getOption()
+#2 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/helpers.php(155): Illuminate\\Support\\Env::get()
+#3 /media/disk2/coral/coral/config/services.php(34): env()
+#4 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): require('...')
+#5 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->{closure:Illuminate\\Foundation\\Bootstrap\\LoadConfiguration::loadConfigurationFile():96}()
+#6 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(77): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFile()
+#7 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(38): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#8 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#9 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#10 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#11 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#12 {main}
+"} 
+[2025-06-10 09:29:54] production.ERROR: Expected name to be a non-empty string. {"exception":"[object] (InvalidArgumentException(code: 0): Expected name to be a non-empty string. at /media/disk2/coral/coral/vendor/vlucas/phpdotenv/src/Repository/AdapterRepository.php:65)
+[stacktrace]
+#0 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/Env.php(101): Dotenv\\Repository\\AdapterRepository->get()
+#1 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/Env.php(77): Illuminate\\Support\\Env::getOption()
+#2 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Support/helpers.php(155): Illuminate\\Support\\Env::get()
+#3 /media/disk2/coral/coral/config/services.php(34): env()
+#4 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): require('...')
+#5 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->{closure:Illuminate\\Foundation\\Bootstrap\\LoadConfiguration::loadConfigurationFile():96}()
+#6 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(77): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFile()
+#7 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(38): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#8 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#9 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#10 /media/disk2/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#11 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#12 {main}
+"} 

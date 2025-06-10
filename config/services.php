@@ -30,5 +30,7 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],    
-
-];
+    'kavenegar' => [
+        'api_key' => env('KAVENEGAR_API_KEY'),
+    ],
+]; 
