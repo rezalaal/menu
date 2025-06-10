@@ -41,13 +41,23 @@ tests/*.log
 !database/.gitkeep
 
 
+# Ignore everything in storage except .gitignore and necessary folders
 /storage/*
 !/storage/.gitignore
 !/storage/app
-!/storage/app/**
+/storage/app/*
+!/storage/app/.gitignore
 !/storage/framework
-!/storage/framework/**
+/storage/framework/*
+!/storage/framework/.gitignore
+!/storage/framework/cache
+!/storage/framework/sessions
+!/storage/framework/testing
+!/storage/framework/views
+/storage/framework/views/*
+!/storage/framework/views/.gitignore
 !/storage/logs
-!/storage/logs/**
-/storage/logs/laravel.log
+/storage/logs/*
+!/storage/logs/.gitignore
+
 
