@@ -33,8 +33,8 @@
 
 
     @guest
-         <livewire:login-form/>
-{{--        <livewire:one-time-password :redirect-to="route('home')">--}}
+{{--         <livewire:login-form/>--}}
+        <livewire:one-time-password :redirect-to="route('home')">
     @endguest
 
     @auth

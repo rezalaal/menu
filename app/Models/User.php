@@ -72,7 +72,7 @@ class User extends Authenticatable implements FilamentUser
     }
 
     public static function checkUsername($username)
-    {                
+    {
 
         $user = self::where('username', $username)->first();
         if(!$user) {
@@ -91,9 +91,10 @@ class User extends Authenticatable implements FilamentUser
         Auth::login($user);
     }
 
-    public function routeNotificationForVonage($notification)
+    public function routeNotificationForKavenegar($notification)
     {
         return $this->username;
     }
+
 
 }

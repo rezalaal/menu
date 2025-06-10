@@ -36,7 +36,7 @@ return [
      * By default, the password generator will create a password with
      * this number of digits
      */
-    'password_length' => 6,
+    'password_length' => 5,
 
     /*
      * The Livewire component will redirect successfully authenticated users
@@ -61,7 +61,9 @@ return [
     /*
      * The notification used to send a one-time password to a user
      */
-    'notification' => Spatie\OneTimePasswords\Notifications\OneTimePasswordNotification::class,
+//    'notification' => Spatie\OneTimePasswords\Notifications\OneTimePasswordNotification::class,
+    'notification' => App\Notifications\SendOtpViaSms::class,
+
 
     /*
      * These class are responsible for performing core tasks regarding one-time passwords.
