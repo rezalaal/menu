@@ -13,13 +13,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\OneTimePasswords\Models\Concerns\HasOneTimePasswords;
 
 class User extends Authenticatable implements FilamentUser
 {
     use HasFactory;
     use Notifiable;
-    use HasOneTimePasswords;
 
     public function canAccessPanel(Panel $panel): bool
     {
@@ -71,7 +69,7 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(Order::class);
     }
 
-    public static function checkUsername($username)
+    public static function checkUsername($username): self
     {
 
         $user = self::where('username', $username)->first();
@@ -88,13 +86,7 @@ class User extends Authenticatable implements FilamentUser
                 'user_id' => $user->id
             ]);
         }
-        Auth::login($user);
+        return $user;
     }
-
-    public function routeNotificationForKavenegar($notification)
-    {
-        return $this->username;
-    }
-
 
 }
