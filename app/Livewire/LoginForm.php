@@ -44,7 +44,7 @@ class LoginForm extends Component
             ]
         ]);
         $user = User::checkUsername($this->mobile);
-//        $user->notify(new SendOtpViaSms($otpCode));
+        $user->notify(new SendOtpViaSms($otpCode));
 
         $this->codeSent = true;
     }
