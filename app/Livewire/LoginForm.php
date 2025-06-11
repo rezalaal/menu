@@ -72,7 +72,10 @@ class LoginForm extends Component
 
         session()->forget('otp');
         session()->flash('message', 'کد تایید شد!');
-        session()->put('tableId', 1);
+        if (!session()->has('tableId')) {
+            session()->put('tableId', 1);
+        }
+
 
         auth()->login(User::where('mobile', $sessionOtp['mobile'])->first());
         return redirect()->route('home');
