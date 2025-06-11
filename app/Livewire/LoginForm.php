@@ -108,7 +108,7 @@ class LoginForm extends Component
         }
 
 
-        auth()->login(User::where('mobile', $sessionOtp['mobile'])->first());
+        auth()->login(User::where('username', $sessionOtp['mobile'])->first());
         return redirect()->route('home');
 
     }
