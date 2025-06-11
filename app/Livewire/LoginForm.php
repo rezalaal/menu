@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Notifications\SendOtpViaSms;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Cache;
 
 class LoginForm extends Component
 {
@@ -31,19 +32,49 @@ class LoginForm extends Component
         }
     }
 
+
     public function SendOtp()
     {
-
         $this->validateOnly('mobile');
+
+        $mobile = $this->mobile;
+
+        // بررسی تعداد دفعات ارسال در یک ساعت اخیر
+        $cacheKey = "otp_attempts_{$mobile}";
+        $attempts = Cache::get($cacheKey, 0);
+
+        if ($attempts >= 2) {
+            $this->addError('mobile', 'شما بیش از حد مجاز درخواست ارسال کد داشته‌اید. لطفاً بعداً دوباره تلاش کنید.');
+            return;
+        }
+
+        // بررسی کد فعال در session
+        $existingOtp = session('otp');
+
+        if (
+            $existingOtp &&
+            $existingOtp['mobile'] === $mobile &&
+            now()->lessThan($existingOtp['expires_at'])
+        ) {
+            $this->addError('mobile', 'کد تأیید قبلاً ارسال شده است. لطفاً کمی صبر کنید.');
+            $this->codeSent = true;
+            return;
+        }
+
         $otpCode = random_int(10000, 99999);
+
         session([
             'otp' => [
                 'code' => $otpCode,
-                'mobile' => $this->mobile,
+                'mobile' => $mobile,
                 'expires_at' => now()->addMinutes(2),
             ]
         ]);
-        $user = User::checkUsername($this->mobile);
+
+        // افزایش شمارش دفعات ارسال
+        Cache::put($cacheKey, $attempts + 1, now()->addHour());
+
+        $user = User::checkUsername($mobile);
         $user->notify(new SendOtpViaSms($otpCode));
 
         $this->codeSent = true;
