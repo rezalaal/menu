@@ -13,15 +13,26 @@ class PwaPage extends Component
 {
     public $categories;
     public $settings;
-    public $products;
+    public $productsByCategory = [];
 
     public function mount(GeneralSettings $generalSettings)
     {
         $categories = Category::with('products')->orderBy('sort_order')->get();
         $this->categories = CategoryResource::collection($categories)->resolve();
+
         $this->settings = $generalSettings->toArray();
-        $products = Product::orderBy('category_id')->get();
-        $this->products = ProductResource::collection($products)->resolve();
+
+        // گروه‌بندی محصولات بر اساس دسته
+        $products = Product::with('media')->orderBy('category_id')->get();
+        $byCat = [];
+        foreach ($products as $prod) {
+            $byCat[$prod->category->id]['category'] = [
+                'id' => $prod->category->id,
+                'name' => $prod->category->name,
+            ];
+            $byCat[$prod->category->id]['products'][] = ProductResource::make($prod)->resolve();
+        }
+        $this->productsByCategory = array_values($byCat);
     }
 
     public function render()
@@ -29,3 +40,4 @@ class PwaPage extends Component
         return view('livewire.coral.pwa-page')->layout('components.layouts.pwa');
     }
 }
+
