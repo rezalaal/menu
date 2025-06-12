@@ -77,23 +77,84 @@
             </div>
 
             <!-- دکمه‌ها پایین صفحه -->
-            <div class="w-full max-w-md grid grid-cols-1 gap-4 pb-8 px-16">
-                <button
-                    class="bg-coral text-white py-3 rounded font-iransans-thin"
-                    @click="showHomeModal = false"
+            <div class="w-full">
+                <!-- دکمه‌ها پایین صفحه -->
+                <div class="w-full max-w-md grid grid-cols-1 gap-4 pb-8 px-16">
+                    <button
+                        class="bg-coral text-white py-3 rounded font-iransans-thin"
+                        @click="showHomeModal = false"
+                    >
+                        مشاهده منوی دیجیتال
+                    </button>
+                    <button
+                        class="text-coral border border-coral py-3 rounded font-iransans-thin"
+                        @click="showWorkHours = true"
+                    >
+                        ساعت کار
+                    </button>
+                    <button
+                        class="text-coral border border-coral py-3 rounded font-iransans-thin"
+                        @click="showAbout = true"
+                    >
+                        درباره ما
+                    </button>
+                    <button
+                        class="text-coral border border-coral py-3 rounded font-iransans-thin"
+                        @click="showContact = true"
+                    >
+                        اطلاعات تماس
+                    </button>
+                </div>
+
+                <!-- مودال ساعت کاری -->
+                <div
+                    x-show="showWorkHours"
+                    class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center px-8 text-center"
+                    style="display: none;"
                 >
-                    مشاهده منوی دیجیتال
-                </button>
-                <button class="text-coral border border-coral py-3 rounded font-iransans-thin">
-                    ساعت کار
-                </button>
-                <button class="text-coral border border-coral py-3 rounded font-iransans-thin">
-                    درباره ما
-                </button>
-                <button class="text-coral border border-coral py-3 rounded font-iransans-thin">
-                    اطلاعات تماس
-                </button>
+                    <div class="text-xl mb-8 font-iransans-thin">ساعات کاری رستوران: هر روز از ۱۲ تا ۲۳</div>
+                    <button
+                        class="text-coral border border-coral py-3 px-6 rounded font-iransans-thin mt-auto mb-8"
+                        @click="showWorkHours = false"
+                    >
+                        بازگشت به خانه
+                    </button>
+                </div>
+
+                <!-- مودال درباره ما -->
+                <div
+                    x-show="showAbout"
+                    class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center px-8 text-center"
+                    style="display: none;"
+                >
+                    <div class="text-xl mb-8 font-iransans-thin">رستوران ما با ۲۰ سال تجربه، بهترین غذاهای سنتی را ارائه می‌دهد.</div>
+                    <button
+                        class="text-coral border border-coral py-3 px-6 rounded font-iransans-thin mt-auto mb-8"
+                        @click="showAbout = false"
+                    >
+                        بازگشت به خانه
+                    </button>
+                </div>
+
+                <!-- مودال اطلاعات تماس -->
+                <div
+                    x-show="showContact"
+                    class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center px-8 text-center"
+                    style="display: none;"
+                >
+                    <div class="text-xl mb-8 font-iransans-thin">
+                        شماره تماس: ۰۲۱-۱۲۳۴۵۶۷۸<br>
+                        آدرس: تهران، خیابان نمونه، پلاک ۱۰
+                    </div>
+                    <button
+                        class="text-coral border border-coral py-3 px-6 rounded font-iransans-thin mt-auto mb-8"
+                        @click="showContact = false"
+                    >
+                        بازگشت به خانه
+                    </button>
+                </div>
             </div>
+
         </div>
 
         <!-- دکمه باز کردن مودال -->
@@ -200,7 +261,10 @@
         function categoryScroll(categories) {
             return {
                 showModal: false,
-                showHomeModal: false,
+                showHomeModal: true,
+                showAbout: false,
+                showContact: false,
+                showWorkHours: false,
                 activeCategory: categories[0].id,
                 scrollToCategory(catId) {
                     this.showModal = false;
