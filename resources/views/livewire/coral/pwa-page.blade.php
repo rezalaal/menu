@@ -111,11 +111,11 @@
                     x-show="showWorkHours"
                     x-transition
                     x-cloak
-                    class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10 text-center"
+                    class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
                     style="display: none;"
                     dir="rtl"
                 >
-                    <div class="text-sm font-iransans-thin text-gray-700 leading-relaxed space-y-2 max-w-xl mx-auto">
+                    <div class="text-sm font-iransans-thin text-black leading-relaxed space-y-2 max-w-xl mx-auto">
                         {!! Str::markdown(strip_tags($settings['work_hours'] ?? 'ساعات کاری ثبت نشده است.')) !!}
                     </div>
 
@@ -133,11 +133,11 @@
                     x-show="showAbout"
                     x-transition
                     x-cloak
-                    class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10 text-center"
+                    class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
                     style="display: none;"
                     dir="rtl"
                 >
-                    <div class="text-sm font-iransans-thin text-gray-700 leading-relaxed max-w-xl mx-auto space-y-4">
+                    <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
                         {!! Str::markdown(strip_tags($settings['about'] ?? 'توضیحاتی برای این بخش موجود نیست.')) !!}
                     </div>
 
@@ -155,11 +155,11 @@
                     x-show="showContact"
                     x-transition
                     x-cloak
-                    class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10 text-center"
+                    class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
                     style="display: none;"
                     dir="rtl"
                 >
-                    <div class="text-sm font-iransans-thin text-gray-700 leading-relaxed max-w-xl mx-auto space-y-4">
+                    <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
                         {!! Str::markdown(strip_tags($settings['contact'] ?? 'اطلاعات تماس موجود نیست.')) !!}
                     </div>
 
