@@ -66,7 +66,7 @@
             x-show="showHomeModal"
             x-cloak
             x-transition
-            class="fixed inset-0 bg-white bg-opacity-95 z-50 flex flex-col items-center justify-between p-8"
+            class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-between p-8"
             @click.away="showHomeModal = false"
         >
             <!-- عنوان وسط صفحه -->
@@ -79,7 +79,7 @@
             <!-- دکمه‌ها پایین صفحه -->
             <div class="w-full">
                 <!-- دکمه‌ها پایین صفحه -->
-                <div class="w-full max-w-md grid grid-cols-1 gap-4 pb-8 px-16">
+                <div class="w-full max-w-md grid grid-cols-1 gap-2 pb-8 px-16">
                     <button
                         class="bg-coral text-white py-3 rounded font-iransans-thin"
                         @click="showHomeModal = false"
@@ -109,50 +109,68 @@
                 <!-- مودال ساعت کاری -->
                 <div
                     x-show="showWorkHours"
-                    class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center px-8 text-center"
+                    x-transition
+                    x-cloak
+                    class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10 text-center"
                     style="display: none;"
+                    dir="rtl"
                 >
-                    <div class="text-xl mb-8 font-iransans-thin">ساعات کاری رستوران: هر روز از ۱۲ تا ۲۳</div>
+                    <div class="text-sm font-iransans-thin text-gray-700 leading-relaxed space-y-2 max-w-xl mx-auto">
+                        {!! Str::markdown(strip_tags($settings['work_hours'] ?? 'ساعات کاری ثبت نشده است.')) !!}
+                    </div>
+
                     <button
-                        class="text-coral border border-coral py-3 px-6 rounded font-iransans-thin mt-auto mb-8"
+                        class="text-coral border border-coral py-2 px-5 rounded mt-10 font-iransans-thin hover:bg-coral hover:text-white transition"
                         @click="showWorkHours = false"
                     >
                         بازگشت به خانه
                     </button>
                 </div>
 
+
                 <!-- مودال درباره ما -->
                 <div
                     x-show="showAbout"
-                    class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center px-8 text-center"
+                    x-transition
+                    x-cloak
+                    class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10 text-center"
                     style="display: none;"
+                    dir="rtl"
                 >
-                    <div class="text-xl mb-8 font-iransans-thin">رستوران ما با ۲۰ سال تجربه، بهترین غذاهای سنتی را ارائه می‌دهد.</div>
+                    <div class="text-sm font-iransans-thin text-gray-700 leading-relaxed max-w-xl mx-auto space-y-4">
+                        {!! Str::markdown(strip_tags($settings['about'] ?? 'توضیحاتی برای این بخش موجود نیست.')) !!}
+                    </div>
+
                     <button
-                        class="text-coral border border-coral py-3 px-6 rounded font-iransans-thin mt-auto mb-8"
+                        class="text-coral border border-coral py-2 px-5 rounded mt-10 font-iransans-thin hover:bg-coral hover:text-white transition"
                         @click="showAbout = false"
                     >
                         بازگشت به خانه
                     </button>
                 </div>
 
+
                 <!-- مودال اطلاعات تماس -->
                 <div
                     x-show="showContact"
-                    class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center px-8 text-center"
+                    x-transition
+                    x-cloak
+                    class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10 text-center"
                     style="display: none;"
+                    dir="rtl"
                 >
-                    <div class="text-xl mb-8 font-iransans-thin">
-                        شماره تماس: ۰۲۱-۱۲۳۴۵۶۷۸<br>
-                        آدرس: تهران، خیابان نمونه، پلاک ۱۰
+                    <div class="text-sm font-iransans-thin text-gray-700 leading-relaxed max-w-xl mx-auto space-y-4">
+                        {!! Str::markdown(strip_tags($settings['contact'] ?? 'اطلاعات تماس موجود نیست.')) !!}
                     </div>
+
                     <button
-                        class="text-coral border border-coral py-3 px-6 rounded font-iransans-thin mt-auto mb-8"
+                        class="text-coral border border-coral py-2 px-5 rounded mt-10 font-iransans-thin hover:bg-coral hover:text-white transition"
                         @click="showContact = false"
                     >
                         بازگشت به خانه
                     </button>
                 </div>
+
             </div>
 
         </div>
@@ -171,7 +189,7 @@
         x-show="showModal"
         x-cloak
         x-transition
-        class="fixed inset-0 bg-white bg-opacity-95 z-50 flex flex-col items-center justify-center p-8"
+        class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center p-8"
         @click.away="showModal = false"
     >
         <!-- دکمه بستن -->
@@ -193,7 +211,7 @@
         <div class="flex flex-col space-y-4 w-full max-w-md text-center overflow-y-auto max-h-[70vh]">
             @foreach($categories as $category)
                 <div
-                    class="w-52 mx-auto text-lg text-black py-2 px-4 border-b border-black cursor-pointer hover:bg-gray-200 transition"
+                    class="w-52 mx-auto font-iransans-thin text-lg text-black py-2 px-4 border-b border-black cursor-pointer hover:bg-gray-200 transition"
                     @click="scrollToCategory({{ $category['id'] }})"
                 >
                     {{ $category['name'] }}
@@ -233,24 +251,36 @@
             x-show="showModal"
             x-cloak
             x-transition
-            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            class="fixed inset-0 bg-black z-50 flex items-center justify-center p-0 overflow-auto"
             @click.away="closeModal()"
             dir="rtl"
         >
-            <div class="bg-white rounded-lg max-w-lg w-full p-6 relative" @click.stop>
+            <div
+                class="bg-white rounded-lg w-full max-w-3xl mx-auto my-8 p-6 relative overflow-y-auto max-h-screen"
+                @click.stop
+            >
+                <!-- دکمه بستن -->
                 <button
                     @click="closeModal()"
-                    class="absolute top-2 right-2 text-coral hover:text-red-500 text-2xl font-bold"
+                    class="absolute top-2 right-2 text-coral hover:text-red-500 text-3xl font-bold z-10"
                     aria-label="بستن مودال"
                 >&times;</button>
 
-                <img :src="selectedProduct.image_url" :alt="selectedProduct.name" class="mx-auto rounded-lg mb-4 max-h-64 object-contain" />
+                <!-- تصویر محصول -->
+                <img :src="selectedProduct.image_url" :alt="selectedProduct.name"
+                     class="mx-auto rounded-lg mb-4 max-h-64 object-contain" />
 
-                <h2 class="text-2xl font-iransans-bold mb-2 text-center" x-text="selectedProduct.name"></h2>
+                <!-- نام محصول -->
+                <h2 class="text-2xl font-iransans-thin mb-2 text-center"
+                    x-text="selectedProduct.name"></h2>
 
-                <p class="text-center font-iransans-regular farsi-number mb-4" x-text="selectedProduct.price + ' تومان'"></p>
+                <!-- قیمت -->
+                <p class="text-center font-iransans-regular farsi-number mb-4"
+                   x-text="selectedProduct.price + ' تومان'"></p>
 
-                <p class="text-justify text-gray-700" x-text="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
+                <!-- توضیحات -->
+                <p class="text-justify text-gray-700 font-iransans-thin text-sm"
+                   x-html="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
             </div>
         </div>
 
@@ -258,6 +288,16 @@
 </div>
 @push('scripts')
     <script>
+        window.onpopstate = function(event) {
+            // این تابع هنگام کلیک روی back اجرا می‌شود
+            console.log("کاربر back زد");
+            // مثلاً:
+            if (!confirm("آیا مطمئنید می‌خواهید برگردید؟")) {
+                history.pushState(null, null, location.href); // کاربر را در همین صفحه نگه می‌دارد
+            }
+        };
+
+
         function categoryScroll(categories) {
             return {
                 showModal: false,
