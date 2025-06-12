@@ -91,11 +91,19 @@
         <div class="flex flex-col space-y-4 w-full max-w-md text-center overflow-y-auto max-h-[70vh]">
             @foreach($categories as $category)
                 <div
-                    class="w-52 mx-auto text-lg text-black py-2 px-4 border-b border-black cursor-pointer hover:bg-gray-200 transition">
+                    class="w-52 mx-auto text-lg text-black py-2 px-4 border-b border-black cursor-pointer hover:bg-gray-200 transition"
+                    @click="
+                        showModal = false;
+                        setTimeout(() => {
+                            document.querySelector(`[data-cat='{{ $category['id'] }}']`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 300);
+                    "
+                >
                     {{ $category['name'] }}
                 </div>
             @endforeach
         </div>
+
     </div>
 
     <!-- لیست محصولات گروه‌بندی‌شده -->
