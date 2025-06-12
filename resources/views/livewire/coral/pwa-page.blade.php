@@ -77,9 +77,9 @@
             </div>
 
             <!-- دکمه‌ها پایین صفحه -->
-            <div class="w-full">
-                <!-- دکمه‌ها پایین صفحه -->
-                <div class="w-full max-w-md grid grid-cols-1 gap-2 pb-8 px-16">
+            <div class="w-full flex flex-col items-center">
+            <!-- دکمه‌ها پایین صفحه -->
+                <div class="w-full max-w-md grid grid-cols-1 gap-2 pb-8 px-4">
                     <button
                         class="bg-coral text-white py-3 rounded font-iransans-thin"
                         @click="showHomeModal = false"
