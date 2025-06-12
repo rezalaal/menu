@@ -10,6 +10,7 @@
 # Laravel compiled files
 /bootstrap/cache/*
 !bootstrap/cache/.gitignore
+/public/build/
 
 
 # IDEs and editors

@@ -1,4 +1,4 @@
-<div x-data="{ showModal: false, activeCategory: @js($categories[0]['id']) }"
+<div x-data="categoryScroll({{ Js::from($categories) }})"
      x-init="
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
@@ -12,15 +12,16 @@
 
         document.querySelectorAll('[data-cat]').forEach(el => observer.observe(el));
      "
-    class="max-w-screen-sm mx-auto"
+     class="max-w-screen-sm mx-auto"
 >
 
-    <!-- هدر ثابت -->
+
+<!-- هدر ثابت -->
     <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-white pb-2 z-40">
         <!-- نوار بالا با آیکون و عنوان -->
         <div class="w-full font-iransans-extrabold relative flex items-center justify-start px-4 h-16">
             <!-- آیکون سمت راست -->
-            <div class="text-coral">
+            <div class="text-coral cursor-pointer" @click="showHomeModal = true">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -40,20 +41,60 @@
 
         <!-- نوار دسته‌بندی بالا -->
         <div class="w-full overflow-x-auto no-scrollbar">
-            <div class="flex w-max space-x-4 px-4 py-2">
-                @foreach($categories as $cat)
+            <div class="flex w-max items-center space-x-4 px-4 py-2">
+                @foreach($categories as $index => $cat)
                     <span
                         data-nav-cat="{{ $cat['id'] }}"
-                        @click="document.querySelector(`[data-cat='{{ $cat['id'] }}']`).scrollIntoView({ behavior: 'smooth', block: 'start' })"
+                        @click="scrollToCategory({{ $cat['id'] }})"
                         :class="activeCategory == '{{ $cat['id'] }}' ? 'text-coral font-iransans-bold scale-110' : 'text-black font-iransans-thin scale-100'"
                         class="cursor-pointer px-4 py-2 whitespace-nowrap transition-all duration-300 ease-in-out"
                     >
-                {{ $cat['name'] }}
-            </span>
+                    {{ $cat['name'] }}
+                </span>
+
+
+                @if ($index !== count($categories) - 1)
+                        <!-- خط تیره بزرگتر -->
+                        <span class="text-coral text-2xl select-none">—</span>
+                    @endif
                 @endforeach
             </div>
         </div>
 
+        <!--  خانه مودال تمام صفحه -->
+        <div
+            x-show="showHomeModal"
+            x-cloak
+            x-transition
+            class="fixed inset-0 bg-white bg-opacity-95 z-50 flex flex-col items-center justify-between p-8"
+            @click.away="showHomeModal = false"
+        >
+            <!-- عنوان وسط صفحه -->
+            <div class="flex-grow flex items-center justify-center">
+                <h1 class="text-4xl text-coral font-iransans-bold text-center">
+                    {{ $settings['init_site_name'] }}
+                </h1>
+            </div>
+
+            <!-- دکمه‌ها پایین صفحه -->
+            <div class="w-full max-w-md grid grid-cols-1 gap-4 pb-8 px-16">
+                <button
+                    class="bg-coral text-white py-3 rounded font-iransans-thin"
+                    @click="showHomeModal = false"
+                >
+                    مشاهده منوی دیجیتال
+                </button>
+                <button class="text-coral border border-coral py-3 rounded font-iransans-thin">
+                    ساعت کار
+                </button>
+                <button class="text-coral border border-coral py-3 rounded font-iransans-thin">
+                    درباره ما
+                </button>
+                <button class="text-coral border border-coral py-3 rounded font-iransans-thin">
+                    اطلاعات تماس
+                </button>
+            </div>
+        </div>
 
         <!-- دکمه باز کردن مودال -->
         <button
@@ -92,38 +133,104 @@
             @foreach($categories as $category)
                 <div
                     class="w-52 mx-auto text-lg text-black py-2 px-4 border-b border-black cursor-pointer hover:bg-gray-200 transition"
-                    @click="
-                        showModal = false;
-                        setTimeout(() => {
-                            document.querySelector(`[data-cat='{{ $category['id'] }}']`).scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }, 300);
-                    "
+                    @click="scrollToCategory({{ $category['id'] }})"
                 >
                     {{ $category['name'] }}
                 </div>
             @endforeach
+
         </div>
 
     </div>
 
     <!-- لیست محصولات گروه‌بندی‌شده -->
-    <div id="prod-list" class="pt-40 w-full px-4 mb-4 overflow-y-auto" dir="rtl">
-        @foreach($productsByCategory as $group)
-            <div data-cat="{{ $group['category']['id'] }}" class="py-4">
-                <!-- عنوان دسته‌بندی -->
-                <h2 class="text-xl font-iransans-bold text-coral py-2">{{ $group['category']['name'] }}</h2>
+    <div x-data="productModal()" class="relative">
 
-                <!-- محصولات -->
-                @foreach($group['products'] as $product)
-                    <div class="border-b border-black flex py-4">
-                        <img src="{{ $product['image_url'] }}" alt="{{ $product['name'] }}" class="h-36 w-36 rounded-2xl shadow">
-                        <div class="p-4">
-                            <h3 class="pb-2 text-xl font-iransans-ultralight">{{ $product['name'] }}</h3>
-                            <span class="font-iransans-regular farsi-number">{{ $product['price'] }} تومان</span>
+        <div id="prod-list" class="pt-40 w-full px-4 mb-4" dir="rtl">
+            @foreach($productsByCategory as $group)
+                <div data-cat="{{ $group['category']['id'] }}" class="py-4">
+                    <h2 class="text-xl font-iransans-bold text-coral py-2">{{ $group['category']['name'] }}</h2>
+
+                    @foreach($group['products'] as $product)
+                        <div
+                            class="border-b border-black flex py-4 cursor-pointer"
+                            @click="openModal({{ Js::from($product) }})"
+                        >
+                            <img src="{{ $product['image_url'] }}" alt="{{ $product['name'] }}" class="h-36 w-36 rounded-2xl shadow">
+                            <div class="p-4">
+                                <h3 class="pb-2 text-xl font-iransans-ultralight">{{ $product['name'] }}</h3>
+                                <span class="font-iransans-regular farsi-number">{{ $product['price'] }} تومان</span>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
+            @endforeach
+        </div>
+
+        <!-- مودال محصول -->
+        <div
+            x-show="showModal"
+            x-cloak
+            x-transition
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            @click.away="closeModal()"
+            dir="rtl"
+        >
+            <div class="bg-white rounded-lg max-w-lg w-full p-6 relative" @click.stop>
+                <button
+                    @click="closeModal()"
+                    class="absolute top-2 right-2 text-coral hover:text-red-500 text-2xl font-bold"
+                    aria-label="بستن مودال"
+                >&times;</button>
+
+                <img :src="selectedProduct.image_url" :alt="selectedProduct.name" class="mx-auto rounded-lg mb-4 max-h-64 object-contain" />
+
+                <h2 class="text-2xl font-iransans-bold mb-2 text-center" x-text="selectedProduct.name"></h2>
+
+                <p class="text-center font-iransans-regular farsi-number mb-4" x-text="selectedProduct.price + ' تومان'"></p>
+
+                <p class="text-justify text-gray-700" x-text="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
             </div>
-        @endforeach
+        </div>
+
     </div>
 </div>
+@push('scripts')
+    <script>
+        function categoryScroll(categories) {
+            return {
+                showModal: false,
+                showHomeModal: false,
+                activeCategory: categories[0].id,
+                scrollToCategory(catId) {
+                    this.showModal = false;
+                    setTimeout(() => {
+                        const target = document.querySelector(`[data-cat='${catId}']`);
+
+                        if (target) {
+                            const offset = target.getBoundingClientRect().top + window.scrollY - 180;
+                            window.scrollTo({ top: offset, behavior: 'smooth' });
+                        } else {
+                            console.warn('Target not found:', catId);
+                        }
+                    }, 300);
+                }
+
+            }
+        }
+        function productModal() {
+            return {
+                showModal: false,
+                selectedProduct: {},
+                openModal(product) {
+                    this.selectedProduct = product;
+                    this.showModal = true;
+                },
+                closeModal() {
+                    this.showModal = false;
+                    this.selectedProduct = {};
+                }
+            }
+        }
+    </script>
+@endpush
