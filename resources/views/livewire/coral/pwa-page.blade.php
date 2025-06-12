@@ -11,7 +11,9 @@
         }, { threshold: 0.5 });
 
         document.querySelectorAll('[data-cat]').forEach(el => observer.observe(el));
-     ">
+     "
+    class="max-w-screen-sm mx-auto"
+>
 
     <!-- هدر ثابت -->
     <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-white pb-2 z-40">
@@ -37,18 +39,21 @@
         </div>
 
         <!-- نوار دسته‌بندی بالا -->
-        <div class="flex overflow-x-auto space-x-4 px-4 py-2 no-scrollbar">
-            @foreach($categories as $cat)
-                <span
-                    data-nav-cat="{{ $cat['id'] }}"
-                    @click="document.querySelector(`[data-cat='{{ $cat['id'] }}']`).scrollIntoView({ behavior: 'smooth', block: 'start' })"
-                    :class="activeCategory == '{{ $cat['id'] }}' ? 'text-coral font-iransans-bold' : 'text-black font-iransans-thin'"
-                    class="cursor-pointer px-4 py-2 whitespace-nowrap transition"
-                >
-                    {{ $cat['name'] }}
-                </span>
-            @endforeach
+        <div class="w-full overflow-x-auto no-scrollbar">
+            <div class="flex w-max space-x-4 px-4 py-2">
+                @foreach($categories as $cat)
+                    <span
+                        data-nav-cat="{{ $cat['id'] }}"
+                        @click="document.querySelector(`[data-cat='{{ $cat['id'] }}']`).scrollIntoView({ behavior: 'smooth', block: 'start' })"
+                        :class="activeCategory == '{{ $cat['id'] }}' ? 'text-coral font-iransans-bold scale-110' : 'text-black font-iransans-thin scale-100'"
+                        class="cursor-pointer px-4 py-2 whitespace-nowrap transition-all duration-300 ease-in-out"
+                    >
+                {{ $cat['name'] }}
+            </span>
+                @endforeach
+            </div>
         </div>
+
 
         <!-- دکمه باز کردن مودال -->
         <button
@@ -94,7 +99,7 @@
     </div>
 
     <!-- لیست محصولات گروه‌بندی‌شده -->
-    <div id="prod-list" class="pt-48 w-full px-4 mb-4 h-[calc(100vh-10rem)] overflow-y-auto" dir="rtl">
+    <div id="prod-list" class="pt-40 w-full px-4 mb-4 overflow-y-auto" dir="rtl">
         @foreach($productsByCategory as $group)
             <div data-cat="{{ $group['category']['id'] }}" class="py-4">
                 <!-- عنوان دسته‌بندی -->
