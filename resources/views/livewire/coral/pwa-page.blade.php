@@ -1,5 +1,5 @@
 <div x-data="categoryScroll({{ Js::from($categories) }})"
-     x-init="
+    x-init="
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -11,8 +11,8 @@
         }, { threshold: 0.5 });
 
         document.querySelectorAll('[data-cat]').forEach(el => observer.observe(el));
-     "
-     class="max-w-screen-sm mx-auto"
+    "
+    class="max-w-screen-sm mx-auto"
 >
 
 
@@ -23,13 +23,13 @@
             <!-- آیکون سمت راست -->
             <div class="text-coral cursor-pointer" @click="showHomeModal = true">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     stroke-width="1.5" stroke="currentColor" class="size-6">
+                    stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
-                          d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0
-                          .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125
-                          1.125-1.125h2.25c.621 0 1.125.504
-                          1.125 1.125V21h4.125c.621 0 1.125-.504
-                          1.125-1.125V9.75M8.25 21h8.25"/>
+                        d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0
+                        .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125
+                        1.125-1.125h2.25c.621 0 1.125.504
+                        1.125 1.125V21h4.125c.621 0 1.125-.504
+                        1.125-1.125V9.75M8.25 21h8.25"/>
                 </svg>
             </div>
 
@@ -175,14 +175,81 @@
 
         </div>
 
-        <!-- دکمه باز کردن مودال -->
-        <button
-            class="bg-coral font-iransans-thin text-white text-sm shadow px-8 py-2 mt-1"
-            @click="showModal = true"
-        >
-            همه دسته بندی ها
-        </button>
+        <div class="flex gap-4">
+            <!-- دکمه باز کردن مودال -->
+            <button
+                class="bg-coral font-iransans-thin text-white text-sm shadow px-8 py-2 mt-1"
+                @click="showModal = true"
+            >
+                همه دسته بندی ها
+            </button>
+            <!-- دکمه جستجو -->
+            <button
+                class="ml-2 text-coral"
+                @click="showSearch = true"
+                aria-label="جستجو"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z" />
+                </svg>
+            </button>
+        </div>
+
     </header>
+
+    <!-- مودال جستجو -->
+    <div
+        x-show="showSearch"
+        x-cloak
+        x-transition
+        class="fixed inset-0 bg-white z-50 flex flex-col p-6 overflow-auto"
+        @click.away="showSearch = false"
+        dir="rtl"
+    >
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-iransans-bold text-coral">جستجو</h2>
+            <button @click="showSearch = false" aria-label="بستن" class="text-coral hover:text-red-500 text-3xl">&times;</button>
+        </div>
+
+        <input
+            type="text"
+            x-model="searchQuery"
+            placeholder="نام محصول یا دسته‌بندی..."
+            class="border border-coral rounded p-2 mb-4 font-iransans-thin"
+        >
+
+        <div class="space-y-2">
+            <!-- نتایج محصولات -->
+            <template x-for="group in filteredProducts" :key="group.category.id">
+                <div>
+                    <h3 class="text-coral font-iransans-bold" x-text="group.category.name"></h3>
+                    <ul class="pl-4 list-disc">
+                        <template x-for="product in group.products" :key="product.id">
+                            <li>
+                                <span class="cursor-pointer hover:underline"
+                                    @click="openModal(product); showSearch = false"
+                                    x-text="product.name"
+                                ></span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+
+            <!-- نتایج دسته‌بندی -->
+            <template x-for="cat in filteredCategories" :key="cat.id">
+                <div>
+                    <span
+                        class="cursor-pointer text-coral hover:underline"
+                        @click="scrollToCategory(cat.id); showSearch = false"
+                        x-text="'دسته‌بندی: ' + cat.name"
+                    ></span>
+                </div>
+            </template>
+        </div>
+    </div>
 
     <!-- مودال تمام‌صفحه -->
     <div
@@ -199,7 +266,7 @@
             aria-label="بستن"
         >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                 stroke="currentColor" class="w-6 h-6">
+                stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
@@ -235,7 +302,12 @@
                             class="border-b border-black flex py-4 cursor-pointer"
                             @click="openModal({{ Js::from($product) }})"
                         >
-                            <img src="{{ $product['image_url'] }}" alt="{{ $product['name'] }}" class="h-36 w-36 rounded-2xl shadow">
+                            <img 
+                                src="{{ $product['image_url'] ?: asset('images/category.jpg') }}" 
+                                alt="{{ $product['name'] }}" 
+                                class="h-36 w-36 rounded-2xl shadow"
+                            >
+
                             <div class="p-4">
                                 <h3 class="pb-2 text-xl font-iransans-ultralight">{{ $product['name'] }}</h3>
                                 <span class="font-iransans-regular farsi-number">{{ $product['price'] }} تومان</span>
@@ -251,7 +323,7 @@
             x-show="showModal"
             x-cloak
             x-transition
-            class="fixed inset-0 bg-black z-50 flex items-center justify-center p-0 overflow-auto"
+            class="fixed inset-0 bg-white z-50 flex items-center justify-center py-8 mt-2 overflow-auto"
             @click.away="closeModal()"
             dir="rtl"
         >
@@ -262,13 +334,17 @@
                 <!-- دکمه بستن -->
                 <button
                     @click="closeModal()"
-                    class="absolute top-2 right-2 text-coral hover:text-red-500 text-3xl font-bold z-10"
+                    class="absolute top-4 right-4 text-coral hover:text-red-500 text-5xl font-bold z-10"
                     aria-label="بستن مودال"
                 >&times;</button>
 
                 <!-- تصویر محصول -->
-                <img :src="selectedProduct.image_url" :alt="selectedProduct.name"
-                     class="mx-auto rounded-lg mb-4 max-h-64 object-contain" />
+                <img
+                    :src="selectedProduct.image_url ? selectedProduct.image_url : '/images/category.jpg'"
+                    :alt="selectedProduct.name"
+                    class="mx-auto rounded-lg mb-4 max-h-64 object-contain"
+                >
+
 
                 <!-- نام محصول -->
                 <h2 class="text-2xl font-iransans-thin mb-2 text-center"
@@ -276,11 +352,17 @@
 
                 <!-- قیمت -->
                 <p class="text-center font-iransans-regular farsi-number mb-4"
-                   x-text="selectedProduct.price + ' تومان'"></p>
+                    x-text="selectedProduct.price + ' تومان'"></p>
 
                 <!-- توضیحات -->
                 <p class="text-justify text-gray-700 font-iransans-thin text-sm"
-                   x-html="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
+                    x-html="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
+                <button
+                    class="text-white w-full bg-coral py-2 px-5 rounded mt-10 font-iransans-thin transition"
+                    @click="closeModal()"
+                >
+                    بازگشت
+                </button>
             </div>
         </div>
 
@@ -299,29 +381,43 @@
 
 
         function categoryScroll(categories) {
-            return {
-                showModal: false,
-                showHomeModal: true,
-                showAbout: false,
-                showContact: false,
-                showWorkHours: false,
-                activeCategory: categories[0].id,
-                scrollToCategory(catId) {
-                    this.showModal = false;
-                    setTimeout(() => {
-                        const target = document.querySelector(`[data-cat='${catId}']`);
-
-                        if (target) {
-                            const offset = target.getBoundingClientRect().top + window.scrollY - 180;
-                            window.scrollTo({ top: offset, behavior: 'smooth' });
-                        } else {
-                            console.warn('Target not found:', catId);
-                        }
-                    }, 300);
-                }
-
+        return {
+            showModal: false,
+            showHomeModal: true,
+            showAbout: false,
+            showContact: false,
+            showWorkHours: false,
+            showSearch: false,
+            searchQuery: '',
+            activeCategory: categories[0].id,
+            scrollToCategory(catId) {
+                this.showModal = false;
+                setTimeout(() => {
+                    const target = document.querySelector(`[data-cat='${catId}']`);
+                    if (target) {
+                        const offset = target.getBoundingClientRect().top + window.scrollY - 180;
+                        window.scrollTo({ top: offset, behavior: 'smooth' });
+                    }
+                }, 300);
+            },
+            get filteredProducts() {
+                if (!this.searchQuery.trim()) return [];
+                const query = this.searchQuery.toLowerCase();
+                return @js($productsByCategory).map(group => {
+                    const matched = group.products.filter(p =>
+                        p.name.toLowerCase().includes(query)
+                    );
+                    return matched.length ? { ...group, products: matched } : null;
+                }).filter(Boolean);
+            },
+            get filteredCategories() {
+                if (!this.searchQuery.trim()) return [];
+                const query = this.searchQuery.toLowerCase();
+                return categories.filter(cat => cat.name.toLowerCase().includes(query));
             }
         }
+    }
+
         function productModal() {
             return {
                 showModal: false,
