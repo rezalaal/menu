@@ -35,6 +35,14 @@ class CallWaiter extends Component
         }
     }
 
+    public function stopCallWaiter(): void
+    {
+        if ($this->table && $this->table->called_waiter) {
+            $this->table->called_waiter = false;
+            $this->table->save();
+        }
+    }
+
     public function render()
     {
         return view('livewire.call-waiter');

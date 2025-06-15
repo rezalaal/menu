@@ -75,7 +75,13 @@ class LoginForm extends Component
         Cache::put($cacheKey, $attempts + 1, now()->addHour());
 
         $user = User::checkUsername($mobile);
-        $user->notify(new SendOtpViaSms($otpCode));
+
+        if (config('app.env') === 'production') {
+            $user->notify(new SendOtpViaSms($otpCode));
+        }else{
+            info($otpCode);
+        }
+
 
         $this->codeSent = true;
     }
