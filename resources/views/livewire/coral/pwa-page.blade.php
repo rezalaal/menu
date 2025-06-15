@@ -116,13 +116,34 @@
                 <template x-for="product in group.products" :key="product.id">
                     <div class="border-b border-black flex py-4 cursor-pointer" @click="openModal(product)">
                         <img :src="product.image_url || '/images/category.jpg'" :alt="product.name" class="h-36 w-36 rounded-2xl shadow">
-                        <div class="p-4">
+                        <div class="p-4 flex flex-col">
                             <h3 class="pb-2 text-lg font-iransans-thin" x-text="product.name"></h3>
                             <span class="font-iransans-regular farsi-number"
                                   :class="{'text-[9px]': product.price == 0, 'text-base': product.price != 0}"
                                   x-text="product.price == 0 ? 'ناموجود' : (product.price + ' تومان')">
                             </span>
+@auth
+                            <div class="flex justify-center items-center pt-6">
+                                <!-- دکمه افزودن به سبد خرید -->
+                                <button
+                                    class="font-iransans-thin text-sm mt-2 bg-coral text-white px-3 py-1 rounded hover:bg-orange-500 transition"
+                                    @click.stop="addToCart(product)">
+                                    افزودن به سبد خرید
+                                </button>
+
+                                <!-- آیکون قلب برای علاقه مندی -->
+                                <button
+                                    class="mt-2 mr-2 text-coral hover:text-red-600 transition"
+                                    @click.stop="toggleFavorite(product)"
+                                    :aria-pressed="product.isFavorite ? 'true' : 'false'">
+                                    <svg xmlns="http://www.w3.org/2000/svg" :class="product.isFavorite ? 'fill-red-600' : 'fill-none'" class="w-4 h-4 stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 21C12 21 4 14.36 4 8.5C4 5.42 6.42 3 9.5 3C11.24 3 12.91 4.09 13.5 5.54C14.09 4.09 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.36 15 21 15 21H12Z"/>
+                                    </svg>
+                                </button>
+                            </div>
+@endauth
                         </div>
+
                     </div>
                 </template>
 
