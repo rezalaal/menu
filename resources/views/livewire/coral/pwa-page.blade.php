@@ -282,7 +282,9 @@
             </div>
 
         </div>
-<livewire:call-waiter/>
+    @auth
+        <livewire:call-waiter/>
+    @endauth
 </div>
 
 @push('scripts')
