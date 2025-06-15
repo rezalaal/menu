@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfilePage extends Component
 {
-  
+
     public function logoff()
     {
         Auth::logout();

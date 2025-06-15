@@ -33,6 +33,6 @@ class WaiterPage extends Component
     {
         $this->getCalledTables();
 
-        return view('livewire.waiter-page');
+        return view('livewire.waiter-page')->layout('components.layouts.pwa');
     }
 }

@@ -1,5 +1,4 @@
 <div x-data="menuApp({{ Js::from($categories) }}, {{ Js::from($productsByCategory) }})" x-init="initObserver()" class="max-w-screen-sm mx-auto">
-
     <!-- هدر ثابت -->
     <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-white pb-2 z-40">
         <div class="w-full font-iransans-extrabold relative flex items-center justify-between px-4 h-16">
@@ -283,11 +282,107 @@
             </div>
 
         </div>
+<livewire:call-waiter/>
 </div>
-
 
 @push('scripts')
 <script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('productList', () => ({
+            categories: [],           // لیست دسته‌بندی‌ها
+            products: [],             // لیست محصولات
+            searchQuery: '',          // متن جستجو
+            activeCategoryId: null,   // دسته‌بندی فعال
+            showProductModal: false,  // نمایش مودال محصول
+            showCategoryModal: false, // نمایش مودال دسته‌بندی
+            showHomeModal: false,     // نمایش مودال صفحه اصلی
+            selectedProduct: null,    // محصول انتخاب شده
+            selectedCategory: null,   // دسته‌بندی انتخاب شده
+
+            init() {
+                this.setupIntersectionObserver();
+            },
+
+            filteredProducts() {
+                if (!this.searchQuery.trim()) return this.products;
+
+                const q = this.searchQuery.toLowerCase();
+                return this.products.filter(product =>
+                    product.name.toLowerCase().includes(q) ||
+                    (product.description && product.description.toLowerCase().includes(q))
+                );
+            },
+
+            selectCategory(id) {
+                this.activeCategoryId = id;
+                this.scrollToCategory(id);
+            },
+
+            scrollToCategory(id) {
+                const el = document.getElementById(`category-${id}`);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            },
+
+            openProductModal(product) {
+                this.selectedProduct = product;
+                this.showProductModal = true;
+            },
+
+            closeProductModal() {
+                this.showProductModal = false;
+                this.selectedProduct = null;
+            },
+
+            openCategoryModal(category) {
+                this.selectedCategory = category;
+                this.showCategoryModal = true;
+            },
+
+            closeCategoryModal() {
+                this.showCategoryModal = false;
+                this.selectedCategory = null;
+            },
+
+            openHomeModal() {
+                this.showHomeModal = true;
+            },
+
+            closeHomeModal() {
+                this.showHomeModal = false;
+            },
+
+            setupIntersectionObserver() {
+                const options = {
+                    root: document.querySelector('#products-container'),
+                    rootMargin: '0px',
+                    threshold: 0.5,
+                };
+
+                const callback = (entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const categoryId = entry.target.getAttribute('data-category-id');
+                            if (categoryId) {
+                                this.activeCategoryId = categoryId;
+                                // برای به‌روزرسانی UI یا نوار دسته‌بندی بالایی
+                            }
+                        }
+                    });
+                };
+
+                const observer = new IntersectionObserver(callback, options);
+
+                // صبر کن تا DOM بارگذاری بشه و دسته‌بندی‌ها را انتخاب کن
+                this.$nextTick(() => {
+                    const categoryElements = document.querySelectorAll('.category-section');
+                    categoryElements.forEach(el => observer.observe(el));
+                });
+            }
+        }));
+    });
+
 function menuApp(categories, productsByCategory) {
     return {
         categories,
