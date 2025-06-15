@@ -112,13 +112,13 @@
     <div class="pt-40 px-4 mb-4" dir="rtl">
         <template x-for="group in filteredProducts" :key="group.category.id">
             <div :data-cat="group.category.id" class="py-4">
-                <h2 class="text-xl font-iransans-bold text-coral py-2" x-text="group.category.name"></h2>
+                <h2 class="text-lg font-iransans-bold text-coral py-2" x-text="group.category.name"></h2>
 
                 <template x-for="product in group.products" :key="product.id">
                     <div class="border-b border-black flex py-4 cursor-pointer" @click="openModal(product)">
                         <img :src="product.image_url || '/images/category.jpg'" :alt="product.name" class="h-36 w-36 rounded-2xl shadow">
                         <div class="p-4">
-                            <h3 class="pb-2 text-xl font-iransans-ultralight" x-text="product.name"></h3>
+                            <h3 class="pb-2 text-lg font-iransans-thin" x-text="product.name"></h3>
                             <span class="font-iransans-regular farsi-number" x-text="product.price + ' تومان'"></span>
                         </div>
                     </div>
@@ -128,9 +128,9 @@
     </div>
 
     <!-- مودال محصول -->
-    <div x-show="showProductModal" x-cloak x-transition class="fixed inset-0 bg-white z-50 flex items-center justify-center py-8 mt-2 overflow-auto" @click.away="closeModal" dir="rtl">
-        <div class="bg-white rounded-lg w-full max-w-3xl mx-auto my-8 p-6 relative overflow-y-auto max-h-screen" @click.stop>
-            <button @click="closeModal" class="absolute top-4 right-4 text-coral hover:text-red-500 text-5xl font-bold z-10">&times;</button>
+    <div x-show="showProductModal" x-cloak x-transition class="fixed inset-0 bg-white z-50 flex items-center justify-center pt-8 pb-16 mt-2 overflow-auto" @click.away="closeModal" dir="rtl">
+        <div class="relative bg-white rounded-lg w-full max-w-3xl mx-auto my-16 px-6 py-16 relative overflow-y-auto max-h-screen" @click.stop>
+            <button @click="closeModal" class="absolute top-16 right-8 text-coral hover:text-red-500 text-5xl font-bold z-10">&times;</button>
             <img :src="selectedProduct.image_url || '/images/category.jpg'" :alt="selectedProduct.name" class="mx-auto rounded-lg mb-4 max-h-64 object-contain">
             <h2 class="text-2xl font-iransans-thin mb-2 text-center" x-text="selectedProduct.name"></h2>
             <p class="text-center font-iransans-regular farsi-number mb-4" x-text="selectedProduct.price + ' تومان'"></p>
