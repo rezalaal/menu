@@ -81,7 +81,6 @@ class Table extends Component
 
     public function render()
     {
-        return view('livewire.table')
-            ->title($this->title);
+        return view('livewire.table')->layout('components.layouts.pwa');
     }
 }

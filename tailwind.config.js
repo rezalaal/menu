@@ -13,6 +13,12 @@ export const theme = {
     'coral-from': '#5F6F52',
     'coral-to': '#A9B388',
     'footer': '#527853',
+    'coral': '#F88378',
+      /*
+      *
+      *
+      *
+      * */
     lime: _lime,
     black: _black,
     white: _white,

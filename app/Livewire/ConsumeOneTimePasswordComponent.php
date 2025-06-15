@@ -5,7 +5,6 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Spatie\OneTimePasswords\Models\OneTimePassword;
 
 class ConsumeOneTimePasswordComponent extends Component
 {
