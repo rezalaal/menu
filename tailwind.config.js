@@ -5,6 +5,7 @@ export const content = [
   "./resources/**/*.js",
   "./resources/**/*.vue",
 ]
+
 export const theme = {
   colors: {
     transparent: 'transparent',

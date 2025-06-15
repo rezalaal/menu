@@ -21,7 +21,7 @@
                 </svg>
             </button>
         </div>
-        
+
         <!-- نوار دسته‌بندی -->
         <div class="w-full overflow-x-auto no-scrollbar">
             <div class="flex w-max items-center space-x-4 px-4 py-2">
@@ -39,7 +39,7 @@
 
         <!-- جستجو و دسته بندی -->
         <div class="flex items-center gap-2">
-            
+
 
             <button class="bg-coral font-iransans-thin text-white text-sm shadow px-4 py-1 rounded" @click="showModal = true">
                 همه دسته‌بندی‌ها
@@ -50,16 +50,16 @@
         <div x-show="showSearch" class="w-full px-4 pt-2">
             <div class="flex items-center border rounded overflow-hidden">
                 <!-- اینپوت در سمت راست -->
-                <input 
-                    type="text" 
-                    class="font-iransans-thin w-full px-4 py-2 text-right outline-none text-sm" 
-                    placeholder="جستجوی محصول یا دسته‌بندی..." 
+                <input
+                    type="text"
+                    class="font-iransans-thin w-full px-4 py-2 text-right outline-none text-sm"
+                    placeholder="جستجوی محصول یا دسته‌بندی..."
                     x-model="searchQuery">
 
                 <!-- دکمه پاک کردن در سمت چپ -->
-                <button 
+                <button
                     x-show="searchQuery"
-                    @click="searchQuery = ''" 
+                    @click="searchQuery = ''"
                     class="px-3 text-gray-500 hover:text-red-500 transition"
                     aria-label="پاک کردن جستجو"
                 >
@@ -119,20 +119,25 @@
                         <img :src="product.image_url || '/images/category.jpg'" :alt="product.name" class="h-36 w-36 rounded-2xl shadow">
                         <div class="p-4">
                             <h3 class="pb-2 text-lg font-iransans-thin" x-text="product.name"></h3>
-                            <span class="font-iransans-regular farsi-number" x-text="product.price + ' تومان'"></span>
+                            <span class="font-iransans-regular farsi-number"
+                                  :class="{'text-[9px]': product.price == 0, 'text-base': product.price != 0}"
+                                  x-text="product.price == 0 ? 'ناموجود' : (product.price + ' تومان')">
+</span>
+
                         </div>
                     </div>
                 </template>
+
             </div>
         </template>
     </div>
 
     <!-- مودال محصول -->
-    <div x-show="showProductModal" x-cloak x-transition 
-        class="fixed inset-0 bg-white z-50 flex items-center justify-center pt-16 pb-16 overflow-auto" 
+    <div x-show="showProductModal" x-cloak x-transition
+        class="fixed inset-0 bg-white z-50 flex items-center justify-center pt-16 pb-16 overflow-auto"
         @click.away="closeModal" dir="rtl">
 
-        <div class="relative bg-white rounded-lg w-full max-w-3xl mx-auto mt-16 px-6 py-12 overflow-y-auto max-h-screen" 
+        <div class="relative bg-white rounded-lg w-full max-w-3xl mx-auto mt-16 px-6 py-12 overflow-y-auto max-h-screen"
             @click.stop>
 
             <!-- دکمه بستن خارج از تصویر و با فاصله مناسب از بالا -->
@@ -143,19 +148,22 @@
 
             <!-- ظرف تصویر با نسبت 16:9 -->
             <div class="aspect-video w-full mb-4 rounded-lg overflow-hidden">
-                <img :src="selectedProduct.image_url || '/images/category.jpg'" 
-                    :alt="selectedProduct.name"
-                    class="w-full h-full object-contain" />
+                <img :src="selectedProduct.image_url || '/images/category.jpg'"
+                     :alt="selectedProduct.name"
+                     class="w-full h-full object-cover shadow" />
             </div>
+
 
             <!-- عنوان، قیمت و توضیح -->
             <h2 class="text-xl font-iransans-thin mb-2 text-center" x-text="selectedProduct.name"></h2>
-            <p class="text-center font-iransans-regular farsi-number mb-4" x-text="selectedProduct.price + ' تومان'"></p>
-            <p class="text-justify text-gray-700 font-iransans-thin text-sm" 
+            <p class="text-center font-iransans-regular farsi-number mb-4"
+               x-text="selectedProduct.price == 0 ? 'ناموجود' : (selectedProduct.price + ' تومان')">
+            </p>
+            <p class="text-justify text-gray-700 font-iransans-thin text-sm"
             x-html="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
 
             <!-- دکمه بازگشت -->
-            <button @click="closeModal" 
+            <button @click="closeModal"
                     class="text-white w-full bg-coral py-2 px-5 rounded mt-10 font-iransans-thin transition">
                 بازگشت
             </button>
@@ -288,7 +296,7 @@ function menuApp(categories, productsByCategory) {
         searchQuery: '',
         showSearch: false,
         showModal: false,
-        showHomeModal: true, 
+        showHomeModal: true,
         showProductModal: false,
         selectedProduct: {},
         showWorkHours: false,
