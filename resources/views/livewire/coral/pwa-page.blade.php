@@ -122,8 +122,7 @@
                             <span class="font-iransans-regular farsi-number"
                                   :class="{'text-[9px]': product.price == 0, 'text-base': product.price != 0}"
                                   x-text="product.price == 0 ? 'ناموجود' : (product.price + ' تومان')">
-</span>
-
+                            </span>
                         </div>
                     </div>
                 </template>
