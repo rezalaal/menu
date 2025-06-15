@@ -128,16 +128,40 @@
     </div>
 
     <!-- مودال محصول -->
-    <div x-show="showProductModal" x-cloak x-transition class="fixed inset-0 bg-white z-50 flex items-center justify-center pt-8 pb-16 mt-2 overflow-auto" @click.away="closeModal" dir="rtl">
-        <div class="relative bg-white rounded-lg w-full max-w-3xl mx-auto my-16 px-6 py-16 relative overflow-y-auto max-h-screen" @click.stop>
-            <button @click="closeModal" class="absolute top-16 right-8 text-coral hover:text-red-500 text-5xl font-bold z-10">&times;</button>
-            <img :src="selectedProduct.image_url || '/images/category.jpg'" :alt="selectedProduct.name" class="mx-auto rounded-lg mb-4 max-h-64 object-contain">
-            <h2 class="text-2xl font-iransans-thin mb-2 text-center" x-text="selectedProduct.name"></h2>
+    <div x-show="showProductModal" x-cloak x-transition 
+        class="fixed inset-0 bg-white z-50 flex items-center justify-center pt-16 pb-16 overflow-auto" 
+        @click.away="closeModal" dir="rtl">
+
+        <div class="relative bg-white rounded-lg w-full max-w-3xl mx-auto mt-16 px-6 py-12 overflow-y-auto max-h-screen" 
+            @click.stop>
+
+            <!-- دکمه بستن خارج از تصویر و با فاصله مناسب از بالا -->
+            <button @click="closeModal"
+                    class="absolute top-4 right-4 text-coral hover:text-red-500 text-3xl font-bold z-10">
+                &times;
+            </button>
+
+            <!-- ظرف تصویر با نسبت 16:9 -->
+            <div class="aspect-video w-full mb-4 rounded-lg overflow-hidden">
+                <img :src="selectedProduct.image_url || '/images/category.jpg'" 
+                    :alt="selectedProduct.name"
+                    class="w-full h-full object-contain" />
+            </div>
+
+            <!-- عنوان، قیمت و توضیح -->
+            <h2 class="text-xl font-iransans-thin mb-2 text-center" x-text="selectedProduct.name"></h2>
             <p class="text-center font-iransans-regular farsi-number mb-4" x-text="selectedProduct.price + ' تومان'"></p>
-            <p class="text-justify text-gray-700 font-iransans-thin text-sm" x-html="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
-            <button @click="closeModal" class="text-white w-full bg-coral py-2 px-5 rounded mt-10 font-iransans-thin transition">بازگشت</button>
+            <p class="text-justify text-gray-700 font-iransans-thin text-sm" 
+            x-html="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
+
+            <!-- دکمه بازگشت -->
+            <button @click="closeModal" 
+                    class="text-white w-full bg-coral py-2 px-5 rounded mt-10 font-iransans-thin transition">
+                بازگشت
+            </button>
         </div>
     </div>
+
 
     <!--  خانه مودال تمام صفحه -->
         <div
