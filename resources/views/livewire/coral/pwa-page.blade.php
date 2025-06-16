@@ -305,7 +305,7 @@
 
         </div>
     @auth
-        
+        <livewire:coral.cart-area>
         <livewire:call-waiter/>
     @endauth
 </div>
