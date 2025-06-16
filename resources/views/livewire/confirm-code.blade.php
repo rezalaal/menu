@@ -4,6 +4,7 @@
     </div>
 
     <input
+        wire:loading.remove
         wire:model="otp"
         class="flex justify-center items-center no-spinner placeholder-lime-900 font-iransans-thin bg-gray-100 w-80 text-sm text-center outline-0 px-4 py-2 shadow-2xl text-lime-900"
         dir="rtl"
@@ -20,5 +21,5 @@
         تایید
     </button>
 
-    <span wire:loading class="loading loading-dots loading-lg pt-2 text-white"></span>
+    <span wire:loading class="loading text-center mt-2 loading-dots loading-lg px-4 py-1 w-full text-white bg-coral font-iransans-thin">در حال بررسی</span>
 </form>

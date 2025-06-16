@@ -38,16 +38,16 @@ class LoginForm extends Component
         $this->validateOnly('mobile');
 
         $mobile = $this->mobile;
+        if (config('app.env') === 'production') {
+            // بررسی تعداد دفعات ارسال در یک ساعت اخیر
+            $cacheKey = "otp_attempts_{$mobile}";
+            $attempts = Cache::get($cacheKey, 0);
 
-        // بررسی تعداد دفعات ارسال در یک ساعت اخیر
-        $cacheKey = "otp_attempts_{$mobile}";
-        $attempts = Cache::get($cacheKey, 0);
-
-        if ($attempts >= 2) {
-            $this->addError('mobile', 'شما بیش از حد مجاز درخواست ارسال کد داشته‌اید. لطفاً بعداً دوباره تلاش کنید.');
-            return;
+            if ($attempts >= 2) {
+                $this->addError('mobile', "شما بیش از حد مجاز درخواست ارسال کد داشته‌اید. لطفاً بعداً دوباره تلاش کنید.");
+                return;
+            }
         }
-
         // بررسی کد فعال در session
         $existingOtp = session('otp');
 
@@ -71,9 +71,10 @@ class LoginForm extends Component
             ]
         ]);
 
-        // افزایش شمارش دفعات ارسال
-        Cache::put($cacheKey, $attempts + 1, now()->addHour());
-
+        if (config('app.env') === 'production') {
+            // افزایش شمارش دفعات ارسال
+            Cache::put($cacheKey, $attempts + 1, now()->addHour());
+        }
         $user = User::checkUsername($mobile);
 
         if (config('app.env') === 'production') {
@@ -113,7 +114,7 @@ class LoginForm extends Component
             session()->put('tableId', 1);
         }
 
-
+        $this->addError('otp', 'تایید شد. لطفا تا زمان ورود به صفحه اصلی کمی صبر کنید');
         auth()->login(User::where('username', $sessionOtp['mobile'])->first());
         return redirect()->route('home');
 

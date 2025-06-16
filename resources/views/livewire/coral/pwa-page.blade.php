@@ -122,7 +122,7 @@
                                   :class="{'text-[9px]': product.price == 0, 'text-base': product.price != 0}"
                                   x-text="product.price == 0 ? 'ناموجود' : (product.price + ' تومان')">
                             </span>
-{{--@auth--}}
+@auth
                             <div class="flex justify-center items-center pt-6">
                                 <!-- دکمه افزودن به سبد خرید -->
                                 <button
@@ -142,7 +142,7 @@
 {{--                                    </svg>--}}
 {{--                                </button>--}}
                             </div>
-{{--@endauth--}}
+@endauth
                         </div>
 
                     </div>
@@ -305,6 +305,7 @@
 
         </div>
     @auth
+        
         <livewire:call-waiter/>
     @endauth
 </div>
@@ -472,7 +473,6 @@ function menuApp(categories, productsByCategory) {
 
             // ذخیره سبد خرید در localStorage
             localStorage.setItem('cart', JSON.stringify(this.cart));
-            console.log('سبد خرید:', this.cart);
         },
         isInCart(productId) {
             return this.cart.some(item => item.id === productId);
