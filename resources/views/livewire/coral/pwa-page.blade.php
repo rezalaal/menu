@@ -109,48 +109,38 @@
 
     <!-- لیست محصولات -->
     <div class="pt-40 px-4 mb-4" dir="rtl">
-        <template x-for="group in filteredProducts" :key="group.category.id">
-            <div :data-cat="group.category.id" class="py-4">
-                <h2 class="text-lg font-iransans-bold text-coral py-2" x-text="group.category.name"></h2>
+    <template x-for="group in filteredProducts" :key="group.category.id">
+        <div :id="`category-${group.category.id}`"
+             :data-cat="group.category.id"
+             class="py-4 category-section">
+            <h2 class="text-lg font-iransans-bold text-coral py-2" x-text="group.category.name"></h2>
 
-                <template x-for="product in group.products" :key="product.id">
-                    <div class="border-b border-black flex py-4 cursor-pointer" @click="openModal(product)">
-                        <img :src="product.image_url || '/images/category.jpg'" :alt="product.name" class="h-36 w-36 rounded-2xl shadow">
-                        <div class="p-4 flex flex-col items-start">
-                            <h3 class="pb-2 text-lg font-iransans-thin" x-text="product.name"></h3>
-                            <span class="font-iransans-regular farsi-number"
-                                  :class="{'text-[9px]': product.price == 0, 'text-base': product.price != 0}"
-                                  x-text="product.price == 0 ? 'ناموجود' : (product.price + ' تومان')">
-                            </span>
+            <template x-for="product in group.products" :key="product.id">
+                <div class="border-b border-black flex py-4 cursor-pointer" @click="openModal(product)">
+                    <img :src="product.image_url || '/images/category.jpg'" :alt="product.name" class="h-36 w-36 rounded-2xl shadow">
+                    <div class="p-4 flex flex-col items-start">
+                        <h3 class="pb-2 text-lg font-iransans-thin" x-text="product.name"></h3>
+                        <span class="font-iransans-regular farsi-number"
+                              :class="{'text-[9px]': product.price == 0, 'text-base': product.price != 0}"
+                              x-text="product.price == 0 ? 'ناموجود' : (product.price + ' تومان')">
+                        </span>
 @auth
-                            <div class="flex justify-center items-center pt-6">
-                                <!-- دکمه افزودن به سبد خرید -->
-                                <button
-                                    x-show="!isInCart(product.id) && product.price != 0"
-                                    class="font-iransans-thin text-sm mt-2 bg-coral text-white px-3 py-1 rounded hover:bg-orange-500 transition"
-                                    @click.stop="addToCart(product)">
-                                    افزودن به سبد خرید
-                                </button>
-
-                                <!-- آیکون قلب برای علاقه مندی -->
-{{--                                <button--}}
-{{--                                    class="mt-2 mr-2 text-coral hover:text-red-600 transition"--}}
-{{--                                    @click.stop="toggleFavorite(product)"--}}
-{{--                                    :aria-pressed="product.isFavorite ? 'true' : 'false'">--}}
-{{--                                    <svg xmlns="http://www.w3.org/2000/svg" :class="product.isFavorite ? 'fill-red-600' : 'fill-none'" class="w-4 h-4 stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">--}}
-{{--                                        <path d="M12 21C12 21 4 14.36 4 8.5C4 5.42 6.42 3 9.5 3C11.24 3 12.91 4.09 13.5 5.54C14.09 4.09 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.36 15 21 15 21H12Z"/>--}}
-{{--                                    </svg>--}}
-{{--                                </button>--}}
-                            </div>
-@endauth
+                        <div class="flex justify-center items-center pt-6">
+                            <button
+                                x-show="!isInCart(product.id) && product.price != 0"
+                                class="font-iransans-thin text-sm mt-2 bg-coral text-white px-3 py-1 rounded hover:bg-orange-500 transition"
+                                @click.stop="addToCart(product)">
+                                افزودن به سبد خرید
+                            </button>
                         </div>
-
+@endauth
                     </div>
-                </template>
+                </div>
+            </template>
+        </div>
+    </template>
+</div>
 
-            </div>
-        </template>
-    </div>
 
     <!-- مودال محصول -->
     <div x-show="showProductModal" x-cloak x-transition
@@ -429,7 +419,9 @@ function menuApp(categories, productsByCategory) {
             if (savedCart) {
                 this.cart = JSON.parse(savedCart);
             }
+            this.initObserver(); // حتما اینجا صدا زده شود
         },
+
         get filteredProducts() {
             if (!this.searchQuery) return this.productsByCategory;
             const query = this.searchQuery.toLowerCase();
@@ -444,39 +436,38 @@ function menuApp(categories, productsByCategory) {
         },
 
         initObserver() {
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        this.activeCategory = Number(entry.target.dataset.cat);
-                        const nav = document.querySelector(`[data-nav-cat='${this.activeCategory}']`);
-                        nav?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-                    }
-                });
-            }, { threshold: 0.5 });
+            setTimeout(() => {
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const categoryId = entry.target.getAttribute('data-cat');
+                            if (categoryId) {
+                                this.activeCategory = Number(categoryId);
+                                const nav = document.querySelector(`[data-nav-cat='${categoryId}']`);
+                                nav?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+                            }
+                        }
+                    });
+                }, { threshold: 0.5 });
 
-            document.querySelectorAll('[data-cat]').forEach(el => observer.observe(el));
+                document.querySelectorAll('.category-section').forEach(el => observer.observe(el));
+            }, 300); // تاخیر کوتاه برای اطمینان از کامل بودن DOM
         },
-        addToCart(product) {
-            // بررسی وجود محصول در سبد خرید
-            let existing = this.cart.find(item => item.id === product.id);
 
+        addToCart(product) {
+            let existing = this.cart.find(item => item.id === product.id);
             if (existing) {
-                // اگر می‌خواهید تعداد محصول را زیاد کنید
                 existing.quantity++;
             } else {
-                // اگر محصول جدید است، آن را با quantity=1 اضافه کنید
-                this.cart.push({
-                    ...product,
-                    quantity: 1
-                });
+                this.cart.push({ ...product, quantity: 1 });
             }
-
-            // ذخیره سبد خرید در localStorage
             localStorage.setItem('cart', JSON.stringify(this.cart));
         },
+
         isInCart(productId) {
             return this.cart.some(item => item.id === productId);
         },
+
         scrollToCategory(catId) {
             this.showModal = false;
             setTimeout(() => {
@@ -497,7 +488,7 @@ function menuApp(categories, productsByCategory) {
             this.showProductModal = false;
             this.selectedProduct = {};
         }
-    }
+    };
 }
 </script>
 @endpush
