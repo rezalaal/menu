@@ -16,7 +16,7 @@
 
     <button
         wire:loading.remove
-        class="flex justify-center items-center border-1 font-iransans-thin bg-coral w-80 px-4 py-2 mt-2 shadow-2xl hover:bg-gray-200 text-lime-100 text-sm"
+        class="flex justify-center items-center border-1 font-iransans-thin bg-coral w-80 px-4 py-2 mt-2 shadow-2xl hover:bg-gray-200 text-lime-100 hover:text-black text-sm"
     >
         تایید
     </button>

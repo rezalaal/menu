@@ -24,6 +24,7 @@ class LoginForm extends Component
     public $mobile;
 
     public $codeSent = false;
+    public $redirect = false;
 
     public function mount()
     {
@@ -114,7 +115,8 @@ class LoginForm extends Component
             session()->put('tableId', 1);
         }
 
-        $this->addError('otp', 'تایید شد. لطفا تا زمان ورود به صفحه اصلی کمی صبر کنید');
+        $this->redirect = true;
+        $this->codeSent = false;
         auth()->login(User::where('username', $sessionOtp['mobile'])->first());
         return redirect()->route('home');
 
@@ -125,6 +127,11 @@ class LoginForm extends Component
         if ($this->codeSent) {
             return view('livewire.confirm-code');
         }
-        return view('livewire.login-form');
+        
+        if (!$this->redirect) {
+            return view('livewire.login-form');
+        }
+
+        return view('livewire.redirect');
     }
 }

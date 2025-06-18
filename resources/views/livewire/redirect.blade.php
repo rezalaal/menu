@@ -1,0 +1,3 @@
+<span class="loading text-center mt-2 loading-dots loading-lg px-4 py-1 w-full text-white bg-coral font-iransans-thin">
+    با موفقیت تایید شد. در حال انتقال....
+</span>
