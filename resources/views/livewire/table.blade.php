@@ -23,7 +23,7 @@
             >
 
             <!-- عنوان -->
-            <span class="font-mallanna text-4xl pt-2 text-shadow gradient-text animate-gradient text-center">
+            <span class="font-iransans-regular text-4xl pt-2 text-shadow gradient-text animate-gradient text-center">
         {{ $settings['title'] }}
     </span>
             <span class="pt-3 text-white font-dastnevis text-xl text-center" dir="rtl">
