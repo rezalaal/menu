@@ -81,7 +81,8 @@ class LoginForm extends Component
             try {
                 $user->notify(new SendOtpViaSms($otpCode));
             }catch(\Exception $e) {
-                $this->addError('mobile', $e->getMessage());
+                $this->addError('otp', $e->getMessage());
+                info($e->getMessage());
             }
         }else{
             info($otpCode);
