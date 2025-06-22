@@ -174,7 +174,7 @@
 
             <!-- دکمه بازگشت -->
             <button @click="closeModal"
-                    class="text-white w-full bg-coral py-2 px-5 rounded mt-10 font-iransans-thin transition">
+                    class="text-white w-full bg-coral py-2 mb-16 px-5 rounded mt-10 font-iransans-thin transition">
                 بازگشت
             </button>
         </div>

@@ -23,8 +23,7 @@ class LoginForm extends Component
     ])]
     public $mobile;
 
-    public $codeSent = false;
-    public $redirect = false;
+    public $step = 'showForm';
 
     public function mount()
     {
@@ -58,7 +57,7 @@ class LoginForm extends Component
             now()->lessThan($existingOtp['expires_at'])
         ) {
             $this->addError('mobile', 'کد تأیید قبلاً ارسال شده است. لطفاً کمی صبر کنید.');
-            $this->codeSent = true;
+            $this->step = "showForm";
             return;
         }
 
@@ -79,13 +78,17 @@ class LoginForm extends Component
         $user = User::checkUsername($mobile);
 
         if (config('app.env') === 'production') {
-            $user->notify(new SendOtpViaSms($otpCode));
+            try {
+                $user->notify(new SendOtpViaSms($otpCode));
+            }catch(\Exception $e) {
+                $this->addError('mobile', $e->getMessage());
+            }
         }else{
             info($otpCode);
         }
 
+        $this->step = "confirmCode";
 
-        $this->codeSent = true;
     }
 
     public function verify()
@@ -109,29 +112,36 @@ class LoginForm extends Component
             return;
         }
 
-        session()->forget('otp');
-        session()->flash('message', 'کد تایید شد!');
+        
+        $this->step = "loggedIn";
+
         if (!session()->has('tableId')) {
             session()->put('tableId', 1);
         }
 
-        $this->redirect = true;
-        $this->codeSent = false;
+        
         auth()->login(User::where('username', $sessionOtp['mobile'])->first());
-        return redirect()->route('home');
+        session()->forget('otp');
+        $this->addError('otp', 'با موفقیت وارد شدید. کمی صبر کنید');
+        // return redirect()->route('home');
 
     }
 
     public function render()
     {
-        if ($this->codeSent) {
-            return view('livewire.confirm-code');
-        }
-        
-        if (!$this->redirect) {
-            return view('livewire.login-form');
-        }
 
-        return view('livewire.redirect');
+        switch($this->step) {
+            case "showForm":
+                return view('livewire.login-form');
+                break;
+            case "confirmCode":
+                return view('livewire.confirm-code');
+                break;
+            case "loggedIn":
+                return view('livewire.redirect');                
+                break;
+            default:
+                return view('livewire.login-form');
+        }
     }
 }

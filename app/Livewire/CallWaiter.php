@@ -29,6 +29,7 @@ class CallWaiter extends Component
 
     public function refreshTableStatus()
     {
+        
         if ($this->table) {
             // دوباره داده‌ها را از دیتابیس بارگذاری کن
             $this->table->refresh();

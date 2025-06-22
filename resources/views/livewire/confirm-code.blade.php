@@ -1,8 +1,9 @@
 <form class="flex flex-col mb-10 items-center justify-center" wire:submit="verify">
-    <div class="text-red-900 text-center p-2 font-iransans-thin text-sm">
+    <div class="text-coral text-center p-2 font-iransans-thin text-sm">
         @error('otp') {{ $message }} @enderror
     </div>
-
+    @if ($step == "confirmCode")
+        
     <input
         wire:loading.remove
         wire:model="otp"
@@ -22,4 +23,6 @@
     </button>
 
     <span wire:loading class="loading text-center mt-2 loading-dots loading-lg px-4 py-1 w-full text-white bg-coral font-iransans-thin">در حال بررسی</span>
+
+    @endif
 </form>
