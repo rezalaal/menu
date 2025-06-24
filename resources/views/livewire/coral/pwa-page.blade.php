@@ -132,6 +132,19 @@
                                 @click.stop="addToCart(product)">
                                 افزودن به سبد خرید
                             </button>
+                            <div class="flex justify-center items-center" x-show="isInCart(product.id) && product.price != 0">
+                                <button                                    
+                                    @click.stop="increaseQuantity(product)"
+                                    class="flex justify-center items-center font-iransans-thin text-xl bg-coral text-white px-3 pt-1 rounded hover:bg-orange-500 transition">
+                                    +
+                                </button>
+                                <span class="mx-2 font-iransans-extrabold farsi-number" x-text="productQuantity(product.id)"></span>
+                                <button         
+                                    @click.stop="decreaseQuantity(product)"                           
+                                    class="flex justify-center items-center font-iransans-thin text-xl bg-coral text-white px-3 pt-1 rounded hover:bg-orange-500 transition">
+                                    -
+                                </button>
+                            </div>
                         </div>
 @endauth
                     </div>
@@ -292,8 +305,8 @@
                 </div>
 
             </div>
-
         </div>
+
     @auth
         <livewire:coral.cart-area>
         <livewire:call-waiter/>
@@ -311,8 +324,9 @@
             showProductModal: false,  // نمایش مودال محصول
             showCategoryModal: false, // نمایش مودال دسته‌بندی
             showHomeModal: false,     // نمایش مودال صفحه اصلی
+            showCartModal: false,     // سبد خرید
             selectedProduct: null,    // محصول انتخاب شده
-            selectedCategory: null,   // دسته‌بندی انتخاب شده
+            selectedCategory: null,   // دسته‌بندی انتخاب شده            
             cart: [],
             init() {
                 this.setupIntersectionObserver();
@@ -368,6 +382,14 @@
                 this.showHomeModal = false;
             },
 
+            openCartModal() {
+                this.showCartModal = true;
+            },
+
+            closeCartModal() {
+                this.showCartModal = false;
+            },
+
             setupIntersectionObserver() {
                 const options = {
                     root: document.querySelector('#products-container'),
@@ -417,8 +439,9 @@ function menuApp(categories, productsByCategory) {
         init() {
             const savedCart = localStorage.getItem('cart');
             if (savedCart) {
-                this.cart = JSON.parse(savedCart);
+                this.cart = JSON.parse(savedCart);                
             }
+            
             this.initObserver(); // حتما اینجا صدا زده شود
         },
 
@@ -464,8 +487,39 @@ function menuApp(categories, productsByCategory) {
             localStorage.setItem('cart', JSON.stringify(this.cart));
         },
 
+        increaseQuantity(product) {
+            let existing = this.cart.find(item => item.id === product.id);
+            if (existing) {
+                existing.quantity++;
+            } else {
+                this.cart.push({ ...product, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+        },
+
+        decreaseQuantity(product) {
+            const existingIndex = this.cart.findIndex(item => item.id === product.id);
+
+            if (existingIndex !== -1) {
+                this.cart[existingIndex].quantity--;
+
+                if (this.cart[existingIndex].quantity === 0) {
+                this.cart.splice(existingIndex, 1);
+                }
+            }
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+        },
+
         isInCart(productId) {
             return this.cart.some(item => item.id === productId);
+        },
+
+        productQuantity(productId) {
+            if(this.isInCart(productId)) {
+                let cart = this.cart.find(item => item.id === productId);
+                return cart.quantity
+            }
+            return null
         },
 
         scrollToCategory(catId) {
