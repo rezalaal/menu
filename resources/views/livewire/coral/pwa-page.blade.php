@@ -51,7 +51,7 @@
                 <!-- اینپوت در سمت راست -->
                 <input
                     type="text"
-                    class="font-iransans-thin w-full px-4 py-2 text-right outline-none text-sm"
+                    class="border-1 border-coral font-iransans-thin w-full px-4 py-2 text-right outline-none text-sm"
                     placeholder="جستجوی محصول یا دسته‌بندی..."
                     x-model="searchQuery">
 
@@ -122,7 +122,7 @@
                         <h3 class="pb-2 text-lg font-iransans-thin" x-text="product.name"></h3>
                         <span class="font-iransans-regular farsi-number"
                               :class="{'text-[9px]': product.price == 0, 'text-base': product.price != 0}"
-                              x-text="product.price == 0 ? 'ناموجود' : (product.price + ' تومان')">
+                              x-text="product.price == 0 ? 'ناموجود' : (formatPrice(product.price) + ' تومان')">
                         </span>
 @auth
                         <div class="flex justify-center items-center pt-6">
@@ -180,7 +180,7 @@
             <!-- عنوان، قیمت و توضیح -->
             <h2 class="text-xl font-iransans-thin mb-2 text-center" x-text="selectedProduct.name"></h2>
             <p class="text-center font-iransans-regular farsi-number mb-4"
-               x-text="selectedProduct.price == 0 ? 'ناموجود' : (selectedProduct.price + ' تومان')">
+               x-text="selectedProduct.price == 0 ? 'ناموجود' : (formatPrice(selectedProduct.price) + ' تومان')">
             </p>
             <p class="text-justify text-gray-700 font-iransans-thin text-sm"
             x-html="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
@@ -541,7 +541,11 @@ function menuApp(categories, productsByCategory) {
         closeModal() {
             this.showProductModal = false;
             this.selectedProduct = {};
-        }
+        },
+
+        formatPrice(price) {
+            return price.toLocaleString('fa-IR');
+        },
     };
 }
 </script>
