@@ -11,7 +11,7 @@
 
             <!-- عنوان وسط صفحه -->
             <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
-                <div class="text-2xl">{{ $settings['init_site_name'] }}</div>
+                <div class="text-2xl text-coral">{{ $settings['init_site_name'] }}</div>
             </div>
 
             <button class="text-coral" @click="showSearch = !showSearch">
@@ -46,26 +46,27 @@
         </div>
 
         <!-- ورودی جستجو -->
-        <div x-show="showSearch" class="w-full px-4 pt-2">
-            <div class="flex items-center border rounded overflow-hidden">
+        <div x-show="showSearch" class="w-full px-4 pt-2" dir="rtl">
+            <div class="flex flex-row-reverse items-center border border-coral rounded overflow-hidden">
                 <!-- اینپوت در سمت راست -->
                 <input
                     type="text"
-                    class="border-1 border-coral font-iransans-thin w-full px-4 py-2 text-right outline-none text-sm"
+                    class="w-full px-4 py-2 text-right text-sm font-iransans-thin placeholder-coral outline-none"
                     placeholder="جستجوی محصول یا دسته‌بندی..."
                     x-model="searchQuery">
 
-                <!-- دکمه پاک کردن در سمت چپ -->
+                <!-- دکمه پاک کردن در سمت چپ (در rtl میاد راست) -->
                 <button
                     x-show="searchQuery"
                     @click="searchQuery = ''"
-                    class="px-3 text-gray-500 hover:text-red-500 transition"
+                    class="px-3 text-gray-500 hover:text-red-500 transition text-xl"
                     aria-label="پاک کردن جستجو"
                 >
                     &times;
                 </button>
             </div>
         </div>
+
 
     </header>
 
@@ -133,14 +134,14 @@
                                 افزودن به سبد خرید
                             </button>
                             <div class="flex justify-center items-center" x-show="isInCart(product.id) && product.price != 0">
-                                <button                                    
+                                <button
                                     @click.stop="increaseQuantity(product)"
                                     class="flex justify-center items-center font-iransans-thin text-xl bg-coral text-white px-3 pt-1 rounded hover:bg-orange-500 transition">
                                     +
                                 </button>
                                 <span class="mx-2 font-iransans-extrabold farsi-number" x-text="productQuantity(product.id)"></span>
-                                <button         
-                                    @click.stop="decreaseQuantity(product)"                           
+                                <button
+                                    @click.stop="decreaseQuantity(product)"
                                     class="flex justify-center items-center font-iransans-thin text-xl bg-coral text-white px-3 pt-1 rounded hover:bg-orange-500 transition">
                                     -
                                 </button>
@@ -326,7 +327,7 @@
             showHomeModal: false,     // نمایش مودال صفحه اصلی
             showCartModal: false,     // سبد خرید
             selectedProduct: null,    // محصول انتخاب شده
-            selectedCategory: null,   // دسته‌بندی انتخاب شده            
+            selectedCategory: null,   // دسته‌بندی انتخاب شده
             cart: [],
             init() {
                 this.setupIntersectionObserver();
@@ -439,9 +440,9 @@ function menuApp(categories, productsByCategory) {
         init() {
             const savedCart = localStorage.getItem('cart');
             if (savedCart) {
-                this.cart = JSON.parse(savedCart);                
+                this.cart = JSON.parse(savedCart);
             }
-            
+
             this.initObserver(); // حتما اینجا صدا زده شود
         },
 
