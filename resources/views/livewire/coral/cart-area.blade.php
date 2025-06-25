@@ -106,7 +106,7 @@ document.addEventListener('alpine:init', () => {
 
             Livewire.on('order-finalized', () => {
                 localStorage.removeItem('cart');
-                window.location.href = '/checkout';
+                window.location.href = '/checkout'; 
             });
         },
 
