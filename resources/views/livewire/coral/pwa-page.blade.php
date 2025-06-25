@@ -544,6 +544,9 @@ function menuApp(categories, productsByCategory) {
         },
 
         formatPrice(price) {
+            if (typeof price !== 'number' || isNaN(price)) {
+                return '۰';
+            }
             return price.toLocaleString('fa-IR');
         },
     };

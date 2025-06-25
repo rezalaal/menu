@@ -32,7 +32,7 @@
         style="display: none;"
     >
         <h3 class="font-iransans-extrabold text-center text-coral text-3xl mb-6">سبد خرید</h3>
-
+        
         <template x-if="items.length === 0">
             <p class="text-center text-gray-500 font-iransans-bold">سبد خرید شما خالی است.</p>
         </template>
@@ -69,15 +69,17 @@
         <div class="pt-2 mt-6 text-lg text-right text-gray-800 font-iransans-bold">
             جمع کل: <span class="farsi-number font-iransans-bold" x-text="formatPrice(totalPrice)"></span> تومان
         </div>
-
+        <div class="text-coral text-center p-4 font-iransans-bold">@error('cart') {{ $message }} @enderror</div>
         <!-- دکمه نهایی سازی -->
         <button
+            wire:loading.remove
             @click="finalizeOrder()"
             class="bg-coral text-white font-iransans-thin mt-6 py-2 px-4 rounded shadow hover:bg-orange-500 transition"
         >
             نهایی‌سازی سفارش
         </button>
-
+        <div wire:loading class="font-iransans-regular text-base text-center text-coral mt-6 py-2 px-4 transition">در حال ثبت سفارش</div>
+        
         <!-- دکمه برگشت -->
         <button
             @click="showModal = false"
@@ -101,6 +103,11 @@ document.addEventListener('alpine:init', () => {
         startWatcher() {
             this.loadCart();
             this.intervalId = setInterval(() => this.loadCart(), 1000);
+
+            Livewire.on('order-finalized', () => {
+                localStorage.removeItem('cart');
+                window.location.href = '/checkout';
+            });
         },
 
         loadCart() {
@@ -120,13 +127,22 @@ document.addEventListener('alpine:init', () => {
         },
 
         formatPrice(price) {
+            if (typeof price !== 'number' || isNaN(price)) {
+                return '۰';
+            }
             return price.toLocaleString('fa-IR');
         },
 
+
         finalizeOrder() {
-            alert('در آینده این دکمه شما را به صفحه پرداخت می‌برد.');
-            // اگر خواستی به صفحه دیگری ریدایرکت کنی، اینجا window.location.href = '...';
+            const payload = this.items.map(item => ({
+                product_id: item.id,
+                quantity: item.quantity
+            }));
+            
+            Livewire.dispatch('finalize-order', { items: payload });
         }
+
     }));
 });
 </script>
