@@ -39,6 +39,29 @@ class Checkout extends Component
         return redirect()->to('orders');
     }
 
+
+    public function cancelOrder($orderId)
+    {
+        $order = Order::where('id', $orderId)
+            ->where('user_id', auth()->id())
+            ->where('status', OrderStatus::PENDING)
+            ->first();
+
+        if (! $order) {
+            $this->addError('order', 'سفارشی با این مشخصات یافت نشد یا مجاز به انصراف نیستید.');
+            return;
+        }
+
+        $order->update(['status' => OrderStatus::CANCELED]);
+
+        // حذف سفارش از لیست موجود در کامپوننت
+        $this->orders = $this->orders->filter(fn($o) => $o->id !== $order->id);
+
+        session()->flash('success', 'سفارش با موفقیت لغو شد.');
+    }
+
+
+
     public function render()
     {
         return view('livewire.coral.checkout')->layout('components.layouts.pwa');

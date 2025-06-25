@@ -37,13 +37,30 @@
                     جمع کل: <span class="farsi-number font-iransans-bold">{{ number_format($order->total) }}</span> تومان
                 </div>
 
-                <button
-                    wire:loading.remove
-                    wire:click="postPay({{ $order->id }})"
-                    class="bg-coral text-white font-iransans-thin mt-4 py-2 px-4 rounded shadow hover:bg-orange-500 transition w-full"
-                >
-                    پس پرداخت
-                </button>
+                <div class="flex items-center justify-between gap-4 mt-2">
+                    <!-- دکمه پس پرداخت -->
+                    <button
+                        wire:loading.remove
+                        wire:click="postPay({{ $order->id }})"
+                        class="flex-1 bg-coral text-white font-iransans-thin py-2 px-4 rounded shadow hover:bg-orange-500 transition"
+                    >
+                        پس پرداخت
+                    </button>
+
+                    <!-- دکمه انصراف -->
+                    <button
+                        wire:click="cancelOrder({{ $order->id }})"
+                        class="flex items-center justify-center px-3 py-2 rounded border border-red-400 text-red-500 hover:bg-red-100 transition"
+                        title="انصراف از سفارش"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3m-4 0h14"
+                            />
+                        </svg>
+                    </button>
+                </div>
+
                 <button
                     wire:loading
                     class="bg-coral text-white font-iransans-thin mt-4 py-2 px-4 rounded shadow hover:bg-orange-500 transition w-full"
