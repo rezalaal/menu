@@ -64,22 +64,33 @@
             </div>
         </template>
 
+        <template x-if="items.length > 0">
+            <div>
+                <!-- جمع کل -->
+                <div class="pt-2 mt-6 text-lg text-right text-gray-800 font-iransans-bold">
+                    جمع کل: <span class="farsi-number font-iransans-bold" x-text="formatPrice(totalPrice)"></span> تومان
+                </div>
 
-        <!-- جمع کل -->
-        <div class="pt-2 mt-6 text-lg text-right text-gray-800 font-iransans-bold">
-            جمع کل: <span class="farsi-number font-iransans-bold" x-text="formatPrice(totalPrice)"></span> تومان
-        </div>
-        <div class="text-coral text-center p-4 font-iransans-bold">@error('cart') {{ $message }} @enderror</div>
-        <!-- دکمه نهایی سازی -->
-        <button
-            wire:loading.remove
-            @click="finalizeOrder()"
-            class="bg-coral text-white font-iransans-thin mt-6 py-2 px-4 rounded shadow hover:bg-orange-500 transition"
-        >
-            نهایی‌سازی سفارش
-        </button>
-        <div wire:loading class="font-iransans-regular text-base text-center text-coral mt-6 py-2 px-4 transition">در حال ثبت سفارش</div>
-        
+                <div class="text-coral text-center p-4 font-iransans-bold">
+                    @error('cart') {{ $message }} @enderror
+                </div>
+
+                <!-- دکمه نهایی سازی -->
+                <button
+                    wire:loading.remove
+                    @click="finalizeOrder()"
+                    class="bg-coral text-white font-iransans-thin mt-6 py-2 px-4 rounded shadow hover:bg-orange-500 transition"
+                >
+                    نهایی‌سازی سفارش
+                </button>
+
+                <div wire:loading class="font-iransans-regular text-base text-center text-coral mt-6 py-2 px-4 transition">
+                    در حال ثبت سفارش
+                </div>
+            </div>
+        </template>
+
+
         <!-- دکمه برگشت -->
         <button
             @click="showModal = false"
