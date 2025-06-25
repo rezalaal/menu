@@ -2,25 +2,24 @@
 
 namespace App\Livewire;
 
+use App\Enums\OrderStatus;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class OrderPage extends Component
 {
-    public $tab = "current";
+    public $orders;
 
-
-    public function switch($tab)
+    public function mount()
     {
-        if($tab == "curr"){
-            $this->tab = "current";
-        }
-        if($tab == "prev") {
-            $this->tab = "previous";
-        }
+        $this->orders = Order::with('orderLines.product')
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->get();
     }
-
     public function render()
     {
-        return view('livewire.order-page');
+        return view('livewire.order-page')->layout('components.layouts.pwa');
     }
 }

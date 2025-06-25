@@ -1,18 +1,60 @@
-<div dir="rtl" class="px-2 bg-gradient-to-b from-coral-from to-coral-to h-full pb-48 flex flex-col md:items-center">
-        <h1 class="font-dastnevis text-3xl font-black mt-10 px-4 text-white">سفارشات </h1>
-    <livewire:search-input />
-    <div class="mt-4 text-white font-dastnevis text-sm flex flex-row justify-center items-center">
-        <button class="px-6 rounded-t-xl @if($tab == 'previous') bg-lime-950 border-b-lime-400 border-b-4 pb-1 @else bg-lime-900 pb-2 @endif " wire:click="switch('prev')">سفارشات پیشین</button>
-        <button class="px-6 rounded-t-xl @if($tab == 'current') bg-lime-950 border-b-lime-400 border-b-4 pb-1 @else bg-lime-900  pb-2 @endif" wire:click="switch('curr')">سفارشات جاری</button>
-    </div>
-    <div class="w-full flex flex-col bg-lime-950 rounded-3xl pb-36">
-    <span wire:loading class="loading loading-dots loading-lg pt-2 text-white"></span>
+<div class="p-4 max-w-screen-md mx-auto" dir="rtl">
 
-        @if ($tab == "current")
-            <livewire:current-orders>
-        @else
-            <livewire:previous-orders>
-        @endif
+    <!-- دکمه بازگشت -->
+    <div class="fixed top-4 left-4 z-50 cursor-pointer" onclick="window.history.back()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-coral hover:text-orange-500 transition"
+             fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
     </div>
-    <livewire:footer-menu />
+
+    <h1 class="text-xl font-iransans-bold text-coral mb-6 text-center">لیست سفارش‌ها</h1>
+
+    @if ($orders->isEmpty())
+        <div class="text-center text-gray-500 font-iransans-bold">
+            شما هیچ سفارش در حال پردازشی ندارید.
+        </div>
+    @else
+        @foreach ($orders as $order)
+
+
+            <div class="border rounded-xl mb-6 shadow-xl p-4">
+                <div class="flex justify-between items-center mb-2 bg-coral-to p-2 rounded">
+                    <div class="farsi-number font-iransans-bold text-gray-700">کد سفارش: {{ $order->id }}</div>
+                    <!-- نشان وضعیت سفارش -->
+                    <div class="text-xs font-iransans-thin px-3 py-1 rounded-full shadow-md bg-coral text-white">
+                        {{ $order->status->getLabel() }}
+                    </div>
+                    <div class="farsi-number font-iransans-thin text-sm text-white">
+                        {{ verta($order->created_at)->format('Y/m/d H:i') }}
+                    </div>
+                </div>
+
+                <div class="font-iransans-thin mb-2 text-sm text-gray-600">
+                    {{ $order->table?->name ?? 'بدون میز' }}
+                </div>
+
+                <ul class="text-sm text-gray-700 space-y-2 mt-4">
+                    @foreach ($order->orderLines as $line)
+                        <li class="flex justify-between items-center border-b pb-2">
+                            <span class="font-iransans-regular">{{ $line->product->name }}</span>
+                            <span class="farsi-number font-iransans-bold">×{{ $line->qty }}</span>
+                            <span class="farsi-number font-iransans-bold">{{ number_format($line->price * $line->qty) }} تومان</span>
+                        </li>
+                    @endforeach
+                </ul>
+
+                <div class="flex justify-center mt-4 p-4 text-right font-iransans-bold text-coral bg-gray-200">
+                    جمع کل: <span class="farsi-number font-iransans-bold">{{ number_format($order->total) }}</span> تومان
+                </div>
+
+                <button
+                    wire:loading
+                    class="bg-coral text-white font-iransans-thin mt-4 py-2 px-4 rounded shadow hover:bg-orange-500 transition w-full"
+                >
+                    در حال پردازش
+                </button>
+            </div>
+        @endforeach
+    @endif
 </div>
