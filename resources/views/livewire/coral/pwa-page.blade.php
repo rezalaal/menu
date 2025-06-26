@@ -1,6 +1,6 @@
 <div x-data="menuApp({{ Js::from($categories) }}, {{ Js::from($productsByCategory) }})" x-init="initObserver()" class="max-w-screen-sm mx-auto">
     <!-- هدر ثابت -->
-    <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-white pb-2 z-40">
+    <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-[#c7dfa7] pb-2 z-40">
         <div class="w-full font-iransans-extrabold relative flex items-center justify-between px-4 h-16">
             <!-- آیکون خانه -->
             <div class="text-coral cursor-pointer" @click="showHomeModal = true">

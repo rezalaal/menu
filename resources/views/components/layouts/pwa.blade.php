@@ -23,7 +23,7 @@
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <title>{{ $title ?? 'Coral Food کورال فود' }}</title>
 </head>
-<body class="m-0 p-0">
+<body class="m-0 p-0 bg-[#f2e8cf]">
 
     <!-- Main Slot -->
     <main class="max-w-screen mx-auto my-0 p-1">
