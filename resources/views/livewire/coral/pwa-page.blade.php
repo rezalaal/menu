@@ -131,7 +131,7 @@
                                 x-show="!isInCart(product.id) && product.price != 0"
                                 class="font-iransans-thin text-sm mt-2 bg-coral text-white px-3 py-1 rounded hover:bg-orange-500 transition"
                                 @click.stop="addToCart(product)">
-                                افزودن به سبد خرید
+                                ثبت سفارش
                             </button>
                             <div class="flex justify-center items-center" x-show="isInCart(product.id) && product.price != 0">
                                 <button

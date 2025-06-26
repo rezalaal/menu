@@ -38,7 +38,7 @@
         </template>
 
         <template x-for="item in items" :key="item.id">
-            <div dir="rtl" class="relative flex items-center justify-between border-b py-2 gap-2 shadow-sm shadow-coral rounded mt-4">
+            <div dir="rtl" class="relative flex items-center justify-between border-b px-4 py-2 gap-4 shadow-sm shadow-coral rounded mt-4">
 
                 <!-- دکمه حذف -->
                 <button
@@ -69,6 +69,17 @@
                     </div>
 
                     <div class="flex items-center gap-1 mt-1">
+
+                        <!-- دکمه افزایش -->
+                        <button
+                            wire:loading.remove
+                            @click="increaseQuantity(item)"
+                            class="bg-coral hover:bg-gray-300 text-white hover:text-black rounded w-6 h-6 text-sm font-bold"
+                        >+</button>
+
+                        <!-- عدد -->
+                        <span class="farsi-number font-iransans-bold text-sm w-4 text-center" x-text="item.quantity"></span>
+
                         <!-- دکمه کاهش -->
                         <button
                             wire:loading.remove
@@ -77,15 +88,6 @@
                             :disabled="item.quantity <= 1"
                         >−</button>
 
-                        <!-- عدد -->
-                        <span class="farsi-number font-iransans-bold text-sm w-4 text-center" x-text="item.quantity"></span>
-
-                        <!-- دکمه افزایش -->
-                        <button
-                            wire:loading.remove
-                            @click="increaseQuantity(item)"
-                            class="bg-coral hover:bg-gray-300 text-white hover:text-black rounded w-6 h-6 text-sm font-bold"
-                        >+</button>
                     </div>
 
                 </div>
