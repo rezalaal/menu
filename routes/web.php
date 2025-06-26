@@ -10,6 +10,8 @@ use App\Livewire\ProfilePage;
 use App\Livewire\SearchPage;
 use App\Livewire\WaiterPage;
 use Illuminate\Support\Facades\Route;
+use App\Exports\ProductsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 // Routes
 Route::get('/table/{id}', \App\Livewire\Table::class);
@@ -27,3 +29,10 @@ Route::get('/checkout', Checkout::class)->middleware('auth');
 Route::get('/login', function () {
     return redirect('/table/1');
 })->name('login');
+
+
+
+Route::get('/admin/products/export-excel', function () {
+    return Excel::download(new ProductsExport, 'products.xlsx');
+})->middleware(['web', 'auth']) // بسته به پنل ممکنه middleware خاص داشته باشی
+->name('filament.products.export');

@@ -25,6 +25,7 @@ class Table extends Component
     ])]
     public $mobile;
 
+
     public function mount($id, GeneralSettings $settings)
     {
         if(auth()->user()) {

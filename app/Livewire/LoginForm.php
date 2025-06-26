@@ -22,7 +22,6 @@ class LoginForm extends Component
         'regex' => 'شماره تلفن وارد شده نامعتبر است'
     ])]
     public $mobile;
-
     public $step = 'showForm';
 
     public function mount()
@@ -113,15 +112,16 @@ class LoginForm extends Component
             return;
         }
 
-        
+
         $this->step = "loggedIn";
 
         if (!session()->has('tableId')) {
             session()->put('tableId', 1);
         }
 
-        
+
         auth()->login(User::where('username', $sessionOtp['mobile'])->first());
+
         session()->forget('otp');
         $this->addError('otp', 'با موفقیت وارد شدید. کمی صبر کنید');
         // return redirect()->route('home');
@@ -139,7 +139,7 @@ class LoginForm extends Component
                 return view('livewire.confirm-code');
                 break;
             case "loggedIn":
-                return view('livewire.redirect');                
+                return view('livewire.redirect');
                 break;
             default:
                 return view('livewire.login-form');

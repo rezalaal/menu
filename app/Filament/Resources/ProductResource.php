@@ -111,7 +111,8 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('عنوان محصول')
                     ->description(fn (Product $record): string => substr($record->description,0,50).'...')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 // Tables\Columns\TextColumn::make('description')
                 //     ->label('توضیحات')
                 //     ->searchable(),
@@ -135,9 +136,9 @@ class ProductResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextInputColumn::make('sort_order')
-                    ->rules(['required', 'numeric','min:0'])
-                    ->label('ترتیب'),
+//                Tables\Columns\TextInputColumn::make('sort_order')
+//                    ->rules(['required', 'numeric','min:0'])
+//                    ->label('ترتیب'),
             ])
             ->filters([
                 SelectFilter::make('category')

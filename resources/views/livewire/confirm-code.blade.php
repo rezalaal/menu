@@ -3,7 +3,7 @@
         @error('otp') {{ $message }} @enderror
     </div>
     @if ($step == "confirmCode")
-        
+
     <input
         wire:loading.remove
         wire:model="otp"

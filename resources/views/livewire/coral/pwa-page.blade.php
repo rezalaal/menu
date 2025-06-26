@@ -1,6 +1,6 @@
 <div x-data="menuApp({{ Js::from($categories) }}, {{ Js::from($productsByCategory) }})" x-init="initObserver()" class="max-w-screen-sm mx-auto">
     <!-- هدر ثابت -->
-    <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-[#c7dfa7] pb-2 z-40">
+    <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-coral-header pb-2 z-40">
         <div class="w-full font-iransans-extrabold relative flex items-center justify-between px-4 h-16">
             <!-- آیکون خانه -->
             <div class="text-coral cursor-pointer" @click="showHomeModal = true">
@@ -158,10 +158,10 @@
 
     <!-- مودال محصول -->
     <div x-show="showProductModal" x-cloak x-transition
-        class="fixed inset-0 bg-white z-50 flex items-center justify-center pt-16 pb-16 overflow-auto"
+        class="fixed inset-0 z-50 flex items-center justify-center pt-16 pb-16 overflow-auto bg-coral-body"
         @click.away="closeModal" dir="rtl">
 
-        <div class="relative bg-white rounded-lg w-full max-w-3xl mx-auto mt-16 px-6 py-12 overflow-y-auto max-h-screen"
+        <div class="relative bg-coral-body rounded-lg w-full max-w-3xl mx-auto mt-16 px-6 py-12 overflow-y-auto max-h-screen"
             @click.stop>
 
             <!-- دکمه بستن خارج از تصویر و با فاصله مناسب از بالا -->
@@ -200,7 +200,7 @@
             x-show="showHomeModal"
             x-cloak
             x-transition
-            class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-between p-8"
+            class="fixed inset-0 z-50 flex flex-col items-center justify-between p-8 bg-coral-body"
             @click.away="showHomeModal = false"
         >
             <!-- عنوان وسط صفحه -->

@@ -15,6 +15,8 @@ export const theme = {
     'coral-to': '#A9B388',
     'footer': '#527853',
     'coral': '#a2ca6c',
+    'coral-body': '#f2e8cf',
+    'coral-header': '#c7dfa7',
       /*
       *'coral': '#F88378',377771
       *
