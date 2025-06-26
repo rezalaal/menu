@@ -5,6 +5,7 @@ namespace App\Filament\Widgets;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Table;
 use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Card;
@@ -37,7 +38,7 @@ class OverviewStats extends BaseWidget
                 ->description('تعداد سفارشات ثبت شده در امروز')
                 ->icon('heroicon-o-shopping-bag')
                 ->color('success'),
-            Card::make('تعداد میزها', User::count() -1 )
+            Card::make('تعداد میزها', Table::count() -1 )
                 ->description('تعداد میزهای سالن')
                 ->icon('heroicon-o-clipboard')
                 ->color('success'),
