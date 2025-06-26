@@ -4,7 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
+use App\Filament\Resources\CategoryResource\RelationManagers\ProductsRelationManager;
 use App\Models\Category;
+use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
@@ -43,13 +45,20 @@ class CategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->query(
+                Product::with(['category' => fn ($q) => $q->withCount('products')])
+            )
             ->columns([
                 SpatieMediaLibraryImageColumn::make('image')
                     ->circular()
                     ->label('تصویر')
-                 ->conversion('thumb'),
+                    ->conversion('thumb'),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('نام محصول')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('category.products_count')
+                    ->label('تعداد محصول در این دسته')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -58,9 +67,6 @@ class CategoryResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('sort_order')
-                    ->numeric()
-                    ->sortable(),
             ])
             ->filters([
                 //
@@ -78,9 +84,10 @@ class CategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ProductsRelationManager::class,
         ];
     }
+
 
     public static function getPages(): array
     {
