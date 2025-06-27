@@ -51,7 +51,7 @@
                 <!-- اینپوت در سمت راست -->
                 <input
                     type="text"
-                    class="w-full px-4 py-2 text-right text-sm font-iransans-thin placeholder-coral outline-none"
+                    class="w-full px-4 py-2 text-right text-sm font-iransans-thin placeholder-coral outline-none bg-coral-to"
                     placeholder="جستجوی محصول یا دسته‌بندی..."
                     x-model="searchQuery">
 
@@ -249,6 +249,7 @@
                     style="display: none;"
                     dir="rtl"
                 >
+                    <livewire:back/>
                     <div class="text-sm font-iransans-thin text-black leading-relaxed space-y-2 max-w-xl mx-auto">
                         {!! Str::markdown(strip_tags($settings['work_hours'] ?? 'ساعات کاری ثبت نشده است.')) !!}
                     </div>
@@ -271,6 +272,7 @@
                     style="display: none;"
                     dir="rtl"
                 >
+                    <livewire:back/>
                     <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
                         {!! Str::markdown(strip_tags($settings['about'] ?? 'توضیحاتی برای این بخش موجود نیست.')) !!}
                     </div>
@@ -293,6 +295,7 @@
                     style="display: none;"
                     dir="rtl"
                 >
+                    <livewire:back/>
                     <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
                         {!! Str::markdown(strip_tags($settings['contact'] ?? 'اطلاعات تماس موجود نیست.')) !!}
                     </div>
@@ -309,7 +312,7 @@
         </div>
 
     @auth
-        <livewire:coral.cart-area>
+        <livewire:coral.cart-area/>
         <livewire:call-waiter/>
     @endauth
 </div>

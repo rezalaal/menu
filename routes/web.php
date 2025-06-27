@@ -20,10 +20,10 @@ Route::get('/categories', \App\Livewire\CategoryPage::class);
 Route::get('/products/{category}', ProductsPage::class);
 Route::get('/product/{product}', ProductView::class);
 // Route::get('/cart', CartPage::class);
- Route::get('/orders', OrderPage::class);
+ Route::get('/orders', OrderPage::class)->middleware('auth');
 // Route::get('/orders/{order}', OrderView::class);
 // Route::get('/search', SearchPage::class);
-Route::get('/profile', ProfilePage::class);
+Route::get('/profile', ProfilePage::class)->middleware('auth');
 Route::get('/waiter', WaiterPage::class);
 Route::get('/checkout', Checkout::class)->middleware('auth');
 Route::get('/login', function () {
