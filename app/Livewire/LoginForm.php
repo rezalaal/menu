@@ -42,7 +42,7 @@ class LoginForm extends Component
             $cacheKey = "otp_attempts_{$mobile}";
             $attempts = Cache::get($cacheKey, 0);
 
-            if ($attempts >= 2) {
+            if ($attempts >= 3) {
                 $this->addError('mobile', "شما بیش از حد مجاز درخواست ارسال کد داشته‌اید. لطفاً بعداً دوباره تلاش کنید.");
                 return;
             }
@@ -79,6 +79,7 @@ class LoginForm extends Component
         if (config('app.env') === 'production') {
             try {
                 $user->notify(new SendOtpViaSms($otpCode));
+                info("sent otp ".$otpCode." to ".$user->username);
             }catch(\Exception $e) {
                 $this->addError('otp', $e->getMessage());
                 info($e->getMessage());
