@@ -245,7 +245,7 @@
                     x-show="showWorkHours"
                     x-transition
                     x-cloak
-                    class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
+                    class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
                     style="display: none;"
                     dir="rtl"
                 >
@@ -267,7 +267,7 @@
                     x-show="showAbout"
                     x-transition
                     x-cloak
-                    class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
+                    class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
                     style="display: none;"
                     dir="rtl"
                 >
@@ -289,7 +289,7 @@
                     x-show="showContact"
                     x-transition
                     x-cloak
-                    class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
+                    class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
                     style="display: none;"
                     dir="rtl"
                 >
