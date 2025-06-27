@@ -1,9 +1,6 @@
     <div class="p-4 max-w-screen-md mx-auto" dir="rtl">
-        <div class="fixed top-4 left-4 z-50 cursor-pointer" onclick="window.history.back()">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-coral hover:text-orange-500 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-    </div>
+
+    <livewire:back to="/?page=menu"/>
 
     <h1 class="text-xl font-iransans-bold text-coral mb-6 text-center">لیست سفارش‌های در حال پردازش</h1>
 

@@ -28,10 +28,11 @@
     <div
         x-show="showModal"
         x-transition
+        @close-modal.window="(event.detail.includes('modal')) ? showModal = false : null"
         class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
         style="display: none;"
     >
-        <livewire:back/>
+        <livewire:back modal="modal"/>
         <h3 class="font-iransans-extrabold text-center text-coral text-3xl mb-6">سبد خرید</h3>
 
         <template x-if="items.length === 0">

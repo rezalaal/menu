@@ -8,7 +8,7 @@ use Kavenegar\KavenegarApi;
 class SendOtpViaSms extends Notification
 {
 
-    public function __construct(protected  $otp){}
+    public function __construct(protected  $otp, protected $template = 'otp'){}
 
     public function via(object $notifiable): array
     {
@@ -20,10 +20,14 @@ class SendOtpViaSms extends Notification
     {
         $receptor = $notifiable->username;
         $apiKey = config('services.kavenegar.api_key');
-        $token = $this->otp;
+        if ($this->template === 'otp') {
+            $token = $this->otp;
+        }else{
+            $token = $notifiable->name;
+        }
 
         $api = new KavenegarApi($apiKey);
-        $api->VerifyLookup($receptor, $token, null, null, 'otp', null);
+        $api->VerifyLookup($receptor, $token, null, null, $this->template, null);
     }
 
 }

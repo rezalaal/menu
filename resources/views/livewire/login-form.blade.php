@@ -3,7 +3,7 @@
     <input
         wire:loading.remove
         wire:model="mobile"
-        class="flex justify-center items-center no-spinner placeholder-lime-900 font-iransans-thin bg-gray-100 w-80  text-sm text-center outline-0 px-4 py-2 shadow-2xl text-lime-900"
+        class="flex justify-center items-center no-spinner placeholder-lime-900 font-iransans-thin bg-gray-100 w-80 text-right text-sm text-center outline-0 px-4 py-2 shadow-2xl text-lime-900"
         dir="rtl"
         type="number"
         inputmode="numeric"

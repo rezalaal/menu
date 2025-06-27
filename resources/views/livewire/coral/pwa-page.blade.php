@@ -38,8 +38,6 @@
 
         <!-- جستجو و دسته بندی -->
         <div class="flex items-center gap-2">
-
-
             <button class="bg-coral font-iransans-thin text-white text-sm shadow px-4 py-1 rounded" @click="showModal = true">
                 همه دسته‌بندی‌ها
             </button>
@@ -51,7 +49,7 @@
                 <!-- اینپوت در سمت راست -->
                 <input
                     type="text"
-                    class="w-full px-4 py-2 text-right text-sm font-iransans-thin placeholder-coral outline-none bg-coral-to"
+                    class="w-full px-4 py-2 text-right text-sm font-iransans-thin placeholder-coral outline-none bg-lime-100"
                     placeholder="جستجوی محصول یا دسته‌بندی..."
                     x-model="searchQuery">
 
@@ -159,8 +157,11 @@
     <!-- مودال محصول -->
     <div x-show="showProductModal" x-cloak x-transition
         class="fixed inset-0 z-50 flex items-center justify-center pt-16 pb-16 overflow-auto bg-coral-body"
-        @click.away="closeModal" dir="rtl">
-
+        @click.away="closeModal"
+         dir="rtl"
+         @close-modal.window="(event.detail.includes('productModal')) ? showProductModal = false : null"
+    >
+        <livewire:back modal="productModal" />
         <div class="relative bg-coral-body rounded-lg w-full max-w-3xl mx-auto mt-16 px-6 py-12 overflow-y-auto max-h-screen"
             @click.stop>
 
@@ -245,11 +246,12 @@
                     x-show="showWorkHours"
                     x-transition
                     x-cloak
+                    @close-modal.window="(event.detail.includes('workHours')) ? showWorkHours = false : null"
                     class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
                     style="display: none;"
                     dir="rtl"
                 >
-                    <livewire:back/>
+                    <livewire:back modal="workHours"/>
                     <div class="text-sm font-iransans-thin text-black leading-relaxed space-y-2 max-w-xl mx-auto">
                         {!! Str::markdown(strip_tags($settings['work_hours'] ?? 'ساعات کاری ثبت نشده است.')) !!}
                     </div>
@@ -268,11 +270,14 @@
                     x-show="showAbout"
                     x-transition
                     x-cloak
+                    @close-modal.window="(event.detail.includes('about')) ? showAbout = false : null"
+
+
                     class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
                     style="display: none;"
                     dir="rtl"
                 >
-                    <livewire:back/>
+                    <livewire:back modal="about"/>
                     <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
                         {!! Str::markdown(strip_tags($settings['about'] ?? 'توضیحاتی برای این بخش موجود نیست.')) !!}
                     </div>
@@ -291,11 +296,12 @@
                     x-show="showContact"
                     x-transition
                     x-cloak
+                    @close-modal.window="(event.detail.includes('contact')) ? showContact = false : null"
                     class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
                     style="display: none;"
                     dir="rtl"
                 >
-                    <livewire:back/>
+                    <livewire:back modal="contact"/>
                     <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
                         {!! Str::markdown(strip_tags($settings['contact'] ?? 'اطلاعات تماس موجود نیست.')) !!}
                     </div>
@@ -312,6 +318,7 @@
         </div>
 
     @auth
+        <livewire:coral.user-area/>
         <livewire:coral.cart-area/>
         <livewire:call-waiter/>
     @endauth
@@ -446,6 +453,10 @@ function menuApp(categories, productsByCategory) {
                 this.cart = JSON.parse(savedCart);
             }
 
+            // بررسی URL
+            if (window.location.search.includes('page=menu')) {
+                this.showHomeModal = false;
+            }
             this.initObserver(); // حتما اینجا صدا زده شود
         },
 

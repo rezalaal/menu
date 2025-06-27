@@ -1,6 +1,6 @@
 <div class="p-4 max-w-screen-md mx-auto" dir="rtl">
 
-    <livewire:back/>
+    <livewire:back to="/?page=menu"/>
     <h1 class="text-xl font-iransans-bold text-coral mb-6 text-center">لیست سفارش‌ها</h1>
 
     @if ($orders->isEmpty())

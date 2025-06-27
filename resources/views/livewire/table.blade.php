@@ -37,7 +37,7 @@
     @endguest
 
     @auth
-        <a wire:navigate href="/" class="font-iransans-bold gb-coral text-center text-white hover:text-lime-100 bg-coral p-4 rounded m-4">جهت مشاهده منو کلیک کنید</a>
+        <a wire:navigate href="/?page=menu" class="font-iransans-bold gb-coral text-center text-white hover:text-lime-100 bg-coral p-4 rounded m-4">جهت مشاهده منو کلیک کنید</a>
     @endauth
 
         <!-- اطلاعات تماس -->
