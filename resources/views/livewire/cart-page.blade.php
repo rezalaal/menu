@@ -13,6 +13,7 @@
                     <a href="/product/{{ $item->product->id }}">
                         <img class="rounded-xl w-24 h-24 object-cover aspect-[1/1]"
                             src="{{ $item->product->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}"
+                             loading="lazy"
                             alt="Product Picture">
                     </a>
                     <div class="flex flex-col justify-between flex-grow">
@@ -23,7 +24,7 @@
                             <button wire:click="increase({{ $item->id }})" class="bg-lime-100 text-lime-950 w-8 h-8 rounded-full text-xl">+</button>
                             <span class="font-iransans-bold farsi-number">{{ $item->qty }}</span>
                             <button wire:click="decrease({{ $item->id }})" class="bg-lime-100 text-lime-950 w-8 h-8 rounded-full text-xl">-</button>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             @endforeach

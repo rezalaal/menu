@@ -116,7 +116,7 @@
 
             <template x-for="product in group.products" :key="product.id">
                 <div class="border-b border-black flex py-4 cursor-pointer" @click="openModal(product)">
-                    <img :src="product.image_url || '/images/category.jpg'" :alt="product.name" class="h-36 w-36 rounded-2xl shadow">
+                    <img :src="product.image_url || '/images/category.jpg'" :alt="product.name" class="h-36 w-36 rounded-2xl shadow" loading="lazy">
                     <div class="p-4 flex flex-col items-start">
                         <h3 class="pb-2 text-lg font-iransans-thin" x-text="product.name"></h3>
                         <span class="font-iransans-regular farsi-number"

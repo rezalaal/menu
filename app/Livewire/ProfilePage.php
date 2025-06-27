@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 
 use App\Notifications\SendOtpViaSms;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ProfilePage extends Component
@@ -44,6 +45,7 @@ class ProfilePage extends Component
 
     public function logoff()
     {
+        Auth::logout();
         return redirect()->to('/table/1');
     }
 

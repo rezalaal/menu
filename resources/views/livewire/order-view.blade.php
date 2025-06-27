@@ -9,6 +9,7 @@
             <a href="/product/{{ $item->product->id }}">
                 <img class="w-24 h-24 object-cover rounded-xl border"
                      src="{{ $item->product->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}"
+                     loading="lazy"
                      alt="Product Picture">
             </a>
             <div class="mr-4 flex flex-col justify-between gap-1">
