@@ -210,7 +210,8 @@
             @click.away="showHomeModal = false"
         >
             <!-- عنوان وسط صفحه -->
-            <div class="flex-grow flex items-center justify-center">
+            <div class="flex-grow flex flex-col items-center justify-center">
+                <img class="w-48" src="/images/coral-logo.png" alt="logo">
                 <h1 class="text-4xl text-coral font-iransans-bold text-center">
                     {{ $settings['init_site_name'] }}
                 </h1>
