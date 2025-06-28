@@ -6,8 +6,11 @@
             <p class="text-coral font-iransans-regular mb-2">
                 سلام عزیز خوشحال میشیم اسمتو بدونیم
             </p>
-            <input type="text" wire:model.defer="realName" class="border rounded px-2 py-1 w-full my-2" placeholder="اسم شما؟">
-            <button wire:click="saveName" class="w-full bg-coral text-white px-4 py-2 rounded shadow">
+            <input type="text" wire:model.defer="realName" class="text-right font-iransans-thin border rounded px-2 py-1 w-full my-2" placeholder="اسم شما؟">
+            <button wire:loading.remove wire:click="saveName" class="w-full font-iransans-bold bg-coral text-white px-4 py-2 rounded shadow">
+                ذخیره
+            </button>
+            <button wire:loading wire:click="saveName" class="w-full font-iransans-bold bg-coral text-white px-4 py-2 rounded shadow disabled">
                 ذخیره
             </button>
             @error('realName')
