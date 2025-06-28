@@ -1,6 +1,6 @@
 <div x-data="menuApp({{ Js::from($categories) }}, {{ Js::from($productsByCategory) }})" x-init="initObserver()" class="max-w-screen-sm mx-auto">
     <!-- هدر ثابت -->
-    <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-coral-header pb-2 z-40">
+    <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-coral-header pb-8 z-40">
         <div class="w-full font-iransans-extrabold relative flex items-center justify-between px-4 h-16">
             <!-- آیکون خانه -->
             <div class="text-coral cursor-pointer" @click="showHomeModal = true">
@@ -64,9 +64,11 @@
                 </button>
             </div>
         </div>
-
-
+        @guest()
+            <div dir="rtl" class="absolute bottom-0 right-0 w-full bg-coral-body p-1 mt-2 font-iransans text-[10px] color-coral text-right">جهت ثبت سفارش لطفا بارکد  روی میز را اسکن کنید</div>
+        @endguest
     </header>
+
 
     <!-- مودال تمام‌صفحه -->
     <div
@@ -115,7 +117,7 @@
             <h2 class="text-lg font-iransans-bold text-coral py-2" x-text="group.category.name"></h2>
 
             <template x-for="product in group.products" :key="product.id">
-                <div class="border-b border-black flex py-4 cursor-pointer" @click="openModal(product)">
+                <div class="relative border-b border-black flex py-4 cursor-pointer" @click="openModal(product)">
                     <img :src="product.image_url || '/images/category.jpg'" :alt="product.name" class="h-36 w-36 rounded-2xl shadow" loading="lazy">
                     <div class="p-4 flex flex-col items-start">
                         <h3 class="pb-2 text-lg font-iransans-thin" x-text="product.name"></h3>
@@ -123,7 +125,7 @@
                               :class="{'text-[9px]': product.price == 0, 'text-base': product.price != 0}"
                               x-text="product.price == 0 ? 'ناموجود' : (formatPrice(product.price) + ' تومان')">
                         </span>
-@auth
+                        @auth
                         <div class="flex justify-center items-center pt-6">
                             <button
                                 x-show="!isInCart(product.id) && product.price != 0"
@@ -145,12 +147,13 @@
                                 </button>
                             </div>
                         </div>
-@endauth
+                        @endauth
                     </div>
                 </div>
             </template>
         </div>
     </template>
+
 </div>
 
 
@@ -458,7 +461,7 @@ function menuApp(categories, productsByCategory) {
                 this.showHomeModal = false;
             }
             this.initObserver(); // حتما اینجا صدا زده شود
-        },        
+        },
 
         get filteredProducts() {
             if (!this.searchQuery) return this.productsByCategory;
