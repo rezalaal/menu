@@ -21,7 +21,8 @@
         "livewire/livewire": "^3.4",
         "maatwebsite/excel": "^3.1",
         "openai-php/client": "^0.13.0",
-        "openai-php/laravel": "^0.13.0"
+        "openai-php/laravel": "^0.13.0",
+        "shuvroroy/filament-spatie-laravel-backup": "^2.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
