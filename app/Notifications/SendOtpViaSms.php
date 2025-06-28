@@ -20,14 +20,23 @@ class SendOtpViaSms extends Notification
     {
         $receptor = $notifiable->username;
         $apiKey = config('services.kavenegar.api_key');
-        if ($this->template === 'otp') {
-            $token = $this->otp;
-        }else{
-            $token = $notifiable->name;
-        }
-
         $api = new KavenegarApi($apiKey);
-        $api->VerifyLookup($receptor, $token, null, null, $this->template, null);
+
+        try {
+            if ($this->template === 'otp') {
+                $api->VerifyLookup($receptor, $this->otp, null, null, $this->template, null);
+            } elseif ($this->template === 'welcome') {
+                $message = "سلام 😊" . $notifiable->name . " از میزبانی شما خرسندیم\nکافه کورال";
+                $api->Send(config('services.kavenegar.sender'), $receptor, $message);
+            } else {
+                \Log::warning("SendOtpViaSms: Unknown template '{$this->template}' provided.");
+                // یا throw new \Exception("Unknown template '{$this->template}' provided.");
+            }
+        } catch (\Exception $e) {
+            \Log::error("SendOtpViaSms: Failed to send SMS. Error: " . $e->getMessage());
+        }
     }
+
+
 
 }
