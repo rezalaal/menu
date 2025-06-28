@@ -7,6 +7,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
 use App\Settings\GeneralSettings;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class PwaPage extends Component
@@ -15,6 +16,10 @@ class PwaPage extends Component
     public $settings;
     public $productsByCategory = [];
 
+    public function placeholder(): View
+    {
+        return view('placeholder');
+    }
     public function mount(GeneralSettings $generalSettings)
     {
         $categories = Category::with('products')->orderBy('sort_order')->get();

@@ -45,18 +45,19 @@
 
         <!-- ورودی جستجو -->
         <div x-show="showSearch" class="w-full px-4 pt-2" dir="rtl">
-            <div class="flex flex-row-reverse items-center border border-coral rounded overflow-hidden">
-                <!-- اینپوت در سمت راست -->
+            <div class="relative flex flex-row-reverse items-center border border-coral rounded overflow-hidden">
+                <!-- اینپوت -->
                 <input
                     type="text"
-                    class="w-full px-4 py-2 text-right text-sm font-iransans-thin placeholder-coral outline-none bg-lime-100"
+                    class="w-full pr-4 pl-8 py-2 text-right text-sm font-iransans-thin placeholder-coral outline-none bg-lime-100"
                     placeholder="جستجوی محصول یا دسته‌بندی..."
-                    x-model="searchQuery">
+                    x-model="searchQuery"
+                >
 
-                <!-- دکمه پاک کردن در سمت چپ (در rtl میاد راست) -->
+                <!-- دکمه پاک کردن -->
                 <button
                     x-show="searchQuery"
-                    @click="searchQuery = ''"
+                    @click="searchQuery = ''; showSearch = false"
                     class="px-3 text-gray-500 hover:text-red-500 transition text-xl"
                     aria-label="پاک کردن جستجو"
                 >
@@ -158,7 +159,8 @@
 
 
     <!-- مودال محصول -->
-    <div x-show="showProductModal" x-cloak x-transition
+    <div
+        x-show="showProductModal" x-cloak x-transition
         class="fixed inset-0 z-50 flex items-center justify-center pt-16 pb-16 overflow-auto bg-coral-body"
         @click.away="closeModal"
          dir="rtl"
