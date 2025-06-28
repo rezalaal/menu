@@ -66,7 +66,7 @@
             </div>
         </div>
         @guest()
-            <div dir="rtl" class="absolute bottom-0 right-0 w-full bg-coral-body p-1 mt-2 font-iransans text-[10px] color-coral text-right">جهت ثبت سفارش لطفا بارکد  روی میز را اسکن کنید</div>
+            <div dir="rtl" class="absolute bottom-0 right-0 w-full bg-coral-body p-1 mt-2 font-iransans-thin text-[10px] color-coral text-right">جهت ثبت سفارش لطفا بارکد  روی میز را اسکن کنید</div>
         @endguest
     </header>
 
