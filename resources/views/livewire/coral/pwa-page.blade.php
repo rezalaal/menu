@@ -458,7 +458,7 @@ function menuApp(categories, productsByCategory) {
                 this.showHomeModal = false;
             }
             this.initObserver(); // حتما اینجا صدا زده شود
-        },
+        },        
 
         get filteredProducts() {
             if (!this.searchQuery) return this.productsByCategory;
