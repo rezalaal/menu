@@ -24,4 +24,10 @@ class Product extends Model implements HasMedia
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function favoredBy()
+    {
+        return $this->belongsToMany(User::class, 'favorite_product_user')->withTimestamps();
+    }
+
 }

@@ -89,4 +89,10 @@ class User extends Authenticatable implements FilamentUser
         return $user;
     }
 
+    public function favorites()
+    {
+        return $this->belongsToMany(Product::class, 'favorite_product_user')->withTimestamps();
+    }
+
+
 }

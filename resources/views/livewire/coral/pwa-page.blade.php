@@ -1,6 +1,13 @@
-<div x-data="menuApp({{ Js::from($categories) }}, {{ Js::from($productsByCategory) }})" x-init="initObserver()" class="max-w-screen-sm mx-auto">
+<div
+    x-data="menuApp({{ Js::from($categories) }}, {{ Js::from($productsByCategory) }})"
+    x-init="initObserver()"
+    @show-favorites.window="console.log('EVENT CAUGHT'); showFavoritesOnly = !showFavoritesOnly"
+    class="max-w-screen-sm mx-auto">
+
+
     <!-- هدر ثابت -->
     <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-coral-header pb-8 z-40">
+
         <div class="w-full font-iransans-extrabold relative flex items-center justify-between px-4 h-16">
             <!-- آیکون خانه -->
             <div class="text-coral cursor-pointer" @click="showHomeModal = true">
@@ -119,39 +126,74 @@
 
             <template x-for="product in group.products" :key="product.id">
                 <div class="relative border-b border-black flex py-4 cursor-pointer" @click="openModal(product)">
-                    <img :src="product.image_url || '/images/category.jpg'" :alt="product.name" class="h-36 w-36 rounded-2xl shadow" loading="lazy">
+
+                    <div class="relative" >
+                        @auth()
+                        <!-- آیکون قلب -->
+                        <button wire:loading.remove
+                            @click.stop="toggleFavoriteJS(product.id)"
+                            class="absolute top-1 right-1 text-coral hover:text-red-500 transition"
+                            aria-label="افزودن به علاقه‌مندی‌ها">
+                            <template x-if="product.is_favorite">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="48" height="48" class="w-5 h-5">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+                                       2 5.42 4.42 3 7.5 3
+                                       c1.74 0 3.41.81 4.5 2.09
+                                       C13.09 3.81 14.76 3 16.5 3
+                                       19.58 3 22 5.42 22 8.5
+                                       c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+
+                            </template>
+                            <template x-if="!product.is_favorite">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M21.8 7.3c0 4.6-9.8 11.2-9.8 11.2S2.2 11.9 2.2 7.3C2.2 4.6 4.6 2.2 7.3 2.2c1.7 0 3.3.8 4.3 2 1-1.2 2.6-2 4.3-2 2.7 0 5.1 2.4 5.1 5.1z"/>
+                                </svg>
+                            </template>
+                        </button>
+                        @endauth
+                        <!-- تصویر محصول -->
+                        <img :src="product.image_url || '/images/category.jpg'" :alt="product.name"
+                             class="h-36 w-36 rounded-2xl shadow" loading="lazy">
+                    </div>
+
                     <div class="p-4 flex flex-col items-start">
                         <h3 class="pb-2 text-lg font-iransans-thin" x-text="product.name"></h3>
                         <span class="font-iransans-regular farsi-number"
                               :class="{'text-[9px]': product.price == 0, 'text-base': product.price != 0}"
                               x-text="product.price == 0 ? 'ناموجود' : (formatPrice(product.price) + ' تومان')">
-                        </span>
+            </span>
+
                         @auth
-                        <div class="flex justify-center items-center pt-6">
-                            <button
-                                x-show="!isInCart(product.id) && product.price != 0"
-                                class="font-iransans-thin text-sm mt-2 bg-coral text-white px-3 py-1 rounded hover:bg-orange-500 transition"
-                                @click.stop="addToCart(product)">
-                                ثبت سفارش
-                            </button>
-                            <div class="flex justify-center items-center" x-show="isInCart(product.id) && product.price != 0">
+                            <div class="flex justify-center items-center pt-6">
                                 <button
-                                    @click.stop="increaseQuantity(product)"
-                                    class="flex justify-center items-center font-iransans-thin text-xl bg-coral text-white px-3 pt-1 rounded hover:bg-orange-500 transition">
-                                    +
+                                    x-show="!isInCart(product.id) && product.price != 0"
+                                    class="font-iransans-thin text-sm mt-2 bg-coral text-white px-3 py-1 rounded hover:bg-orange-500 transition"
+                                    @click.stop="addToCart(product)">
+                                    ثبت سفارش
                                 </button>
-                                <span class="mx-2 font-iransans-extrabold farsi-number" x-text="productQuantity(product.id)"></span>
-                                <button
-                                    @click.stop="decreaseQuantity(product)"
-                                    class="flex justify-center items-center font-iransans-thin text-xl bg-coral text-white px-3 pt-1 rounded hover:bg-orange-500 transition">
-                                    -
-                                </button>
+
+                                <div class="flex justify-center items-center" x-show="isInCart(product.id) && product.price != 0">
+                                    <button
+                                        @click.stop="increaseQuantity(product)"
+                                        class="flex justify-center items-center font-iransans-thin text-xl bg-coral text-white px-3 pt-1 rounded hover:bg-orange-500 transition">
+                                        +
+                                    </button>
+                                    <span class="mx-2 font-iransans-extrabold farsi-number" x-text="productQuantity(product.id)"></span>
+                                    <button
+                                        @click.stop="decreaseQuantity(product)"
+                                        class="flex justify-center items-center font-iransans-thin text-xl bg-coral text-white px-3 pt-1 rounded hover:bg-orange-500 transition">
+                                        -
+                                    </button>
+                                </div>
                             </div>
-                        </div>
                         @endauth
                     </div>
                 </div>
             </template>
+
+
         </div>
     </template>
 
@@ -177,7 +219,28 @@
             </button>
 
             <!-- ظرف تصویر با نسبت 16:9 -->
-            <div class="aspect-video w-full mb-4 rounded-lg overflow-hidden">
+            <div class="relative aspect-video w-full mb-4 rounded-lg overflow-hidden">
+                @auth()
+                    <!-- آیکون قلب -->
+
+                        <template x-if="selectedProduct.is_favorite">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="48" height="48" class="w-5 h-5">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+                                       2 5.42 4.42 3 7.5 3
+                                       c1.74 0 3.41.81 4.5 2.09
+                                       C13.09 3.81 14.76 3 16.5 3
+                                       19.58 3 22 5.42 22 8.5
+                                       c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+
+                        </template>
+                        <template x-if="!selectedProduct.is_favorite">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M21.8 7.3c0 4.6-9.8 11.2-9.8 11.2S2.2 11.9 2.2 7.3C2.2 4.6 4.6 2.2 7.3 2.2c1.7 0 3.3.8 4.3 2 1-1.2 2.6-2 4.3-2 2.7 0 5.1 2.4 5.1 5.1z"/>
+                            </svg>
+                        </template>
+                @endauth
                 <img :src="selectedProduct.image_url || '/images/category.jpg'"
                      :alt="selectedProduct.name"
                      class="w-full h-full object-cover shadow" />
@@ -324,6 +387,7 @@
         </div>
 
     @auth
+        <livewire:coral.favorites-area/>
         <livewire:coral.user-area/>
         <livewire:coral.cart-area/>
         <livewire:call-waiter/>
@@ -346,8 +410,11 @@
             selectedCategory: null,   // دسته‌بندی انتخاب شده
             cart: [],
             init() {
+
                 this.setupIntersectionObserver();
             },
+
+
 
             filteredProducts() {
                 if (!this.searchQuery.trim()) return this.products;
@@ -450,6 +517,7 @@ function menuApp(categories, productsByCategory) {
         showWorkHours: false,
         showAbout: false,
         showContact: false,
+        showFavoritesOnly: false,
         activeCategory: categories[0]?.id || null,
         cart: [],
 
@@ -467,17 +535,32 @@ function menuApp(categories, productsByCategory) {
         },
 
         get filteredProducts() {
-            if (!this.searchQuery) return this.productsByCategory;
-            const query = this.searchQuery.toLowerCase();
-            return this.productsByCategory
-                .map(group => {
-                    const filtered = group.products.filter(p =>
-                        p.name.toLowerCase().includes(query)
-                    );
-                    return filtered.length ? { ...group, products: filtered } : null;
-                })
-                .filter(Boolean);
+            let data = this.productsByCategory;
+
+            if (this.searchQuery) {
+                const query = this.searchQuery.toLowerCase();
+                data = data
+                    .map(group => {
+                        const filtered = group.products.filter(p =>
+                            p.name.toLowerCase().includes(query)
+                        );
+                        return filtered.length ? { ...group, products: filtered } : null;
+                    })
+                    .filter(Boolean);
+            }
+
+            if (this.showFavoritesOnly) {
+                data = data
+                    .map(group => {
+                        const filtered = group.products.filter(p => p.is_favorite);
+                        return filtered.length ? { ...group, products: filtered } : null;
+                    })
+                    .filter(Boolean);
+            }
+
+            return data;
         },
+
 
         initObserver() {
             setTimeout(() => {
@@ -570,6 +653,29 @@ function menuApp(categories, productsByCategory) {
             }
             return price.toLocaleString('fa-IR');
         },
+        toggleFavoriteJS(productId) {
+            if (!productId) {
+                console.warn('محصول معتبر نیست');
+                return;
+            }
+
+            this.$wire.toggleFavorite(productId).then(() => {
+                // اگر لازم بود بعد از موفقیت، تغییر رو در JS بده
+                this.productsByCategory = this.productsByCategory.map(group => {
+                    return {
+                        ...group,
+                        products: group.products.map(p => {
+                            if (p.id === productId) {
+                                return { ...p, is_favorite: !p.is_favorite };
+                            }
+                            return p;
+                        })
+                    };
+                });
+            });
+        }
+
+
     };
 }
 </script>
