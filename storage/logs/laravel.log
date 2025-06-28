@@ -1,6 +1,2 @@
-[2025-06-27 21:19:26] production.INFO: ساختار کد صحیح نمی باشد  
-[2025-06-27 22:11:09] production.INFO: sent otp 72476 to 09379340384  
-[2025-06-27 22:11:15] production.INFO: sent otp 52994 to 09114940765  
-[2025-06-27 22:11:59] production.INFO: sent otp 21458 to 09385843059  
-[2025-06-28 09:34:53] production.INFO: sent otp 78773 to 09150947737  
-[2025-06-28 12:02:10] production.INFO: ساختار کد صحیح نمی باشد  
+[2025-06-28 12:24:53] production.INFO: sent otp 95298 to 09150947737  
+[2025-06-28 12:25:32] production.ERROR: SendOtpViaSms: Failed to send SMS. Error: ارسال کننده نامعتبر است  

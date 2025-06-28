@@ -51,15 +51,21 @@ class UserCustomerResource extends Resource
                 Tables\Columns\TextColumn::make('id')->sortable(),
                 Tables\Columns\TextColumn::make('name')->searchable(),
                 Tables\Columns\TextColumn::make('username')->searchable(),
+                Tables\Columns\TextColumn::make('orders_count')
+                    ->label('تعداد سفارش‌ها')
+                    ->sortable()
+                    ->counts('orders'),
+
                 Tables\Columns\TextColumn::make('created_at')
-                ->label('تاریخ ثبت')
-                ->formatStateUsing(function ($state) {
-                    if (!$state) {
-                        return null;
-                    }
-                    $verta = Verta::instance($state);
-                    return $verta->format('Y/m/d H:i');
-                }),
+                    ->label('تاریخ ثبت')
+                    ->formatStateUsing(function ($state) {
+                        if (!$state) {
+                            return null;
+                        }
+                        $verta = Verta::instance($state);
+                        return $verta->format('Y/m/d H:i');
+                    }),
+
             ])
             ->filters([
                 //
@@ -85,12 +91,14 @@ class UserCustomerResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
+            ->withCount('orders')
             ->where(function ($query) {
                 $query->whereNull('email')
                     ->orWhere('email', 'not like', '%@local.tld');
             })
             ->orderByDesc('created_at');
     }
+
 
     public static function getPages(): array
     {
