@@ -20,7 +20,7 @@ class OrderRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')->label('شماره سفارش'),
-                Tables\Columns\TextColumn::make('total')->label('جمع کل')->money('IRR'),
+                Tables\Columns\TextColumn::make('total')->label('جمع کل'),
                 Tables\Columns\TextColumn::make('status')->label('وضعیت'),
                 Tables\Columns\TextColumn::make('created_at')->label('تاریخ ثبت')->formatStateUsing(
                     fn ($state) => \Hekmatinasser\Verta\Verta::instance($state)->format('Y/m/d H:i')
