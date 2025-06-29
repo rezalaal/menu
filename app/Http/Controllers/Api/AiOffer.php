@@ -64,7 +64,8 @@ class AiOffer extends Controller
             $userNamePart = "نام کاربر: {$user->name}، ";
         }
 
-        $title = $generalSettings->toArray()['title'];
+        $title = optional($generalSettings)->title ?? 'مجموعه';
+
         $content = "{$userNamePart}این کاربر سابقه علاقه‌مندی‌ها: " 
             . (!empty($userProducts) ? implode('، ', $userProducts) : 'ندارد') 
             . " را دارد. از بین لیست کل محصولات: "
