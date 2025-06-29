@@ -12,7 +12,7 @@
     </div>
 </div>
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="{{ asset('js/marked.min.js') }}"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .catch(err => console.error('API error:', err));
-    }, 60000);
+    }, 20000);
 
     document.addEventListener('click', function(e) {
         if (e.target && e.target.id === 'closeAiBtn') {
