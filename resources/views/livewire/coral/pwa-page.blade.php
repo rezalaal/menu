@@ -366,6 +366,7 @@
         </div>
 
     @auth
+        <livewire:coral.ai/>
         <button
             @click="showFavoritesOnly = !showFavoritesOnly"
             class="fixed flex justify-center items-center left-0 rounded-tr-xl bg-coral text-white shadow-lg hover:bg-orange-500 transition"
@@ -384,7 +385,6 @@
             @endif
 
         </button>
-        {{-- <livewire:coral.favorites-area/> --}}
         <livewire:coral.user-area/>
         <livewire:coral.cart-area/>
         <livewire:call-waiter/>
@@ -407,7 +407,6 @@
             selectedCategory: null,   // دسته‌بندی انتخاب شده
             cart: [],
             init() {
-
                 this.setupIntersectionObserver();
             },
 
@@ -528,6 +527,7 @@ function menuApp(categories, productsByCategory) {
             if (window.location.search.includes('page=menu')) {
                 this.showHomeModal = false;
             }
+            
             this.initObserver(); // حتما اینجا صدا زده شود
         },
 
@@ -671,9 +671,8 @@ function menuApp(categories, productsByCategory) {
                 });
             });
         }
-
-
     };
 }
+
 </script>
 @endpush
