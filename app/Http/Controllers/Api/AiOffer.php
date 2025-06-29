@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\OpenAiService;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AiOffer extends Controller
 {
@@ -43,6 +44,18 @@ class AiOffer extends Controller
             })
             ->toArray();
 
+        // تشخیص زمان روز بر اساس ساعت تهران
+        $hourTehran = Carbon::now('Asia/Tehran')->hour;
+        if ($hourTehran >= 5 && $hourTehran < 11) {
+            $meal = 'صبحانه';
+        } elseif ($hourTehran >= 11 && $hourTehran < 15) {
+            $meal = 'ناهار';
+        } elseif ($hourTehran >= 15 && $hourTehran < 19) {
+            $meal = 'عصرانه';
+        } else {
+            $meal = 'شام';
+        }
+
         // ساخت content برای AI
         $userNamePart = '';
         if ($user->name && $user->name !== $user->username) {
@@ -54,7 +67,8 @@ class AiOffer extends Controller
             . " را دارد. از بین لیست کل محصولات: "
             . implode('، ', $allProducts)
             . " یک پیشنهاد خاص، صمیمی و دوستانه از طرف گارسون و کارشناس تغذیه برای او ارائه کن. "
-            . "پیشنهاد شامل تخفیف نباشد و حتما لینک محصول را به صورت /product/{id} در متن بیاور.";
+            . "پیشنهاد شامل تخفیف نباشد و حتما لینک محصول را به صورت /product/{id} در متن بیاور. "
+            . "همچنین این پیشنهاد مناسب {$meal} باشد چون الان زمان {$meal} است.";
 
         info('AI Offer prompt:', ['content' => $content]);
 
