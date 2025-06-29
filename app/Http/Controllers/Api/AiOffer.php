@@ -7,10 +7,12 @@ use App\Services\OpenAiService;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Settings\GeneralSettings;
+
 
 class AiOffer extends Controller
 {
-    public function __invoke(Request $request, OpenAiService $aiService)
+    public function __invoke(Request $request, OpenAiService $aiService, GeneralSettings $generalSettings)
     {
         $user = auth()->user();
 
@@ -62,13 +64,16 @@ class AiOffer extends Controller
             $userNamePart = "نام کاربر: {$user->name}، ";
         }
 
+        $title = $generalSettings->toArray()['title'];
         $content = "{$userNamePart}این کاربر سابقه علاقه‌مندی‌ها: " 
             . (!empty($userProducts) ? implode('، ', $userProducts) : 'ندارد') 
             . " را دارد. از بین لیست کل محصولات: "
             . implode('، ', $allProducts)
             . " یک پیشنهاد خاص، صمیمی و دوستانه از طرف گارسون و کارشناس تغذیه برای او ارائه کن. "
-            . "پیشنهاد شامل تخفیف نباشد و حتما لینک محصول را به صورت /product/{id} در متن بیاور. "
-            . "همچنین این پیشنهاد مناسب {$meal} باشد چون الان زمان {$meal} است.";
+            . "پیشنهاد شامل تخفیف نباشد. "
+            . "همچنین این پیشنهاد مناسب {$meal} باشد چون الان زمان {$meal} است.  "
+            . " از ایموجی هم استفاده کن"
+            ." و در نهایت از طرف {$title} یه آرزوی خوب واسه اش داشته باش";
 
         info('AI Offer prompt:', ['content' => $content]);
 

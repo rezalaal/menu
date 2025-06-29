@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .catch(err => console.error('API error:', err));
-    }, 1000);
+    }, 60000);
 
     document.addEventListener('click', function(e) {
         if (e.target && e.target.id === 'closeAiBtn') {
