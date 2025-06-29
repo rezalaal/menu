@@ -1,4 +1,5 @@
 <div id="aiModal" class="z-999 hidden bg-coral-body fixed top-0 left-0 w-screen h-screen flex justify-center items-center">
+    <livewire:back to="/?page=menu">
     <div class="relative font-iransans-regular bg-white p-6 rounded shadow-lg" dir="rtl">   
         <button 
             id="closeAiBtn" 
