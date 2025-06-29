@@ -1,55 +1,30 @@
+<div        
+        class="fixed inset-0 z-50 flex items-center justify-center pt-16 pb-16 overflow-auto bg-coral-body"
+        dir="rtl"
+    >
+        <livewire:back to="/?page=menu" />
+        <div class="relative bg-coral-body rounded-lg w-full max-w-3xl mx-auto mt-16 px-6 py-12 overflow-y-auto max-h-screen">            
 
-<div dir="rtl" class="mb-10 bg-gradient-to-b from-coral-from to-coral-to min-h-screen pb-16 flex flex-col md:items-center">
+            <!-- ظرف تصویر با نسبت 16:9 -->
+            <div class="relative aspect-video w-full mb-4 rounded-lg overflow-hidden">                
+                <img src="{{ $product->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}"
+                    alt="{{ $product->name }}"
+                    class="w-full h-full object-cover shadow" />
+            </div>
 
-    <!-- دکمه بازگشت به دسته -->
-    <a href="/products/{{ $product->category->id }}" class="text-white text-sm underline mt-2 self-start px-4">
-        ← بازگشت به فهرست {{ $product->category->name }}
-    </a>
 
-    <!-- عنوان محصول -->
-    <h1 class="font-dastnevis text-2xl mt-2 px-4 text-white text-center">
-        {{ $product->category->name }} :: {{ $product->name }}
-    </h1>
-    <livewire:search-input />
-    <!-- نوار جستجو -->
-    <div class="sticky top-12 z-20 w-full bg-coral-to/80 backdrop-blur-md shadow-sm">
-        
-        <livewire:category-scroll-list :categoryId="$product->category->id" />
-    </div>
-
-    <!-- اطلاعات محصول -->
-    <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col justify-center mx-4 mt-4 transition-all duration-300 animate-fade-in" wire:loading.remove>
-        <div class="aspect-[16/9] overflow-hidden">
-            <img
-                class="w-full h-full object-cover object-center"
-                src="{{ $product->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}"
-                alt="{{ $product->name }}">
-        </div>
-
-        <div class="m-4">
-            <h3 class="text-xl font-dastnevis text-lime-900 pt-4 text-center">{{ $product->name }}</h3>
-
-            @php use Illuminate\Support\Str; @endphp
-            <div class="prose max-w-none font-dastnevis mb-10">
+            <!-- عنوان، قیمت و توضیح -->
+            <h2 class="text-xl font-iransans-thin mb-2 text-center">{{ $product->name }}</h2>
+            <p class="text-center font-iransans-regular farsi-number mb-4">
+                {{ number_format($product->price) }} تومان   
+            </p>
+            <div>
                 {!! Str::markdown(strip_tags($product->description)) !!}
             </div>
 
-            <div class="flex justify-between items-center pt-4 text-lime-800 text-lg font-dastnevis">
-                <span>قیمت:</span>
-                <span class="farsi-number">{{ number_format($product->price) }} تومان</span>
-            </div>
-
-            <div class="mt-4">
-                <livewire:add-to-cart-button :product="$product" />
-            </div>
+            <!-- دکمه بازگشت -->
+            <button onclick="window.location.href='/?page=menu'"  class="text-white w-full bg-coral py-2 mb-16 px-5 rounded mt-10 font-iransans-thin transition">
+                بازگشت
+            </button>
         </div>
-    </div>
-
-    <!-- بارگذاری -->
-    <div wire:loading>
-        @livewire('placeholder')
-    </div>
-
-    <!-- منوی پایین -->
-    <livewire:footer-menu />
 </div>

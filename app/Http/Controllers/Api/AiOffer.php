@@ -37,7 +37,7 @@ class AiOffer extends Controller
 
         // لیست همه محصولات با id
         $allProducts = Product::query()
-            ->select(['id', 'name', 'code'])
+            ->select(['id', 'name'])
             ->get()
             ->map(function ($product) {
                 return "{$product->name} (کد: {$product->code}, لینک: /product/{$product->id})";

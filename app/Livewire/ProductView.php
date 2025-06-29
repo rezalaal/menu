@@ -16,6 +16,6 @@ class ProductView extends Component
 
     public function render()
     {
-        return view('livewire.product-view');
+        return view('livewire.product-view')->layout('components.layouts.pwa');
     }
 }
