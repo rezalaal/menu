@@ -219,28 +219,7 @@
             </button>
 
             <!-- ظرف تصویر با نسبت 16:9 -->
-            <div class="relative aspect-video w-full mb-4 rounded-lg overflow-hidden">
-                @auth()
-                    <!-- آیکون قلب -->
-
-                        <template x-if="selectedProduct.is_favorite">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="48" height="48" class="w-5 h-5">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
-                                    2 5.42 4.42 3 7.5 3
-                                    c1.74 0 3.41.81 4.5 2.09
-                                    C13.09 3.81 14.76 3 16.5 3
-                                    19.58 3 22 5.42 22 8.5
-                                    c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-
-                        </template>
-                        <template x-if="!selectedProduct.is_favorite">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" class="w-5 h-5">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21.8 7.3c0 4.6-9.8 11.2-9.8 11.2S2.2 11.9 2.2 7.3C2.2 4.6 4.6 2.2 7.3 2.2c1.7 0 3.3.8 4.3 2 1-1.2 2.6-2 4.3-2 2.7 0 5.1 2.4 5.1 5.1z"/>
-                            </svg>
-                        </template>
-                @endauth
+            <div class="relative aspect-video w-full mb-4 rounded-lg overflow-hidden">                
                 <img :src="selectedProduct.image_url || '/images/category.jpg'"
                     :alt="selectedProduct.name"
                     class="w-full h-full object-cover shadow" />
@@ -398,8 +377,12 @@
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M21.8 7.3c0 4.6-9.8 11.2-9.8 11.2S2.2 11.9 2.2 7.3C2.2 4.6 4.6 2.2 7.3 2.2c1.7 0 3.3.8 4.3 2 1-1.2 2.6-2 4.3-2 2.7 0 5.1 2.4 5.1 5.1z"/>
             </svg>
-            {{-- <span class="farsi-number font-iransans-bold absolute left-2 top-1 text-[9px]"
-            >{{ $favoritesCount }}</span> --}}
+            @if($favoritesCount)
+                <span class="farsi-number font-iransans-bold absolute left-2 top-1 text-[9px]">
+                    {{ $favoritesCount }}
+                </span>
+            @endif
+
         </button>
         {{-- <livewire:coral.favorites-area/> --}}
         <livewire:coral.user-area/>

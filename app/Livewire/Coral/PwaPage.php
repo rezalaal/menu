@@ -17,7 +17,7 @@ class PwaPage extends Component
     public $settings;
     public $productsByCategory = [];
     public $productID;
-
+    public $favoritesCount = 0;
     protected $rules = [
         'productID' => 'required|numeric|exists:products,id',
     ];
@@ -95,8 +95,21 @@ class PwaPage extends Component
         $this->settings = $generalSettings->toArray();
 
         $this->loadProducts();
+        $this->loadFavoritesCount();
     }
 
+    public function loadFavoritesCount()
+    {
+        $user = auth()->user();
+
+        if ($user) {
+            $this->favoritesCount = $user->favorites()->count();
+        } else {
+            $this->favoritesCount = 0;
+        }
+    }
+
+    protected $listeners = ['favorite-updated' => 'loadFavoritesCount'];
 
     public function render()
     {
