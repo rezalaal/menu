@@ -1,13 +1,13 @@
 <div
     x-data="menuApp({{ Js::from($categories) }}, {{ Js::from($productsByCategory) }})"
     x-init="initObserver()"
-    @show-favorites.window="console.log('EVENT CAUGHT'); showFavoritesOnly = !showFavoritesOnly"
+    @show-favorites.window="showFavoritesOnly = !showFavoritesOnly"
     class="max-w-screen-sm mx-auto">
 
 
     <!-- هدر ثابت -->
     <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-coral-header pb-8 z-40">
-
+        
         <div class="w-full font-iransans-extrabold relative flex items-center justify-between px-4 h-16">
             <!-- آیکون خانه -->
             <div class="text-coral cursor-pointer" @click="showHomeModal = true">
@@ -226,31 +226,31 @@
                         <template x-if="selectedProduct.is_favorite">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="48" height="48" class="w-5 h-5">
                                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
-                                       2 5.42 4.42 3 7.5 3
-                                       c1.74 0 3.41.81 4.5 2.09
-                                       C13.09 3.81 14.76 3 16.5 3
-                                       19.58 3 22 5.42 22 8.5
-                                       c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                    2 5.42 4.42 3 7.5 3
+                                    c1.74 0 3.41.81 4.5 2.09
+                                    C13.09 3.81 14.76 3 16.5 3
+                                    19.58 3 22 5.42 22 8.5
+                                    c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                             </svg>
 
                         </template>
                         <template x-if="!selectedProduct.is_favorite">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M21.8 7.3c0 4.6-9.8 11.2-9.8 11.2S2.2 11.9 2.2 7.3C2.2 4.6 4.6 2.2 7.3 2.2c1.7 0 3.3.8 4.3 2 1-1.2 2.6-2 4.3-2 2.7 0 5.1 2.4 5.1 5.1z"/>
+                                    d="M21.8 7.3c0 4.6-9.8 11.2-9.8 11.2S2.2 11.9 2.2 7.3C2.2 4.6 4.6 2.2 7.3 2.2c1.7 0 3.3.8 4.3 2 1-1.2 2.6-2 4.3-2 2.7 0 5.1 2.4 5.1 5.1z"/>
                             </svg>
                         </template>
                 @endauth
                 <img :src="selectedProduct.image_url || '/images/category.jpg'"
-                     :alt="selectedProduct.name"
-                     class="w-full h-full object-cover shadow" />
+                    :alt="selectedProduct.name"
+                    class="w-full h-full object-cover shadow" />
             </div>
 
 
             <!-- عنوان، قیمت و توضیح -->
             <h2 class="text-xl font-iransans-thin mb-2 text-center" x-text="selectedProduct.name"></h2>
             <p class="text-center font-iransans-regular farsi-number mb-4"
-               x-text="selectedProduct.price == 0 ? 'ناموجود' : (formatPrice(selectedProduct.price) + ' تومان')">
+                x-text="selectedProduct.price == 0 ? 'ناموجود' : (formatPrice(selectedProduct.price) + ' تومان')">
             </p>
             <p class="text-justify text-gray-700 font-iransans-thin text-sm"
             x-html="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
@@ -387,7 +387,21 @@
         </div>
 
     @auth
-        <livewire:coral.favorites-area/>
+        <button
+            @click="showFavoritesOnly = !showFavoritesOnly"
+            class="fixed flex justify-center items-center left-0 rounded-tr-xl bg-coral text-white shadow-lg hover:bg-orange-500 transition"
+            style="bottom: 8.4rem;padding: 0.75rem 0.875rem"
+
+        >
+            <!-- آیکون -->
+            <svg xmlns="http://www.w3.org/2000/svg" :fill="showFavoritesOnly ? 'red' : 'none'" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21.8 7.3c0 4.6-9.8 11.2-9.8 11.2S2.2 11.9 2.2 7.3C2.2 4.6 4.6 2.2 7.3 2.2c1.7 0 3.3.8 4.3 2 1-1.2 2.6-2 4.3-2 2.7 0 5.1 2.4 5.1 5.1z"/>
+            </svg>
+            {{-- <span class="farsi-number font-iransans-bold absolute left-2 top-1 text-[9px]"
+            >{{ $favoritesCount }}</span> --}}
+        </button>
+        {{-- <livewire:coral.favorites-area/> --}}
         <livewire:coral.user-area/>
         <livewire:coral.cart-area/>
         <livewire:call-waiter/>
