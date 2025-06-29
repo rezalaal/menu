@@ -658,17 +658,13 @@ function menuApp(categories, productsByCategory) {
 
             this.$wire.toggleFavorite(productId).then(() => {
                 // اگر لازم بود بعد از موفقیت، تغییر رو در JS بده
-                this.productsByCategory = this.productsByCategory.map(group => {
-                    return {
-                        ...group,
-                        products: group.products.map(p => {
-                            if (p.id === productId) {
-                                return { ...p, is_favorite: !p.is_favorite };
-                            }
-                            return p;
-                        })
-                    };
-                });
+                for (const group of this.productsByCategory) {
+                    const product = group.products.find(p => p.id === productId);
+                    if (product) {
+                        product.is_favorite = !product.is_favorite;
+                        break; // چون محصول پیدا شد، دیگر ادامه نده
+                    }
+                }
             });
         }
     };

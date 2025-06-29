@@ -10,6 +10,12 @@
         </button>     
         <div id="aiContent"></div>
     </div>
+    <button
+        class="text-coral border border-coral py-2 px-5 rounded mt-10 font-iransans-thin hover:bg-coral hover:text-white transition"
+        
+    >
+        بازگشت به خانه
+    </button>
 </div>
 @push('scripts')
 <script src="{{ asset('js/marked.min.js') }}"></script>
@@ -33,6 +39,15 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('aiModal').classList.add('hidden');
         }
     });
+
+    const backButton = document.querySelector('#aiModal > button.text-coral'); // انتخاب دکمه با کلاس text-coral داخل aiModal
+    const aiModal = document.getElementById('aiModal');
+
+    if (backButton && aiModal) {
+        backButton.addEventListener('click', function() {
+            aiModal.classList.add('hidden');
+        });
+    }
 });
 </script>
 @endpush
