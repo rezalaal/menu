@@ -12,15 +12,16 @@
     </div>
 </div>
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
         fetch('/api/get-offer')
             .then(response => response.json())
             .then(data => {
-                
                 if (data.offer) {
-                    document.getElementById('aiContent').innerHTML = data.offer;
+                    const html = marked.parse(data.offer);
+                    document.getElementById('aiContent').innerHTML = html;
                     document.getElementById('aiModal').classList.remove('hidden');
                 }
             })
