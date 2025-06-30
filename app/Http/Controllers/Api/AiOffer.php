@@ -51,7 +51,7 @@ public function __invoke(Request $request, OpenAiService $aiService, GeneralSett
 
     // لیست همه محصولات با id
     $allProducts = Product::query()
-        ->select(['id', 'name', 'code'])
+        ->select(['id', 'name'])
         ->get()
         ->map(function ($product) {
             return "{$product->name} (کد: {$product->code}, لینک: /product/{$product->id})";
@@ -75,7 +75,7 @@ public function __invoke(Request $request, OpenAiService $aiService, GeneralSett
         $userNamePart = "نام کاربر: {$user->name}، ";
     }
 
-    $title = optional($generalSettings)->title ?? 'کافه';
+    $title = optional($generalSettings)->init_site_name ?? 'کافه';
 
     $content = "{$userNamePart}این کاربر سابقه علاقه‌مندی‌ها: " 
         . (!empty($userProducts) ? implode('، ', $userProducts) : 'ندارد') 
