@@ -1,16 +1,15 @@
 <div
     x-data="menuApp({{ Js::from($categories) }}, {{ Js::from($productsByCategory) }})"
-    x-init="initObserver()"
+    x-init="init()"
     @show-favorites.window="showFavoritesOnly = !showFavoritesOnly"
-    class="max-w-screen-sm mx-auto">
-
-
+    class="max-w-screen-sm mx-auto"
+>
     <!-- هدر ثابت -->
     <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-coral-header pb-8 z-40">
         
         <div class="w-full font-iransans-extrabold relative flex items-center justify-between px-4 h-16">
             <!-- آیکون خانه -->
-            <div class="text-coral cursor-pointer" @click="showHomeModal = true">
+            <div class="text-coral cursor-pointer" @click="openModal('Home')">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
                 </svg>
@@ -45,7 +44,7 @@
 
         <!-- جستجو و دسته بندی -->
         <div class="flex items-center gap-2">
-            <button class="bg-coral font-iransans-thin text-white text-sm shadow px-4 py-1 rounded" @click="showModal = true">
+            <button class="bg-coral font-iransans-thin text-white text-sm shadow px-4 py-1 rounded" @click="showCategories = true">
                 همه دسته‌بندی‌ها
             </button>
         </div>
@@ -78,24 +77,17 @@
     </header>
 
 
-    <!-- مودال تمام‌صفحه -->
+    <!--  دسته بندی ها مودال تمام‌صفحه -->
     <div
-        x-show="showModal"
+        x-show="showCategories"
         x-cloak
         x-transition
         class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center p-8"
-        @click.away="showModal = false"
+        @click.away="showCategories = false"
     >
         <!-- دکمه بستن -->
-        <button
-            @click="showModal = false"
-            class="absolute top-4 left-4 text-coral hover:text-red-500 transition"
-            aria-label="بستن"
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
+        <button @click="showCategories = false" class="absolute top-4 left-4 text-3xl text-coral hover:text-red-500 transition" aria-label="بستن">
+            &times;
         </button>
 
         <!-- عنوان مودال -->
@@ -103,15 +95,13 @@
 
         <!-- لیست دسته‌بندی‌ها -->
         <div class="flex flex-col space-y-4 w-full max-w-md text-center overflow-y-auto max-h-[70vh]">
-            @foreach($categories as $category)
+            <template x-for="cat in categories" :key="cat.id">
                 <div
                     class="w-52 mx-auto font-iransans-thin text-lg text-black py-2 px-4 border-b border-black cursor-pointer hover:bg-gray-200 transition"
-                    @click="scrollToCategory({{ $category['id'] }})"
-                >
-                    {{ $category['name'] }}
-                </div>
-            @endforeach
-
+                    @click="scrollToCategory(cat.id); showCategories = false"
+                    x-text="cat.name"
+                ></div>
+            </template>
         </div>
 
     </div>
@@ -125,7 +115,7 @@
             <h2 class="text-lg font-iransans-bold text-coral py-2" x-text="group.category.name"></h2>
 
             <template x-for="product in group.products" :key="product.id">
-                <div class="relative border-b border-black flex py-4 cursor-pointer" @click="openModal(product)">
+                <div class="relative border-b border-black flex py-4 cursor-pointer" @click="openModal('Product', product)">
 
                     <div class="relative" >
                         @auth()
@@ -202,18 +192,18 @@
 
     <!-- مودال محصول -->
     <div
-        x-show="showProductModal" x-cloak x-transition
+        x-show="showProduct" x-cloak x-transition
         class="fixed inset-0 z-50 flex items-center justify-center pt-16 pb-16 overflow-auto bg-coral-body"
-        @click.away="closeModal"
+        @click.away="closeModal('Product')"
          dir="rtl"
-         @close-modal.window="(event.detail.includes('productModal')) ? showProductModal = false : null"
+         @close-modal.window="(event.detail.includes('productModal')) ? closeModal('Product') : null"
     >
         <livewire:back modal="productModal" />
         <div class="relative bg-coral-body rounded-lg w-full max-w-3xl mx-auto mt-16 px-6 py-12 overflow-y-auto max-h-screen"
             @click.stop>
 
             <!-- دکمه بستن خارج از تصویر و با فاصله مناسب از بالا -->
-            <button @click="closeModal"
+            <button @click="closeModal('Product')"
                     class="absolute top-4 right-4 text-coral hover:text-red-500 text-3xl font-bold z-10">
                 &times;
             </button>
@@ -235,7 +225,7 @@
             x-html="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
 
             <!-- دکمه بازگشت -->
-            <button @click="closeModal"
+            <button @click="closeModal('Product')"
                     class="text-white w-full bg-coral py-2 mb-16 px-5 rounded mt-10 font-iransans-thin transition">
                 بازگشت
             </button>
@@ -245,11 +235,11 @@
 
     <!--  خانه مودال تمام صفحه -->
         <div
-            x-show="showHomeModal"
+            x-show="showHome"
             x-cloak
             x-transition
             class="fixed inset-0 z-50 flex flex-col items-center justify-between p-8 bg-coral-body"
-            @click.away="showHomeModal = false"
+            @click.away="closeModal('Home')"
         >
             <!-- عنوان وسط صفحه -->
             <div class="flex-grow flex flex-col items-center justify-center">
@@ -265,25 +255,25 @@
                 <div class="w-full max-w-md grid grid-cols-1 gap-2 pb-8 px-4">
                     <button
                         class="bg-coral text-white py-3 rounded font-iransans-thin"
-                        @click="showHomeModal = false"
+                        @click="closeModal('Home')"
                     >
                         مشاهده منوی دیجیتال
                     </button>
                     <button
                         class="text-coral border border-coral py-3 rounded font-iransans-thin"
-                        @click="showWorkHours = true"
+                        @click="openModal('WorkHours')"
                     >
                         ساعت کار
                     </button>
                     <button
                         class="text-coral border border-coral py-3 rounded font-iransans-thin"
-                        @click="showAbout = true"
+                        @click="openModal('About')"
                     >
                         درباره ما
                     </button>
                     <button
                         class="text-coral border border-coral py-3 rounded font-iransans-thin"
-                        @click="showContact = true"
+                        @click="openModal('Contact')"
                     >
                         اطلاعات تماس
                     </button>
@@ -299,7 +289,7 @@
                     style="display: none;"
                     dir="rtl"
                 >
-                    <livewire:back modal="workHours"/>
+                    
                     <div class="text-sm font-iransans-thin text-black leading-relaxed space-y-2 max-w-xl mx-auto">
                         {!! Str::markdown(strip_tags($settings['work_hours'] ?? 'ساعات کاری ثبت نشده است.')) !!}
                     </div>
@@ -325,7 +315,7 @@
                     style="display: none;"
                     dir="rtl"
                 >
-                    <livewire:back modal="about"/>
+                    
                     <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
                         {!! Str::markdown(strip_tags($settings['about'] ?? 'توضیحاتی برای این بخش موجود نیست.')) !!}
                     </div>
@@ -344,12 +334,13 @@
                     x-show="showContact"
                     x-transition
                     x-cloak
-                    @close-modal.window="(event.detail.includes('contact')) ? showContact = false : null"
+                    @close-modal.window="(event.detail.includes('Contact')) ? closeModal('Contact') : null"
                     class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
                     style="display: none;"
                     dir="rtl"
                 >
-                    <livewire:back modal="contact"/>
+                    
+
                     <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
                         {!! Str::markdown(strip_tags($settings['contact'] ?? 'اطلاعات تماس موجود نیست.')) !!}
                     </div>
@@ -393,282 +384,137 @@
 
 @push('scripts')
 <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('productList', () => ({
-            categories: [],           // لیست دسته‌بندی‌ها
-            products: [],             // لیست محصولات
-            searchQuery: '',          // متن جستجو
-            activeCategoryId: null,   // دسته‌بندی فعال
-            showProductModal: false,  // نمایش مودال محصول
-            showCategoryModal: false, // نمایش مودال دسته‌بندی
-            showHomeModal: false,     // نمایش مودال صفحه اصلی
-            showCartModal: false,     // سبد خرید
-            selectedProduct: null,    // محصول انتخاب شده
-            selectedCategory: null,   // دسته‌بندی انتخاب شده
-            cart: [],
-            init() {
-                this.setupIntersectionObserver();
-            },
-
-
-
-            filteredProducts() {
-                if (!this.searchQuery.trim()) return this.products;
-
-                const q = this.searchQuery.toLowerCase();
-                return this.products.filter(product =>
-                    product.name.toLowerCase().includes(q) ||
-                    (product.description && product.description.toLowerCase().includes(q))
-                );
-            },
-
-            selectCategory(id) {
-                this.activeCategoryId = id;
-                this.scrollToCategory(id);
-            },
-
-            scrollToCategory(id) {
-                const el = document.getElementById(`category-${id}`);
-                if (el) {
-                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            },
-
-            openProductModal(product) {
-                this.selectedProduct = product;
-                this.showProductModal = true;
-            },
-
-            closeProductModal() {
-                this.showProductModal = false;
-                this.selectedProduct = null;
-            },
-
-            openCategoryModal(category) {
-                this.selectedCategory = category;
-                this.showCategoryModal = true;
-            },
-
-            closeCategoryModal() {
-                this.showCategoryModal = false;
-                this.selectedCategory = null;
-            },
-
-            openHomeModal() {
-                this.showHomeModal = true;
-            },
-
-            closeHomeModal() {
-                this.showHomeModal = false;
-            },
-
-            openCartModal() {
-                this.showCartModal = true;
-            },
-
-            closeCartModal() {
-                this.showCartModal = false;
-            },
-
-            setupIntersectionObserver() {
-                const options = {
-                    root: document.querySelector('#products-container'),
-                    rootMargin: '0px',
-                    threshold: 0.5,
-                };
-
-                const callback = (entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const categoryId = entry.target.getAttribute('data-category-id');
-                            if (categoryId) {
-                                this.activeCategoryId = categoryId;
-                                // برای به‌روزرسانی UI یا نوار دسته‌بندی بالایی
-                            }
-                        }
-                    });
-                };
-
-                const observer = new IntersectionObserver(callback, options);
-
-                // صبر کن تا DOM بارگذاری بشه و دسته‌بندی‌ها را انتخاب کن
-                this.$nextTick(() => {
-                    const categoryElements = document.querySelectorAll('.category-section');
-                    categoryElements.forEach(el => observer.observe(el));
-                });
-            }
-        }));
-    });
-
-function menuApp(categories, productsByCategory) {
-    return {
+document.addEventListener('alpine:init', () => {
+    Alpine.data('menuApp', (categories, productsByCategory) => ({
         categories,
         productsByCategory,
         searchQuery: '',
         showSearch: false,
         showModal: false,
-        showHomeModal: true,
-        showProductModal: false,
-        selectedProduct: {},
+        showHome: false,
+        showProduct: false,
         showWorkHours: false,
         showAbout: false,
         showContact: false,
+        showCategories: false,
         showFavoritesOnly: false,
         activeCategory: categories[0]?.id || null,
+        selectedProduct: {},
         cart: [],
-
+        
         init() {
             const savedCart = localStorage.getItem('cart');
             if (savedCart) {
                 this.cart = JSON.parse(savedCart);
             }
-
-            // بررسی URL
             if (window.location.search.includes('page=menu')) {
-                this.showHomeModal = false;
+                this.showHome = false;
             }
-            
-            this.initObserver(); // حتما اینجا صدا زده شود
+            this.setupCategoryObserver();
         },
 
         get filteredProducts() {
             let data = this.productsByCategory;
-
-            if (this.searchQuery) {
-                const query = this.searchQuery.toLowerCase();
-                data = data
-                    .map(group => {
-                        const filtered = group.products.filter(p =>
-                            p.name.toLowerCase().includes(query)
-                        );
-                        return filtered.length ? { ...group, products: filtered } : null;
-                    })
-                    .filter(Boolean);
+            if (this.searchQuery.trim()) {
+                const q = this.searchQuery.toLowerCase();
+                data = data.map(g => {
+                    const filtered = g.products.filter(p =>
+                        p.name.toLowerCase().includes(q) ||
+                        (p.description && p.description.toLowerCase().includes(q))
+                    );
+                    return filtered.length ? { ...g, products: filtered } : null;
+                }).filter(Boolean);
             }
-
             if (this.showFavoritesOnly) {
-                data = data
-                    .map(group => {
-                        const filtered = group.products.filter(p => p.is_favorite);
-                        return filtered.length ? { ...group, products: filtered } : null;
-                    })
-                    .filter(Boolean);
+                data = data.map(g => {
+                    const filtered = g.products.filter(p => p.is_favorite);
+                    return filtered.length ? { ...g, products: filtered } : null;
+                }).filter(Boolean);
             }
-
             return data;
         },
 
-
-        initObserver() {
+        setupCategoryObserver() {
             setTimeout(() => {
                 const observer = new IntersectionObserver(entries => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            const categoryId = entry.target.getAttribute('data-cat');
-                            if (categoryId) {
-                                this.activeCategory = Number(categoryId);
-                                const nav = document.querySelector(`[data-nav-cat='${categoryId}']`);
+                            const catId = entry.target.getAttribute('data-cat');
+                            if (catId) {
+                                this.activeCategory = Number(catId);
+                                const nav = document.querySelector(`[data-nav-cat='${catId}']`);
                                 nav?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
                             }
                         }
                     });
                 }, { threshold: 0.5 });
-
                 document.querySelectorAll('.category-section').forEach(el => observer.observe(el));
-            }, 300); // تاخیر کوتاه برای اطمینان از کامل بودن DOM
-        },
-
-        addToCart(product) {
-            let existing = this.cart.find(item => item.id === product.id);
-            if (existing) {
-                existing.quantity++;
-            } else {
-                this.cart.push({ ...product, quantity: 1 });
-            }
-            localStorage.setItem('cart', JSON.stringify(this.cart));
-        },
-
-        increaseQuantity(product) {
-            let existing = this.cart.find(item => item.id === product.id);
-            if (existing) {
-                existing.quantity++;
-            } else {
-                this.cart.push({ ...product, quantity: 1 });
-            }
-            localStorage.setItem('cart', JSON.stringify(this.cart));
-        },
-
-        decreaseQuantity(product) {
-            const existingIndex = this.cart.findIndex(item => item.id === product.id);
-
-            if (existingIndex !== -1) {
-                this.cart[existingIndex].quantity--;
-
-                if (this.cart[existingIndex].quantity === 0) {
-                this.cart.splice(existingIndex, 1);
-                }
-            }
-            localStorage.setItem('cart', JSON.stringify(this.cart));
-        },
-
-        isInCart(productId) {
-            return this.cart.some(item => item.id === productId);
-        },
-
-        productQuantity(productId) {
-            if(this.isInCart(productId)) {
-                let cart = this.cart.find(item => item.id === productId);
-                return cart.quantity
-            }
-            return null
+            }, 300);
         },
 
         scrollToCategory(catId) {
             this.showModal = false;
             setTimeout(() => {
-                const target = document.querySelector(`[data-cat='${catId}']`);
-                if (target) {
-                    const offset = target.getBoundingClientRect().top + window.scrollY - 180;
+                const el = document.querySelector(`[data-cat='${catId}']`);
+                if (el) {
+                    const offset = el.getBoundingClientRect().top + window.scrollY - 180;
                     window.scrollTo({ top: offset, behavior: 'smooth' });
                 }
             }, 300);
         },
 
-        openModal(product) {
-            this.selectedProduct = product;
-            this.showProductModal = true;
+        openModal(name, data = null) {
+            this[`show${name}`] = true;
+            if (data !== null) this[`selected${name}`] = data;
         },
 
-        closeModal() {
-            this.showProductModal = false;
-            this.selectedProduct = {};
+        closeModal(name) {
+            this[`show${name}`] = false;
+            if (this.hasOwnProperty(`selected${name}`)) this[`selected${name}`] = {};
+        },
+
+        updateCart(product, diff) {
+            let item = this.cart.find(i => i.id === product.id);
+            if (item) {
+                item.quantity += diff;
+                if (item.quantity <= 0) {
+                    this.cart = this.cart.filter(i => i.id !== product.id);
+                }
+            } else if (diff > 0) {
+                this.cart.push({ ...product, quantity: diff });
+            }
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+        },
+
+        addToCart(p) { this.updateCart(p, 1); },
+        increaseQuantity(p) { this.updateCart(p, 1); },
+        decreaseQuantity(p) { this.updateCart(p, -1); },
+
+        isInCart(id) { return this.cart.some(i => i.id === id); },
+        productQuantity(id) {
+            let i = this.cart.find(i => i.id === id);
+            return i ? i.quantity : null;
         },
 
         formatPrice(price) {
-            if (typeof price !== 'number' || isNaN(price)) {
-                return '۰';
-            }
+            if (typeof price !== 'number' || isNaN(price)) return '۰';
             return price.toLocaleString('fa-IR');
         },
-        toggleFavoriteJS(productId) {
-            if (!productId) {
-                console.warn('محصول معتبر نیست');
-                return;
-            }
 
+        toggleFavoriteJS(productId) {
+            if (!productId) return;
             this.$wire.toggleFavorite(productId).then(() => {
-                // اگر لازم بود بعد از موفقیت، تغییر رو در JS بده
-                for (const group of this.productsByCategory) {
-                    const product = group.products.find(p => p.id === productId);
-                    if (product) {
-                        product.is_favorite = !product.is_favorite;
-                        break; // چون محصول پیدا شد، دیگر ادامه نده
+                for (const g of this.productsByCategory) {
+                    const p = g.products.find(p => p.id === productId);
+                    if (p) {
+                        p.is_favorite = !p.is_favorite;
+                        break;
                     }
                 }
             });
         }
-    };
-}
-
+    }));
+});
 </script>
 @endpush
+
