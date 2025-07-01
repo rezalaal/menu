@@ -200,7 +200,7 @@
     >
         <x-modal-back-button action="showProduct = false" />
 
-        <div class="relative bg-coral-body rounded-lg w-full max-w-3xl mx-auto mt-16 px-6 py-12 overflow-y-auto max-h-screen"
+        <div class="relative bg-coral-body rounded-lg w-full max-w-3xl mx-auto mt-4 px-6 py-12 overflow-y-auto max-h-screen"
             @click.stop>
 
             <!-- ظرف تصویر با نسبت 16:9 -->
@@ -213,15 +213,15 @@
 
             <!-- عنوان، قیمت و توضیح -->
             <h2 class="text-xl font-iransans-thin mb-2 text-center" x-text="selectedProduct.name"></h2>
-            <p class="text-center font-iransans-regular farsi-number mb-4"
+            <p class="text-center font-iransans-regular farsi-number mb-2"
                 x-text="selectedProduct.price == 0 ? 'ناموجود' : (formatPrice(selectedProduct.price) + ' تومان')">
             </p>
 
             <!-- دکمه ثبت سفارش (همانند لیست محصولات) -->
-            <div class="flex justify-center items-center pt-6">
+            <div class="flex justify-center items-center py-2">
                 <button
                     x-show="!isInCart(selectedProduct.id) && selectedProduct.price != 0"
-                    class="font-iransans-thin text-sm mt-2 bg-coral text-white px-3 py-1 rounded hover:bg-orange-500 transition"
+                    class="font-iransans-thin text-sm bg-coral text-white px-3 py-1 rounded hover:bg-orange-500 transition"
                     @click="addToCart(selectedProduct)"
                 >
                     ثبت سفارش
