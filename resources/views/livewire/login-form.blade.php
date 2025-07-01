@@ -5,7 +5,7 @@
         wire:model="mobile"
         class="farsi-number placeholder:font-iransans-thin flex justify-center items-center no-spinner placeholder-lime-900 font-iransans-extrabold bg-gray-100 w-80 text-right text-sm text-center outline-0 px-4 py-2 shadow-2xl text-lime-900"
         dir="rtl"
-        type="number"
+        type="tel"
         inputmode="numeric"
         minlength="11"
         maxlength="11"
