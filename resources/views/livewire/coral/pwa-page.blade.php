@@ -6,7 +6,7 @@
 >
     <!-- هدر ثابت -->
     <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-coral-header pb-8 z-40">
-        
+
         <div class="w-full font-iransans-extrabold relative flex items-center justify-between px-4 h-16">
             <!-- آیکون خانه -->
             <div class="text-coral cursor-pointer" @click="openModal('Home')">
@@ -198,18 +198,13 @@
          dir="rtl"
          @close-modal.window="(event.detail.includes('productModal')) ? closeModal('Product') : null"
     >
-        <livewire:back modal="productModal" />
+        <x-modal-back-button action="showProduct = false" />
+
         <div class="relative bg-coral-body rounded-lg w-full max-w-3xl mx-auto mt-16 px-6 py-12 overflow-y-auto max-h-screen"
             @click.stop>
 
-            <!-- دکمه بستن خارج از تصویر و با فاصله مناسب از بالا -->
-            <button @click="closeModal('Product')"
-                    class="absolute top-4 right-4 text-coral hover:text-red-500 text-3xl font-bold z-10">
-                &times;
-            </button>
-
             <!-- ظرف تصویر با نسبت 16:9 -->
-            <div class="relative aspect-video w-full mb-4 rounded-lg overflow-hidden">                
+            <div class="relative aspect-video w-full mb-4 rounded-lg overflow-hidden">
                 <img :src="selectedProduct.image_url || '/images/category.jpg'"
                     :alt="selectedProduct.name"
                     class="w-full h-full object-cover shadow" />
@@ -221,9 +216,34 @@
             <p class="text-center font-iransans-regular farsi-number mb-4"
                 x-text="selectedProduct.price == 0 ? 'ناموجود' : (formatPrice(selectedProduct.price) + ' تومان')">
             </p>
-            <p class="text-justify text-gray-700 font-iransans-thin text-sm"
-            x-html="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
 
+            <!-- دکمه ثبت سفارش (همانند لیست محصولات) -->
+            <div class="flex justify-center items-center pt-6">
+                <button
+                    x-show="!isInCart(selectedProduct.id) && selectedProduct.price != 0"
+                    class="font-iransans-thin text-sm mt-2 bg-coral text-white px-3 py-1 rounded hover:bg-orange-500 transition"
+                    @click="addToCart(selectedProduct)"
+                >
+                    ثبت سفارش
+                </button>
+
+                <div class="flex justify-center items-center" x-show="isInCart(selectedProduct.id) && selectedProduct.price != 0">
+                    <button
+                        @click="increaseQuantity(selectedProduct)"
+                        class="flex justify-center items-center font-iransans-thin text-xl bg-coral text-white px-3 pt-1 rounded hover:bg-orange-500 transition">
+                        +
+                    </button>
+                    <span class="mx-2 font-iransans-extrabold farsi-number" x-text="productQuantity(selectedProduct.id)"></span>
+                    <button
+                        @click="decreaseQuantity(selectedProduct)"
+                        class="flex justify-center items-center font-iransans-thin text-xl bg-coral text-white px-3 pt-1 rounded hover:bg-orange-500 transition">
+                        -
+                    </button>
+                </div>
+            </div>
+
+            <p class="text-justify text-gray-700 font-iransans-thin text-sm"
+               x-html="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
             <!-- دکمه بازگشت -->
             <button @click="closeModal('Product')"
                     class="text-white w-full bg-coral py-2 mb-16 px-5 rounded mt-10 font-iransans-thin transition">
@@ -289,7 +309,9 @@
                     style="display: none;"
                     dir="rtl"
                 >
-                    
+                    <!-- آیکون بازگشت -->
+                    <x-modal-back-button action="showWorkHours = false" />
+
                     <div class="text-sm font-iransans-thin text-black leading-relaxed space-y-2 max-w-xl mx-auto">
                         {!! Str::markdown(strip_tags($settings['work_hours'] ?? 'ساعات کاری ثبت نشده است.')) !!}
                     </div>
@@ -315,7 +337,8 @@
                     style="display: none;"
                     dir="rtl"
                 >
-                    
+
+                    <x-modal-back-button action="showAbout = false" />
                     <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
                         {!! Str::markdown(strip_tags($settings['about'] ?? 'توضیحاتی برای این بخش موجود نیست.')) !!}
                     </div>
@@ -339,7 +362,8 @@
                     style="display: none;"
                     dir="rtl"
                 >
-                    
+
+                    <x-modal-back-button action="showContact = false" />
 
                     <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
                         {!! Str::markdown(strip_tags($settings['contact'] ?? 'اطلاعات تماس موجود نیست.')) !!}
@@ -377,8 +401,128 @@
 
         </button>
         <livewire:coral.user-area/>
-        <livewire:coral.cart-area/>
+
         <livewire:call-waiter/>
+        <!-- دکمه سبد خرید -->
+        <div x-data="cart"
+             x-init="startWatcher()">
+            <button
+                @click="showCart = true"
+                class="fixed flex justify-center items-center bottom-14 left-0 rounded-tr-xl bg-coral text-white p-3 hover:bg-orange-500 transition"
+            >
+                <!-- آیکون -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3
+                    2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6
+                    20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5
+                    0 .75.75 0 0 1 1.5 0Z"
+                    />
+                </svg>
+                <span x-show="cartCount > 0" x-text="cartCount"
+                      class="farsi-number font-iransans-bold absolute left-2 top-1 text-[9px]"
+                ></span>
+            </button>
+        </div>
+
+        <!-- مودال سبد خرید -->
+        <div
+            x-show="showCart"
+            x-cloak
+            x-transition
+            class="fixed inset-0 z-50 flex flex-col max-h-screen bg-coral-body p-6 overflow-auto"
+            @click.away="showCart = false"
+            dir="rtl"
+        >
+            <!-- دکمه بازگشت کوچک و توخالی کنار ثبت سفارش -->
+            <div class="flex justify-between items-center mb-4">
+                <x-modal-back-button action="showCart = false" class="text-coral border border-coral rounded px-4 py-1 text-sm hover:bg-coral hover:text-white transition" />
+                <h2 class="text-xl font-iransans-bold text-coral text-center flex-grow">سبد خرید شما</h2>
+                <div style="width: 72px;"></div> <!-- فضای خالی برای تعادل -->
+            </div>
+
+            <template x-if="cart.length === 0">
+                <p class="text-center text-gray-700 font-iransans-thin mt-12">
+                    سبد خرید شما خالی است.
+                </p>
+            </template>
+
+            <template x-for="item in cart" :key="item.id">
+                <div class="relative flex items-center justify-between border-b border-gray-300 py-3">
+                    <!-- دکمه حذف گوشه تصویر -->
+                    <button
+                        @click="updateCart(item, -item.quantity)"
+                        title="حذف از سبد"
+                        class="absolute top-0 right-0 m-1 bg-red-100 text-red-700 rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-200 transition"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <!-- تصویر محصول سمت راست -->
+                    <img :src="item.image_url || '/images/category.jpg'" alt="" class="h-16 w-16 rounded-lg shadow" loading="lazy">
+
+                    <!-- عنوان و قیمت -->
+                    <div class="flex flex-col text-right mr-4 flex-grow">
+                        <span class="font-iransans-thin text-lg" x-text="item.name"></span>
+                        <span class="text-sm farsi-number text-gray-600" x-text="formatPrice(item.price) + ' تومان'"></span>
+                    </div>
+
+                    <!-- کنترل تعداد -->
+                    <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                        <button @click="decreaseQuantity(item)" class="bg-coral text-white px-3 rounded hover:bg-orange-500 transition">-</button>
+                        <span class="farsi-number font-iransans-bold w-6 text-center" x-text="item.quantity"></span>
+                        <button @click="increaseQuantity(item)" class="bg-coral text-white px-3 rounded hover:bg-orange-500 transition">+</button>
+                    </div>
+                </div>
+
+            </template>
+
+
+            <!-- جمع کل -->
+            <div x-show="cart.length > 0" class="mt-6 border-t border-gray-400 pt-4 text-right font-iransans-bold farsi-number text-lg">
+                <span>مجموع: </span>
+                <span x-text="formatPrice(cart.reduce((acc, i) => acc + i.price * i.quantity, 0)) + ' تومان'"></span>
+            </div>
+
+            <!-- دکمه‌های پایین صفحه -->
+            <div class="mt-8 flex justify-center gap-4" x-show="cart.length > 0">
+                <button
+                    wire:loading.remove
+                    class="bg-coral text-white py-3 px-8 rounded font-iransans-thin hover:bg-orange-500 transition"
+                    @click="finalizeOrder()"
+                >
+                    ثبت نهایی سفارش
+                </button>
+                <button
+                    wire:loading
+                    class="border-coral text-coral py-3 px-8 rounded font-iransans-thin hover:bg-orange-500 transition"
+                    :disabled="true"
+                >
+                    در حال نهایی سازی
+                </button>
+                <button
+                    @click="showCart = false"
+                    class="border border-coral text-coral py-3 px-6 rounded font-iransans-thin hover:bg-coral hover:text-white transition"
+                >
+                    بازگشت
+                </button>
+            </div>
+
+            <!-- دکمه بازگشت در حالت خالی بودن سبد -->
+            <div class="mt-8" x-show="cart.length === 0">
+                <button
+                    @click="showCart = false"
+                    class="w-full border border-coral text-coral py-3 rounded font-iransans-thin hover:bg-coral hover:text-white transition"
+                >
+                    بازگشت
+                </button>
+            </div>
+
+        </div>
+
+
     @endauth
 </div>
 
@@ -398,10 +542,11 @@ document.addEventListener('alpine:init', () => {
         showContact: false,
         showCategories: false,
         showFavoritesOnly: false,
+        showCart: false,
         activeCategory: categories[0]?.id || null,
         selectedProduct: {},
         cart: [],
-        
+
         init() {
             const savedCart = localStorage.getItem('cart');
             if (savedCart) {
@@ -453,6 +598,9 @@ document.addEventListener('alpine:init', () => {
         },
 
         scrollToCategory(catId) {
+            this.showFavoritesOnly = false;
+            this.searchQuery = '';
+            this.showSearch = false;
             this.showModal = false;
             setTimeout(() => {
                 const el = document.querySelector(`[data-cat='${catId}']`);
@@ -496,6 +644,10 @@ document.addEventListener('alpine:init', () => {
             return i ? i.quantity : null;
         },
 
+        get cartCount() {
+            return this.cart.length;
+        },
+
         formatPrice(price) {
             if (typeof price !== 'number' || isNaN(price)) return '۰';
             return price.toLocaleString('fa-IR');
@@ -512,7 +664,39 @@ document.addEventListener('alpine:init', () => {
                     }
                 }
             });
-        }
+        },
+
+        loadCart() {
+            const data = localStorage.getItem('cart');
+            try {
+                const parsed = JSON.parse(data) || [];
+                this.items = parsed;
+                this.cartCount = parsed.length;
+            } catch {
+                this.items = [];
+                this.cartCount = 0;
+            }
+        },
+
+        startWatcher() {
+            this.loadCart();
+            this.intervalId = setInterval(() => this.loadCart(), 1000);
+
+            Livewire.on('order-finalized', () => {
+                localStorage.removeItem('cart');
+                window.location.href = '/checkout';
+            });
+        },
+
+        finalizeOrder() {
+            const payload = this.cart.map(item => ({
+                product_id: item.id,
+                quantity: item.quantity
+            }));
+
+            Livewire.dispatch('finalize-order', { items: payload });
+        },
+
     }));
 });
 </script>

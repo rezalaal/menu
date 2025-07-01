@@ -1,4 +1,4 @@
-import { lime as _lime, black as _black, white as _white, gray as _gray, emerald as _emerald, indigo as _indigo, purple as _purple, pink as _pink, yellow as _yellow } from 'tailwindcss/colors'
+import { lime as _lime, red as _red, black as _black, white as _white, gray as _gray, emerald as _emerald, indigo as _indigo, purple as _purple, pink as _pink, yellow as _yellow } from 'tailwindcss/colors'
 
 export const content = [
   "./resources/**/*.blade.php",
@@ -31,6 +31,7 @@ export const theme = {
     purple: _purple,
     pink: _pink,
     yellow: _yellow,
+    red: _red,
   },
   extend: {
     keyframes: {
