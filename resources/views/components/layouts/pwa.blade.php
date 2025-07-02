@@ -24,10 +24,6 @@
     <title>{{ $title ?? 'Coral Food کورال فود' }}</title>
 </head>
 <body class="m-0 p-0 bg-coral-body">
-
-    <div wire:loading.delay class="fixed w-screen h-screen bg-coral-body text-coral z-[99] flex justify-center items-center">
-        <div dir="rtl" class="font-iransans-extrabold">لطفا کمی صبر کنید   ...</div>
-    </div>
     <!-- Main Slot -->
     <main class="max-w-screen mx-auto my-0 p-1">
         {{ $slot }}
@@ -37,6 +33,5 @@
     @vite('resources/js/app.js')
     @stack('scripts')
     @livewireScripts
-
 </body>
 </html>

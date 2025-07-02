@@ -25,14 +25,22 @@ class Table extends Component
     ])]
     public $mobile;
 
-
     public function mount($id, GeneralSettings $settings)
+    {
+        $this->tableId = $id;
+        $this->settings = [
+            'title' => $settings->init_site_name,
+            'instagram' => $settings->instagram_id,
+            'mobile' => $settings->master_mobile
+        ];
+    }
+
+    public function loadData()
     {
         if(auth()->user()) {
             $this->loggedIn = true;
         }
-
-        $this->tableId = $id;
+        
         $table = \App\Models\Table::where('id', $this->tableId)->first();
         if(!$table) {
             return abort(404);
@@ -51,12 +59,7 @@ class Table extends Component
 
 
         $this->tableName = $table->name ?? '';
-        $this->title .= " به کورال فود خوش آمدید :: ". $this->tableName;
-        $this->settings = [
-            'title' => $settings->init_site_name,
-            'instagram' => $settings->instagram_id,
-            'mobile' => $settings->master_mobile
-        ];
+        $this->title .= " به {$this->settings['title']} خوش آمدید  :: {$this->tableName}";                
     }
 
     public function login()

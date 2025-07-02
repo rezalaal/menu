@@ -3,7 +3,7 @@
         @error('otp') {{ $message }} @enderror
     </div>
     @if ($step == "confirmCode")
-
+    <p class="bg-white text-coral text-center font-iransans-regular rounded p-2 mb-4">یک کد ۵ رقمی به تلفن همراه شما ارسال شد</p>
     <input
         wire:loading.remove
         wire:model="otp"

@@ -20,7 +20,7 @@ Route::get('/', \App\Livewire\Coral\PwaPage::class)->name('home');
 Route::get('/categories', \App\Livewire\CategoryPage::class);
 Route::get('/products/{category}', ProductsPage::class);
 Route::get('/product/{product}', ProductView::class);
-// Route::get('/cart', CartPage::class);
+Route::get('/cart', CartPage::class)->middleware('auth');
  Route::get('/orders', OrderPage::class)->middleware('auth');
 // Route::get('/orders/{order}', OrderView::class);
 // Route::get('/search', SearchPage::class);

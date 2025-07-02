@@ -19,7 +19,7 @@ use Livewire\Component;
 
 class PwaPage extends Component
 {
-    public $categories;
+    public $categories = [];
     public $settings;
     public $productsByCategory = [];
     public $productID;
@@ -34,6 +34,14 @@ class PwaPage extends Component
         'productID.exists' => 'محصول مورد نظر یافت نشد',
     ];
 
+    public function loadData()
+    {
+        $categories = Category::with('products')->orderBy('sort_order')->get();
+        $this->categories = CategoryResource::collection($categories)->resolve();
+
+        $this->loadProducts();
+        $this->loadFavoritesCount();
+    }
     public function loadProducts()
     {
         $productsQuery = Product::with('media')
@@ -95,13 +103,7 @@ class PwaPage extends Component
 
     public function mount(GeneralSettings $generalSettings)
     {
-        $categories = Category::with('products')->orderBy('sort_order')->get();
-        $this->categories = CategoryResource::collection($categories)->resolve();
-
         $this->settings = $generalSettings->toArray();
-
-        $this->loadProducts();
-        $this->loadFavoritesCount();
     }
 
     public function loadFavoritesCount()
