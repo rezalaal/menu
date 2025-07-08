@@ -17,7 +17,7 @@
         >
 
             <!-- هدر ثابت -->
-            <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-coral-header pb-2 z-40">
+            <header class="fixed top-0 left-0 flex flex-col items-center w-full pt-1 bg-coral-header {{ auth()->check() ? 'pb-2' : 'pb-8' }} z-40">
 
                 <div class="w-full font-iransans-extrabold relative flex items-center justify-between px-4 h-16">
                     <!-- آیکون خانه -->
@@ -229,6 +229,7 @@
                         x-text="selectedProduct.price == 0 ? 'ناموجود' : (formatPrice(selectedProduct.price) + ' تومان')">
                     </p>
 
+                    @auth()
                     <!-- دکمه ثبت سفارش (همانند لیست محصولات) -->
                     <div class="flex justify-center items-center py-2">
                         <button
@@ -253,7 +254,7 @@
                             </button>
                         </div>
                     </div>
-
+                    @endauth
                     <p class="text-justify text-gray-700 font-iransans-thin text-sm"
                     x-html="selectedProduct.description || 'توضیحی برای این محصول موجود نیست.'"></p>
                     <!-- دکمه بازگشت -->
@@ -704,13 +705,13 @@ document.addEventListener('alpine:init', () => {
             });
         },
 
-        finalizeOrder(event) {            
+        finalizeOrder(event) {
             this.init()
             event.preventDefault();
             const payload = this.cart.map(item => ({
                 product_id: item.id,
                 quantity: item.quantity
-            }));            
+            }));
             console.log(event,payload,this.showCart)
             Livewire.dispatch('finalize-order', { items: payload });
         },

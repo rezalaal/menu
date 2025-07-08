@@ -1,5 +1,5 @@
 <form class="flex flex-col mb-10 items-center justify-center"  wire:submit="SendOtp">
-    <div class="text-red-900 text-center p-4 font-iransans-thin">@error('mobile') {{ $message }} @enderror</div>
+    <div dir="rtl" class="text-red-900 text-center p-4 font-iransans-black">@error('mobile') {{ $message }} @enderror</div>
     <input
         wire:loading.remove
         wire:model="mobile"
