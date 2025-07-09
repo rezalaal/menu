@@ -1,5 +1,10 @@
 <div wire:init="loadData" class="w-full min-h-screen bg-coral-body flex flex-col">
-
+        <div id="loading" class="flex hidden flex-col justify-center items-center flex-1 min-h-screen">
+            <img class="w-48" src="/images/coral-logo.png" alt="logo">
+            <div dir="rtl" class="p-4 text-center text-coral font-iransans-thin">
+                لطفا تا زمان بارگزاری کامل صبر کنید
+            </div>
+        </div>
     @if (empty($categories))
         <div class="flex flex-col justify-center items-center flex-1 min-h-screen">
             <img class="w-48" wire:loading src="/images/coral-logo.png" alt="logo">
@@ -511,6 +516,7 @@
                         >
                             ثبت نهایی سفارش
                         </button>
+                        
                         <button
                             wire:loading
                             class="border-coral text-coral py-3 px-8 rounded font-iransans-thin hover:bg-orange-500 transition"
@@ -535,7 +541,7 @@
                             بازگشت
                         </button>
                     </div>
-                    <div wire:loading class="z-999 text-3xl font-iransans-black text-center">Loading...</div>
+                    
                 </div>
 
 
@@ -698,22 +704,21 @@ document.addEventListener('alpine:init', () => {
         startWatcher() {
             this.loadCart();
             this.intervalId = setInterval(() => this.loadCart(), 1000);
-
+            
             Livewire.on('order-finalized', () => {
                 localStorage.removeItem('cart');
                 window.location.href = '/checkout';
             });
         },
 
-        finalizeOrder(event) {
-            this.init()
-            event.preventDefault();
+        finalizeOrder(event) {            
             const payload = this.cart.map(item => ({
                 product_id: item.id,
                 quantity: item.quantity
             }));
-            console.log(event,payload,this.showCart)
+            
             Livewire.dispatch('finalize-order', { items: payload });
+            document.querySelector("#loading").classList.remove("hidden")
         },
 
     }));
