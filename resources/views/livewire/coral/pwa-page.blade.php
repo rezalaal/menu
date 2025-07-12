@@ -301,101 +301,27 @@
                             </button>
                             <button
                                 class="text-coral border border-coral py-3 rounded font-iransans-thin"
-                                @click="openModal('WorkHours')"
+                                @click="showSettingsModal = 'work_hours'"
                             >
                                 ساعت کار
                             </button>
                             <button
                                 class="text-coral border border-coral py-3 rounded font-iransans-thin"
-                                @click="openModal('About')"
+                                @click="showSettingsModal = 'about'"
                             >
                                 درباره ما
                             </button>
                             <button
                                 class="text-coral border border-coral py-3 rounded font-iransans-thin"
-                                @click="openModal('Contact')"
+                                @click="showSettingsModal = 'contact'"
                             >
                                 اطلاعات تماس
                             </button>
                         </div>
 
-                        <!-- مودال ساعت کاری -->
-                        <div
-                            x-show="showWorkHours"
-                            x-transition
-                            x-cloak
-                            @close-modal.window="(event.detail.includes('workHours')) ? showWorkHours = false : null"
-                            class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
-                            style="display: none;"
-                            dir="rtl"
-                        >
-                            <!-- آیکون بازگشت -->
-                            <x-modal-back-button action="showWorkHours = false" />
-
-                            <div class="text-sm font-iransans-thin text-black leading-relaxed space-y-2 max-w-xl mx-auto">
-                                {!! Str::markdown(strip_tags($settings['work_hours'] ?? 'ساعات کاری ثبت نشده است.')) !!}
-                            </div>
-
-                            <button
-                                class="text-coral border border-coral py-2 px-5 rounded mt-10 font-iransans-thin hover:bg-coral hover:text-white transition"
-                                @click="showWorkHours = false"
-                            >
-                                بازگشت به خانه
-                            </button>
-                        </div>
-
-
-                        <!-- مودال درباره ما -->
-                        <div
-                            x-show="showAbout"
-                            x-transition
-                            x-cloak
-                            @close-modal.window="(event.detail.includes('about')) ? showAbout = false : null"
-
-
-                            class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
-                            style="display: none;"
-                            dir="rtl"
-                        >
-
-                            <x-modal-back-button action="showAbout = false" />
-                            <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
-                                {!! Str::markdown(strip_tags($settings['about'] ?? 'توضیحاتی برای این بخش موجود نیست.')) !!}
-                            </div>
-
-                            <button
-                                class="text-coral border border-coral py-2 px-5 rounded mt-10 font-iransans-thin hover:bg-coral hover:text-white transition"
-                                @click="showAbout = false"
-                            >
-                                بازگشت به خانه
-                            </button>
-                        </div>
-
-
-                        <!-- مودال اطلاعات تماس -->
-                        <div
-                            x-show="showContact"
-                            x-transition
-                            x-cloak
-                            @close-modal.window="(event.detail.includes('Contact')) ? closeModal('Contact') : null"
-                            class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
-                            style="display: none;"
-                            dir="rtl"
-                        >
-
-                            <x-modal-back-button action="showContact = false" />
-
-                            <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
-                                {!! Str::markdown(strip_tags($settings['contact'] ?? 'اطلاعات تماس موجود نیست.')) !!}
-                            </div>
-
-                            <button
-                                class="text-coral border border-coral py-2 px-5 rounded mt-10 font-iransans-thin hover:bg-coral hover:text-white transition"
-                                @click="showContact = false"
-                            >
-                                بازگشت به خانه
-                            </button>
-                        </div>
+                        <livewire:coral.settings-modal section="about" key="SettingsModalAbout" />
+                        <livewire:coral.settings-modal section="work_hours" key="SettingsModalWorkHours" />
+                        <livewire:coral.settings-modal section="contact" key="SettingsModalContact" />
 
                     </div>
                 </div>
@@ -563,6 +489,7 @@ document.addEventListener('alpine:init', () => {
         showWorkHours: false,
         showAbout: false,
         showContact: false,
+        showSettingsModal: null,
         showCategories: false,
         showFavoritesOnly: false,
         showCart: false,
