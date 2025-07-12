@@ -45,19 +45,13 @@ class CategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->query(
-                Product::with(['category' => fn ($q) => $q->withCount('products')->with('media')])
-            )
+            ->query(Category::query()->withCount('products'))
+
             ->columns([
-                SpatieMediaLibraryImageColumn::make('category')
-                    ->circular()
-                    ->label('تصویر')
-                    ->collection('default')
-                    ->conversion('thumb'),
-                Tables\Columns\TextColumn::make('category.name')
+                Tables\Columns\TextColumn::make('name')
                     ->label('نام دسته بندی')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('category.products_count')
+                Tables\Columns\TextColumn::make('products_count')
                     ->label('تعداد محصول در این دسته')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
