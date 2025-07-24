@@ -17,5 +17,8 @@
     >
     ورود
     </button>
+    <a href="/" class="flex justify-center items-center border-1 font-iransans-thin bg-coral-to w-80 px-4 py-2 mt-2 shadow-2xl hover:bg-gray-200 text-white hover:text-black text-sm">
+        مشاهده منو بدون ثبت نام
+    </a>
     <span wire:loading class="loading text-center mt-2 loading-dots loading-lg px-4 py-1 w-full text-white bg-coral font-iransans-thin">در حال ارسال کد</span>
 </form>
