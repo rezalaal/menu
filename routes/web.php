@@ -21,7 +21,7 @@ Route::get('/categories', \App\Livewire\CategoryPage::class);
 Route::get('/products/{category}', ProductsPage::class);
 Route::get('/product/{product}', ProductView::class);
 Route::get('/cart', CartPage::class)->middleware('auth');
- Route::get('/orders', OrderPage::class)->middleware('auth');
+Route::get('/orders', OrderPage::class)->middleware('auth');
 // Route::get('/orders/{order}', OrderView::class);
 // Route::get('/search', SearchPage::class);
 Route::get('/profile', ProfilePage::class)->middleware('auth');

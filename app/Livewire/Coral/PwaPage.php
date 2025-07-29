@@ -16,6 +16,8 @@ use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
+
 
 class PwaPage extends Component
 {
@@ -34,19 +36,29 @@ class PwaPage extends Component
         'productID.exists' => 'محصول مورد نظر یافت نشد',
     ];
 
-    public function loadData()
+   public function loadData()
     {
+        $start = microtime(true);
+
         $categories = Category::with('products')->orderBy('sort_order')->get();
         $this->categories = CategoryResource::collection($categories)->resolve();
 
         $this->loadProducts();
         $this->loadFavoritesCount();
+
+        $duration = round((microtime(true) - $start) * 1000, 2); // به میلی‌ثانیه
+        Log::info('📦 loadData done', [
+            'duration_ms' => $duration,
+            'user_agent' => request()->userAgent(),
+            'url' => request()->fullUrl(),
+        ]);
     }
+
     public function loadProducts()
     {
-        $productsQuery = Product::with('media')
-            ->orderBy('category_id');
+        $start = microtime(true);
 
+        $productsQuery = Product::with('media')->orderBy('category_id');
         $user = auth()->user();
 
         if ($user) {
@@ -58,7 +70,6 @@ class PwaPage extends Component
         }
 
         $products = $productsQuery->get();
-
         $byCat = [];
 
         foreach ($products as $prod) {
@@ -68,14 +79,20 @@ class PwaPage extends Component
             ];
 
             $prodResource = ProductResource::make($prod)->resolve();
-
             $prodResource['is_favorite'] = (bool) $prod->is_favorite;
-
             $byCat[$prod->category->id]['products'][] = $prodResource;
         }
 
         $this->productsByCategory = array_values($byCat);
+
+        $duration = round((microtime(true) - $start) * 1000, 2);
+        Log::info('🛍 loadProducts done', [
+            'duration_ms' => $duration,
+            'user_agent' => request()->userAgent(),
+            'url' => request()->fullUrl(),
+        ]);
     }
+
 
     public function toggleFavorite($productID)
     {
@@ -108,6 +125,8 @@ class PwaPage extends Component
 
     public function loadFavoritesCount()
     {
+        $start = microtime(true);
+
         $user = auth()->user();
 
         if ($user) {
@@ -115,7 +134,14 @@ class PwaPage extends Component
         } else {
             $this->favoritesCount = 0;
         }
+
+        $duration = round((microtime(true) - $start) * 1000, 2);
+        Log::info('❤️ loadFavoritesCount done', [
+            'duration_ms' => $duration,
+            'user_agent' => request()->userAgent(),
+        ]);
     }
+
 
     protected $listeners = [
         'favorite-updated' => 'loadFavoritesCount',
@@ -126,6 +152,7 @@ class PwaPage extends Component
     #[On('finalize-order')]
     public function finalizeOrder(array $items)
     {
+        $start = microtime(true);
         $this->dispatch('order-finalizing');
         // اعتبارسنجی
         $validator = Validator::make(
@@ -182,6 +209,14 @@ class PwaPage extends Component
             info($e->getMessage());
             $this->addError('cart', 'خطا در ثبت سفارش. لطفا دوباره تلاش کنید.');
         }
+
+        $duration = round((microtime(true) - $start) * 1000, 2);
+        Log::info('🧾 finalizeOrder done', [
+            'duration_ms' => $duration,
+            'user_id' => auth()->id(),
+            'user_agent' => request()->userAgent(),
+            'items_count' => count($items),
+        ]);
     }
 
     public function render()
