@@ -9,11 +9,23 @@ class ProductObserver
 {
     public function saved(Product $product): void
     {
-        Cache::forget('all_products_with_media_and_category');
+        if ($product->isDirty('category_id')) {
+            $original = $product->getOriginal('category_id');
+            if ($original) {
+                Cache::forget("category_products_{$original}");
+            }
+        }
+
+        if ($product->category_id) {
+            Cache::forget("category_products_{$product->category_id}");
+        }
     }
+
 
     public function deleted(Product $product): void
     {
-        Cache::forget('all_products_with_media_and_category');
+        if ($product->category_id) {
+            Cache::forget("category_products_{$product->category_id}");
+        }
     }
 }

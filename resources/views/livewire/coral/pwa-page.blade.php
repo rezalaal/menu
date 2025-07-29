@@ -79,7 +79,8 @@
                         <!-- دکمه پاک کردن -->
                         <button
                             x-show="searchQuery"
-                            @click="searchQuery = ''; showSearch = false"
+                            @click="searchQuery = ''; showSearch = fa
+                            lse"
                             class="px-3 text-gray-500 hover:text-red-500 transition text-xl"
                             aria-label="پاک کردن جستجو"
                         >

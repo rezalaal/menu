@@ -48,7 +48,6 @@ class PwaPage extends Component
 
         $categories = Cache::remember('categories_with_count', now()->addMonths(2), function () {
             return Category::select('id', 'name', 'sort_order')
-                ->withCount('products')
                 ->orderBy('sort_order')
                 ->get();
         });
@@ -69,28 +68,27 @@ class PwaPage extends Component
     {
         $start = microtime(true);
 
-        $user = auth()->user();
-
-        $products = Cache::remember('all_products_with_media_and_category', now()->addMonths(2), function () use ($user) {
-            $query = Product::with(['media', 'category'])->orderBy('category_id');
-
-            return $query->get();
-        });
-
-
+        $categories = Category::select('id', 'name')->get();
         $byCat = [];
 
-        foreach ($products as $prod) {
-            $cat = $prod->category;
+        foreach ($categories as $cat) {
+            $products = Cache::remember("category_products_{$cat->id}", now()->addMonths(2), function () use ($cat) {
+                return Product::where('category_id', $cat->id)
+                    ->with(['media'])
+                    ->get();
+            });
+
+            // در صورت نبود محصول، از افزودن دسته صرف‌نظر می‌کنیم
+            if ($products->isEmpty()) {
+                continue;
+            }
 
             $byCat[$cat->id]['category'] = [
                 'id' => $cat->id,
                 'name' => $cat->name,
             ];
 
-            $prodResource = ProductResource::make($prod)->resolve();
-
-            $byCat[$cat->id]['products'][] = $prodResource;
+            $byCat[$cat->id]['products'] = ProductResource::collection($products)->resolve();
         }
 
         $this->productsByCategory = array_values($byCat);
@@ -123,8 +121,8 @@ class PwaPage extends Component
         }
 
         $validated = $validator->validated()['items'];
-
         $total = 0;
+
         foreach ($validated as $item) {
             $product = Product::find($item['product_id']);
             $total += $product->price * $item['quantity'];
