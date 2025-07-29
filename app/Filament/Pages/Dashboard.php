@@ -2,9 +2,7 @@
 
 namespace App\Filament\Pages;
 
-use App\Filament\Widgets\ProductCount;
 use Filament\Pages\Dashboard as BaseDashboard;
-use App\Filament\Widgets\CategoryCount;
 
 class Dashboard extends BaseDashboard
 {
@@ -12,6 +10,8 @@ class Dashboard extends BaseDashboard
     {
         return [
             \App\Filament\Widgets\OverviewStats::class,
+            \App\Filament\Widgets\KavenegarCredit::class,
         ];
     }
+    
 }

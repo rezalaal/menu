@@ -1,5 +1,10 @@
 <div wire:init="loadData" class="w-full min-h-screen bg-coral-body flex flex-col">
-
+        <div id="loading" class="flex hidden flex-col justify-center items-center flex-1 min-h-screen">
+            <img class="w-48" src="/images/coral-logo.png" alt="logo">
+            <div dir="rtl" class="p-4 text-center text-coral font-iransans-thin">
+                لطفا تا زمان بارگزاری کامل صبر کنید
+            </div>
+        </div>
     @if (empty($categories))
         <div class="flex flex-col justify-center items-center flex-1 min-h-screen">
             <img class="w-48" wire:loading src="/images/coral-logo.png" alt="logo">
@@ -296,101 +301,27 @@
                             </button>
                             <button
                                 class="text-coral border border-coral py-3 rounded font-iransans-thin"
-                                @click="openModal('WorkHours')"
+                                @click="showSettingsModal = 'work_hours'"
                             >
                                 ساعت کار
                             </button>
                             <button
                                 class="text-coral border border-coral py-3 rounded font-iransans-thin"
-                                @click="openModal('About')"
+                                @click="showSettingsModal = 'about'"
                             >
                                 درباره ما
                             </button>
                             <button
                                 class="text-coral border border-coral py-3 rounded font-iransans-thin"
-                                @click="openModal('Contact')"
+                                @click="showSettingsModal = 'contact'"
                             >
                                 اطلاعات تماس
                             </button>
                         </div>
 
-                        <!-- مودال ساعت کاری -->
-                        <div
-                            x-show="showWorkHours"
-                            x-transition
-                            x-cloak
-                            @close-modal.window="(event.detail.includes('workHours')) ? showWorkHours = false : null"
-                            class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
-                            style="display: none;"
-                            dir="rtl"
-                        >
-                            <!-- آیکون بازگشت -->
-                            <x-modal-back-button action="showWorkHours = false" />
-
-                            <div class="text-sm font-iransans-thin text-black leading-relaxed space-y-2 max-w-xl mx-auto">
-                                {!! Str::markdown(strip_tags($settings['work_hours'] ?? 'ساعات کاری ثبت نشده است.')) !!}
-                            </div>
-
-                            <button
-                                class="text-coral border border-coral py-2 px-5 rounded mt-10 font-iransans-thin hover:bg-coral hover:text-white transition"
-                                @click="showWorkHours = false"
-                            >
-                                بازگشت به خانه
-                            </button>
-                        </div>
-
-
-                        <!-- مودال درباره ما -->
-                        <div
-                            x-show="showAbout"
-                            x-transition
-                            x-cloak
-                            @close-modal.window="(event.detail.includes('about')) ? showAbout = false : null"
-
-
-                            class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
-                            style="display: none;"
-                            dir="rtl"
-                        >
-
-                            <x-modal-back-button action="showAbout = false" />
-                            <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
-                                {!! Str::markdown(strip_tags($settings['about'] ?? 'توضیحاتی برای این بخش موجود نیست.')) !!}
-                            </div>
-
-                            <button
-                                class="text-coral border border-coral py-2 px-5 rounded mt-10 font-iransans-thin hover:bg-coral hover:text-white transition"
-                                @click="showAbout = false"
-                            >
-                                بازگشت به خانه
-                            </button>
-                        </div>
-
-
-                        <!-- مودال اطلاعات تماس -->
-                        <div
-                            x-show="showContact"
-                            x-transition
-                            x-cloak
-                            @close-modal.window="(event.detail.includes('Contact')) ? closeModal('Contact') : null"
-                            class="fixed inset-0 bg-coral-body z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
-                            style="display: none;"
-                            dir="rtl"
-                        >
-
-                            <x-modal-back-button action="showContact = false" />
-
-                            <div class="text-sm font-iransans-thin text-black leading-relaxed max-w-xl mx-auto space-y-4">
-                                {!! Str::markdown(strip_tags($settings['contact'] ?? 'اطلاعات تماس موجود نیست.')) !!}
-                            </div>
-
-                            <button
-                                class="text-coral border border-coral py-2 px-5 rounded mt-10 font-iransans-thin hover:bg-coral hover:text-white transition"
-                                @click="showContact = false"
-                            >
-                                بازگشت به خانه
-                            </button>
-                        </div>
+                        <livewire:coral.settings-modal section="about" key="SettingsModalAbout" />
+                        <livewire:coral.settings-modal section="work_hours" key="SettingsModalWorkHours" />
+                        <livewire:coral.settings-modal section="contact" key="SettingsModalContact" />
 
                     </div>
                 </div>
@@ -511,6 +442,7 @@
                         >
                             ثبت نهایی سفارش
                         </button>
+                        
                         <button
                             wire:loading
                             class="border-coral text-coral py-3 px-8 rounded font-iransans-thin hover:bg-orange-500 transition"
@@ -535,7 +467,7 @@
                             بازگشت
                         </button>
                     </div>
-                    <div wire:loading class="z-999 text-3xl font-iransans-black text-center">Loading...</div>
+                    
                 </div>
 
 
@@ -557,6 +489,7 @@ document.addEventListener('alpine:init', () => {
         showWorkHours: false,
         showAbout: false,
         showContact: false,
+        showSettingsModal: null,
         showCategories: false,
         showFavoritesOnly: false,
         showCart: false,
@@ -698,22 +631,21 @@ document.addEventListener('alpine:init', () => {
         startWatcher() {
             this.loadCart();
             this.intervalId = setInterval(() => this.loadCart(), 1000);
-
+            
             Livewire.on('order-finalized', () => {
                 localStorage.removeItem('cart');
                 window.location.href = '/checkout';
             });
         },
 
-        finalizeOrder(event) {
-            this.init()
-            event.preventDefault();
+        finalizeOrder(event) {            
             const payload = this.cart.map(item => ({
                 product_id: item.id,
                 quantity: item.quantity
             }));
-            console.log(event,payload,this.showCart)
+            
             Livewire.dispatch('finalize-order', { items: payload });
+            document.querySelector("#loading").classList.remove("hidden")
         },
 
     }));

@@ -126,6 +126,7 @@ class PwaPage extends Component
     #[On('finalize-order')]
     public function finalizeOrder(array $items)
     {
+        $this->dispatch('order-finalizing');
         // اعتبارسنجی
         $validator = Validator::make(
             ['items' => $items],

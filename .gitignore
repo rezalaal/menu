@@ -6,6 +6,7 @@
 .env
 .env.*.backup
 .env.backup
+.phpactor.json
 
 # Laravel compiled files
 /bootstrap/cache/*
