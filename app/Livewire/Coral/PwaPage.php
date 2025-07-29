@@ -24,7 +24,6 @@ class PwaPage extends Component
     public $settings;
     public $productsByCategory = [];
     public $productID;
-    public $favoritesCount = 0;
 
     protected $rules = [
         'productID' => 'required|numeric|exists:products,id',
@@ -57,7 +56,6 @@ class PwaPage extends Component
         $this->categories = CategoryResource::collection($categories)->resolve();
 
         $this->loadProducts();
-        $this->loadFavoritesCount();
 
         $duration = round((microtime(true) - $start) * 1000, 2);
         Log::info('📦 loadData done', [
@@ -76,18 +74,9 @@ class PwaPage extends Component
         $products = Cache::remember('all_products_with_media_and_category', now()->addMonths(2), function () use ($user) {
             $query = Product::with(['media', 'category'])->orderBy('category_id');
 
-            // در صورت لاگین بودن کاربر، بررسی is_favorite باید جداگانه انجام شود
-            if (!$user) {
-                $query->selectRaw('*, false as is_favorite');
-            }
-
             return $query->get();
         });
 
-        // اگر کاربر وارد شده باشد، is_favorite را جداگانه تعیین می‌کنیم
-        if ($user) {
-            $favoriteIds = $user->favorites()->pluck('product_id')->toArray();
-        }
 
         $byCat = [];
 
@@ -100,9 +89,6 @@ class PwaPage extends Component
             ];
 
             $prodResource = ProductResource::make($prod)->resolve();
-            $prodResource['is_favorite'] = isset($favoriteIds)
-                ? in_array($prod->id, $favoriteIds)
-                : (bool) $prod->is_favorite;
 
             $byCat[$cat->id]['products'][] = $prodResource;
         }
@@ -115,46 +101,6 @@ class PwaPage extends Component
             'user_agent' => request()->userAgent(),
             'url' => request()->fullUrl(),
         ]);
-    }
-
-    public function loadFavoritesCount()
-    {
-        $start = microtime(true);
-
-        $user = auth()->user();
-
-        if ($user) {
-            $this->favoritesCount = $user->favorites()->count();
-        } else {
-            $this->favoritesCount = 0;
-        }
-
-        $duration = round((microtime(true) - $start) * 1000, 2);
-        Log::info('❤️ loadFavoritesCount done', [
-            'duration_ms' => $duration,
-            'user_agent' => request()->userAgent(),
-        ]);
-    }
-
-    public function toggleFavorite($productID)
-    {
-        $this->productID = $productID;
-        $this->validate();
-
-        $user = auth()->user();
-        if (!$user) {
-            $this->addError('auth', 'برای افزودن به علاقه‌مندی‌ها باید وارد حساب کاربری شوید.');
-            return;
-        }
-
-        if ($user->favorites()->where('product_id', $productID)->exists()) {
-            $user->favorites()->detach($productID);
-        } else {
-            $user->favorites()->attach($productID);
-        }
-
-        $this->loadProducts();
-        $this->dispatch('favorite-updated');
     }
 
     #[On('finalize-order')]
@@ -215,7 +161,6 @@ class PwaPage extends Component
     }
 
     protected $listeners = [
-        'favorite-updated' => 'loadFavoritesCount',
         'finalize-order' => 'finalizeOrder',
     ];
 

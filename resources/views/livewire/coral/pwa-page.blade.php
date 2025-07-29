@@ -16,7 +16,6 @@
         <div
             x-data="menuApp({{ Js::from($categories) }}, {{ Js::from($productsByCategory) }})"
             x-init="init()"
-            x-on:show-favorites.window="showFavoritesOnly = !showFavoritesOnly"
             wire:loading.remove
             class="flex flex-col flex-1 max-w-screen-sm mx-auto"
         >
@@ -134,32 +133,7 @@
                     <template x-for="product in group.products" :key="product.id">
                         <div class="relative border-b border-coral/30 flex py-4 cursor-pointer" @click="openModal('Product', product)">
 
-                            <div class="relative" >
-                                @auth()
-                                <!-- آیکون قلب -->
-                                <button wire:loading.remove
-                                    @click.stop="toggleFavoriteJS(product.id)"
-                                    class="absolute top-1 right-1 text-coral hover:text-red-500 transition"
-                                    aria-label="افزودن به علاقه‌مندی‌ها">
-                                    <template x-if="product.is_favorite">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="48" height="48" class="w-5 h-5">
-                                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
-                                            2 5.42 4.42 3 7.5 3
-                                            c1.74 0 3.41.81 4.5 2.09
-                                            C13.09 3.81 14.76 3 16.5 3
-                                            19.58 3 22 5.42 22 8.5
-                                            c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                        </svg>
-
-                                    </template>
-                                    <template x-if="!product.is_favorite">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" class="w-5 h-5">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M21.8 7.3c0 4.6-9.8 11.2-9.8 11.2S2.2 11.9 2.2 7.3C2.2 4.6 4.6 2.2 7.3 2.2c1.7 0 3.3.8 4.3 2 1-1.2 2.6-2 4.3-2 2.7 0 5.1 2.4 5.1 5.1z"/>
-                                        </svg>
-                                    </template>
-                                </button>
-                                @endauth
+                            <div class="relative" >                                
                                 <!-- تصویر محصول -->
                                 <img :src="product.image_url || '/images/category.jpg'" :alt="product.name"
                                     class="h-36 w-36 rounded-2xl shadow" loading="lazy">
@@ -328,24 +302,7 @@
 
             @auth
                 <livewire:coral.ai/>
-                <button
-                    @click="showFavoritesOnly = !showFavoritesOnly"
-                    class="fixed flex justify-center items-center left-0 rounded-tr-xl bg-coral text-white shadow-lg hover:bg-orange-500 transition"
-                    style="bottom: 8.4rem;padding: 0.75rem 0.875rem"
-
-                >
-                    <!-- آیکون -->
-                    <svg xmlns="http://www.w3.org/2000/svg" :fill="showFavoritesOnly ? 'red' : 'none'" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21.8 7.3c0 4.6-9.8 11.2-9.8 11.2S2.2 11.9 2.2 7.3C2.2 4.6 4.6 2.2 7.3 2.2c1.7 0 3.3.8 4.3 2 1-1.2 2.6-2 4.3-2 2.7 0 5.1 2.4 5.1 5.1z"/>
-                    </svg>
-                    @if($favoritesCount)
-                        <span class="farsi-number font-iransans-bold absolute left-2 top-1 text-[9px]">
-                            {{ $favoritesCount }}
-                        </span>
-                    @endif
-
-                </button>
+                
                 <livewire:coral.user-area/>
 
                 <livewire:call-waiter/>
@@ -491,7 +448,6 @@ document.addEventListener('alpine:init', () => {
         showContact: false,
         showSettingsModal: null,
         showCategories: false,
-        showFavoritesOnly: false,
         showCart: false,
         activeCategory: (categories && categories.length > 0) ? categories[0].id : null,
         selectedProduct: {},
@@ -520,12 +476,7 @@ document.addEventListener('alpine:init', () => {
                     return filtered.length ? { ...g, products: filtered } : null;
                 }).filter(Boolean);
             }
-            if (this.showFavoritesOnly) {
-                data = data.map(g => {
-                    const filtered = g.products.filter(p => p.is_favorite);
-                    return filtered.length ? { ...g, products: filtered } : null;
-                }).filter(Boolean);
-            }
+
             return data;
         },
 
@@ -548,7 +499,6 @@ document.addEventListener('alpine:init', () => {
         },
 
         scrollToCategory(catId) {
-            this.showFavoritesOnly = false;
             this.searchQuery = '';
             this.showSearch = false;
             this.showModal = false;
@@ -603,18 +553,6 @@ document.addEventListener('alpine:init', () => {
             return price.toLocaleString('fa-IR');
         },
 
-        toggleFavoriteJS(productId) {
-            if (!productId) return;
-            this.$wire.toggleFavorite(productId).then(() => {
-                for (const g of this.productsByCategory) {
-                    const p = g.products.find(p => p.id === productId);
-                    if (p) {
-                        p.is_favorite = !p.is_favorite;
-                        break;
-                    }
-                }
-            });
-        },
 
         loadCart() {
             const data = localStorage.getItem('cart');
