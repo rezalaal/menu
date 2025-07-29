@@ -20,7 +20,7 @@ class ProductResource extends JsonResource
             'name' => $this->name,
             'description' => Str::markdown(strip_tags($this->description ?? '')),
             'price' => $this->price,
-            'image_url' => $this->getFirstMediaUrl('default')
+            'image_url' => $this->image_url,
         ];
     }
 }

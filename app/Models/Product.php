@@ -30,4 +30,10 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany(User::class, 'favorite_product_user')->withTimestamps();
     }
 
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->getFirstMediaUrl('default'); 
+    }
+
+
 }

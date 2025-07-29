@@ -73,10 +73,9 @@ class PwaPage extends Component
 
         foreach ($categories as $cat) {
             $products = Cache::remember("category_products_{$cat->id}", now()->addMonths(2), function () use ($cat) {
-                return Product::where('category_id', $cat->id)
-                    ->with(['media'])
-                    ->get();
+                return Product::where('category_id', $cat->id)->get();
             });
+
 
             // در صورت نبود محصول، از افزودن دسته صرف‌نظر می‌کنیم
             if ($products->isEmpty()) {

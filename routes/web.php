@@ -13,6 +13,7 @@ use App\Livewire\WaiterPage;
 use Illuminate\Support\Facades\Route;
 use App\Exports\ProductsExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Cache;
 
 // Routes
 Route::get('/table/{id}', \App\Livewire\Table::class);
@@ -39,3 +40,11 @@ Route::get('/admin/products/export-excel', function () {
 
 
 Route::get('/api/get-offer', AiOffer::class)->middleware('auth');
+
+
+Route::get('/clear-category-cache', function () {
+    foreach (\App\Models\Category::pluck('id') as $id) {
+        Cache::forget("category_products_{$id}");
+    }
+    return 'Category product caches cleared!';
+}); 
