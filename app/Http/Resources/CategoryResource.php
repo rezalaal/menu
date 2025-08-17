@@ -18,7 +18,12 @@ class CategoryResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'product_count' => $this->products()->count(),
-            'products' => ProductResource::collection($this->whenLoaded('products'))->resolve()
+            $this->mergeWhen(
+                !$request->is('api/*'),
+                fn () => [
+                    'products' => ProductResource::collection($this->whenLoaded('products'))->resolve(),
+                ]
+            ),
         ];
     }
 }
