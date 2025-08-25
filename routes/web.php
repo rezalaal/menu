@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\AiOffer;
+
 use App\Livewire\CartPage;
 use App\Livewire\Coral\Checkout;
 use App\Livewire\OrderPage;
@@ -37,9 +37,6 @@ Route::get('/login', function () {
 Route::get('/admin/products/export-excel', function () {
     return Excel::download(new ProductsExport, 'products.xlsx');
 })->middleware(['web', 'auth'])->name('filament.products.export');
-
-
-Route::get('/api/get-offer', AiOffer::class)->middleware('auth');
 
 
 Route::get('/clear-category-cache', function () {
