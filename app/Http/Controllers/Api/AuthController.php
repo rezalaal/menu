@@ -19,6 +19,7 @@ class AuthController extends Controller
 
         $mobile = $request->mobile;
 
+        info("Send OTP via API: ". $mobile);
         // 2. محدودیت تعداد دفعات در محیط production
         if (config('app.env') === 'production') {
             $cacheKey = "otp_attempts_{$mobile}";
@@ -96,6 +97,7 @@ class AuthController extends Controller
             'otp'    => ['required', 'digits:5'],
         ]);
 
+        info("Verify OTP via API: ". $request->mobile);
         // 2. گرفتن کد ذخیره‌شده در session
         $sessionOtp = session('otp');
 
