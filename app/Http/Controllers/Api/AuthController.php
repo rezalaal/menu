@@ -10,6 +10,35 @@ use App\Notifications\SendOtpViaSms;
 
 class AuthController extends Controller
 {
+    /**
+     * @OA\Post(
+     *     path="/api/send-otp",
+     *     summary="ارسال کد تأیید به موبایل",
+     *     tags={"Authentication"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"mobile"},
+     *             @OA\Property(property="mobile", type="string", example="09121234567")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="کد ارسال شد",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="کد تأیید ارسال شد"),
+     *             @OA\Property(property="expires_in", type="integer", example=120)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=429,
+     *         description="تعداد درخواست بیش از حد",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="شما بیش از حد مجاز درخواست ارسال کد داشته‌اید.")
+     *         )
+     *     )
+     * )
+     */
     public function sendOtp(Request $request)
     {
         // 1. اعتبارسنجی ورودی
@@ -89,6 +118,38 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/verify-otp",
+     *     summary="تأیید کد OTP و دریافت توکن",
+     *     tags={"Authentication"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"mobile","otp"},
+     *             @OA\Property(property="mobile", type="string", example="09121234567"),
+     *             @OA\Property(property="otp", type="string", example="12345")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="ورود موفق",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="با موفقیت وارد شدید."),
+     *             @OA\Property(property="token", type="string", example="1|abcdef123456"),
+     *             @OA\Property(property="user", type="object",example="09121234567")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="کد منقضی یا اشتباه",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="کد وارد شده نادرست است.")
+     *         )
+     *     )
+     * )
+     */
     public function verifyOtp(Request $request)
     {
         // 1. اعتبارسنجی ورودی
