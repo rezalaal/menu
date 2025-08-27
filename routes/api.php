@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\CategoryProductController;
 use App\Http\Controllers\Api\TableController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\GeneralSettingsController;
 
 Route::get('get-offer', AiOffer::class)->middleware('auth');
 
@@ -16,3 +17,5 @@ Route::get('table/{id}', [TableController::class, 'show']);
 
 Route::post('/send-otp', [AuthController::class, 'sendOtp']);
 Route::post('/verify-otp', [AuthController::class, 'verifyOtp']);
+
+Route::get('/settings/general', GeneralSettingsController::class);
