@@ -148,3 +148,41 @@
 #25 /media/disk2/coral/coral/artisan(13): Illuminate\\Foundation\\Application->handleCommand()
 #26 {main}
 "} 
+[2025-10-26 21:20:12] local.INFO: 🛍 loadProducts done {"duration_ms":496.75,"user_agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36","url":"http://localhost:8000/livewire/update"} 
+[2025-10-26 21:20:12] local.INFO: 📦 loadData done {"duration_ms":535.1,"user_agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36","url":"http://localhost:8000/livewire/update"} 
+[2025-10-26 21:25:49] local.ERROR: Command "livewire:SimpleUpload" is not defined.
+
+Did you mean one of these?
+    livewire:attribute
+    livewire:configure-s3-upload-cleanup
+    livewire:copy
+    livewire:delete
+    livewire:form
+    livewire:layout
+    livewire:make
+    livewire:move
+    livewire:publish
+    livewire:stubs
+    livewire:upgrade {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"livewire:SimpleUpload\" is not defined.
+
+Did you mean one of these?
+    livewire:attribute
+    livewire:configure-s3-upload-cleanup
+    livewire:copy
+    livewire:delete
+    livewire:form
+    livewire:layout
+    livewire:make
+    livewire:move
+    livewire:publish
+    livewire:stubs
+    livewire:upgrade at /home/Happy/Projects/Laravel/coral/coral/vendor/symfony/console/Application.php:743)
+[stacktrace]
+#0 /home/Happy/Projects/Laravel/coral/coral/vendor/symfony/console/Application.php(301): Symfony\\Component\\Console\\Application->find()
+#1 /home/Happy/Projects/Laravel/coral/coral/vendor/symfony/console/Application.php(194): Symfony\\Component\\Console\\Application->doRun()
+#2 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#3 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate\\Foundation\\Console\\Kernel->handle()
+#4 /home/Happy/Projects/Laravel/coral/coral/artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#5 {main}
+"} 
+[2025-10-26 21:27:51] local.INFO: photo uploaded  

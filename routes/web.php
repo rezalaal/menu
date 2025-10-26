@@ -12,9 +12,10 @@ use App\Livewire\SearchPage;
 use App\Livewire\WaiterPage;
 use Illuminate\Support\Facades\Route;
 use App\Exports\ProductsExport;
+use App\Livewire\SimpleUpload;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Cache;
-
+Route::get('upload', SimpleUpload::class);
 // Routes
 Route::get('/table/{id}', \App\Livewire\Table::class);
 Route::get('/', \App\Livewire\Coral\PwaPage::class)->name('home');
