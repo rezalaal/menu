@@ -219,5 +219,8 @@ Did you mean one of these?
 #28 /home/Happy/Projects/Laravel/coral/coral/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('...')
 #29 {main}
 "} 
+<<<<<<< HEAD
 [2025-10-26 21:51:42] local.INFO: 🛍 loadProducts done {"duration_ms":36.11,"user_agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36","url":"http://localhost:8000/livewire/update"} 
 [2025-10-26 21:51:42] local.INFO: 📦 loadData done {"duration_ms":44.88,"user_agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36","url":"http://localhost:8000/livewire/update"} 
+=======
+>>>>>>> 0b48f794f39fd08af1d8fbb3794883b565186ed8
