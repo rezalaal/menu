@@ -182,7 +182,7 @@
                         :data-cat="group.category.id"
                         class="py-3 category-section"
                     >
-                        <!-- عنوان دسته‌بندی با طراحی جدید -->
+                        <!-- عنوان دسته‌بندی -->
                         <div class="flex items-center gap-3 mb-4 mt-2">
                             <div class="h-0.5 flex-1 bg-gradient-to-r from-transparent via-coral/50 to-transparent"></div>
                             <h2 class="text-lg font-dastnevis text-coral-from px-3" x-text="group.category.name"></h2>

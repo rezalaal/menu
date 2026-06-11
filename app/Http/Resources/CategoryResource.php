@@ -17,7 +17,7 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'product_count' => $this->products()->count(),
+            'product_count' => $this->products_count ?? $this->products()->count(),
             'image_url' => $this->getFirstMediaUrl('image') ?: asset('images/placeholder.png'),
         ];
     }

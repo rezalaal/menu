@@ -20,10 +20,10 @@ use Livewire\Component;
 
 class PwaPage extends Component
 {
-    public $categories = [];
-    public $settings;
-    public $productsByCategory = [];
-    public $productID;
+    public array $categories = [];
+    public array $settings = [];
+    public array $productsByCategory = [];
+    public ?int $productID = null;
 
     protected $rules = [
         'productID' => 'required|numeric|exists:products,id',
@@ -46,55 +46,39 @@ class PwaPage extends Component
     {
         $start = microtime(true);
 
-        $categories = Cache::remember('categories_with_count', now()->addMonths(2), function () {
-            return Category::select('id', 'name', 'sort_order')
+        $categories = Cache::remember('categories_v2', now()->addMonths(2), function () {
+            return Category::withCount('products')
+                ->select('id', 'name', 'sort_order')
                 ->orderBy('sort_order')
                 ->get();
         });
 
         $this->categories = CategoryResource::collection($categories)->resolve();
 
-        $this->loadProducts();
+        $this->productsByCategory = Cache::remember('products_by_category_v2', now()->addMonths(2), function () {
+            $categories = Category::with('products')->select('id', 'name')->get();
+            $result = [];
+
+            foreach ($categories as $cat) {
+                if ($cat->products->isEmpty()) {
+                    continue;
+                }
+
+                $result[] = [
+                    'category' => [
+                        'id' => $cat->id,
+                        'name' => $cat->name,
+                        'image_url' => $cat->getFirstMediaUrl('image') ?: asset('images/placeholder.png'),
+                    ],
+                    'products' => ProductResource::collection($cat->products)->resolve(),
+                ];
+            }
+
+            return $result;
+        });
 
         $duration = round((microtime(true) - $start) * 1000, 2);
         Log::info('📦 loadData done', [
-            'duration_ms' => $duration,
-            'user_agent' => request()->userAgent(),
-            'url' => request()->fullUrl(),
-        ]);
-    }
-
-    public function loadProducts()
-    {
-        $start = microtime(true);
-
-        $categories = Category::select('id', 'name')->get();
-        $byCat = [];
-
-        foreach ($categories as $cat) {
-            $products = Cache::remember("category_products_{$cat->id}", now()->addMonths(2), function () use ($cat) {
-                return Product::where('category_id', $cat->id)->get();
-            });
-
-
-            // در صورت نبود محصول، از افزودن دسته صرف‌نظر می‌کنیم
-            if ($products->isEmpty()) {
-                continue;
-            }
-
-            $byCat[$cat->id]['category'] = [
-                'id' => $cat->id,
-                'name' => $cat->name,
-                'image_url' => $cat->getFirstMediaUrl('image') ?: asset('images/placeholder.png'),
-            ];
-
-            $byCat[$cat->id]['products'] = ProductResource::collection($products)->resolve();
-        }
-
-        $this->productsByCategory = array_values($byCat);
-
-        $duration = round((microtime(true) - $start) * 1000, 2);
-        Log::info('🛍 loadProducts done', [
             'duration_ms' => $duration,
             'user_agent' => request()->userAgent(),
             'url' => request()->fullUrl(),

@@ -12,6 +12,7 @@
 /bootstrap/cache/*
 !bootstrap/cache/.gitignore
 /public/build/
+/public/hot
 
 
 # IDEs and editors
