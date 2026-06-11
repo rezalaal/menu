@@ -17,14 +17,8 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            // 'products' => ProductResource::collection($this->whenLoaded('products'))->resolve()
             'product_count' => $this->products()->count(),
-            // $this->mergeWhen(
-            //     !$request->is('api/*'),
-            //     fn () => [
-            //         'products' => ProductResource::collection($this->whenLoaded('products'))->resolve(),
-            //     ]
-            // ),
+            'image_url' => $this->getFirstMediaUrl('image') ?: asset('images/placeholder.png'),
         ];
     }
 }

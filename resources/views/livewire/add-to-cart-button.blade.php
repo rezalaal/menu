@@ -1,31 +1,26 @@
-<div class="z-10 w-full max-w-sm mx-auto px-4">
+<div class="z-10 w-full max-w-sm mx-auto">
     @if($loggedIn)
         @if ($onCartItems)
-            <div wire:loading.remove class="grid grid-cols-3 gap-2 mt-4 items-center text-center">
+            <div wire:loading.remove class="flex items-center justify-center gap-2 mt-2">
                 <button wire:click="increase"
-                        class="bg-lime-600 hover:bg-lime-700 text-white text-xl font-dastnevis py-3 rounded-xl shadow-lg transition duration-200 touch-manipulation">
+                    class="w-8 h-8 flex items-center justify-center bg-coral text-white rounded-lg hover:bg-coral-from transition text-sm font-iransans-bold shadow-soft active:scale-95">
                     +
                 </button>
-
-                <span class="font-iransans-bold farsi-number text-lime-900 text-2xl">
+                <span class="min-w-[20px] text-center font-iransans-bold text-sm farsi-number text-coral-from">
                     {{ $qty }}
                 </span>
-
                 <button wire:click="decrease"
-                        class="bg-yellow-200 hover:bg-yellow-300 text-lime-950 text-xl font-dastnevis py-3 rounded-xl shadow-lg transition duration-200 touch-manipulation">
-                    -
+                    class="w-8 h-8 flex items-center justify-center bg-coral/20 text-coral-from rounded-lg hover:bg-coral hover:text-white transition text-sm active:scale-95">
+                    −
                 </button>
             </div>
-
-            <span wire:loading class="block text-center pt-2 text-sm text-gray-600">در حال بروزرسانی...</span>
-
+            <span wire:loading class="block text-center text-xs text-coral-from/50 font-iransans-thin animate-pulse">در حال بروزرسانی...</span>
         @else
             <button wire:click="add"
-                class="w-full bg-lime-600 hover:bg-lime-700 text-white text-base font-dastnevis py-2 rounded-lg shadow-md mt-4 transition duration-200">
+                class="w-full bg-coral hover:bg-coral-from text-white text-sm font-iransans-thin py-2 rounded-xl shadow-soft transition-all duration-300 active:scale-95">
                 افزودن به سفارش
             </button>
-
-            <span wire:loading class="block text-center pt-2 text-sm text-gray-600">در حال افزودن...</span>
-        @endif   
+            <span wire:loading class="block text-center text-xs text-coral-from/50 font-iransans-thin mt-1 animate-pulse">در حال افزودن...</span>
+        @endif
     @endif
 </div>

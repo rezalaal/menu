@@ -1,5 +1,11 @@
-<div dir="rtl" class="bg-gradient-to-b from-coral-from to-coral-to h-screen pb-48 flex flex-col md:items-center">
-    <h1 class="font-dastnevis text-3xl mt-10 px-4 text-white">جستجو</h1>
-    <livewire:search-input />
+<div dir="rtl" class="min-h-screen pb-32">
+    <div class="bg-gradient-brand rounded-b-3xl shadow-soft p-6 pt-8">
+        <h1 class="font-dastnevis text-3xl text-white text-shadow">جستجو</h1>
+    </div>
+
+    <div class="px-4 mt-2">
+        <livewire:search-input />
+    </div>
+
     <livewire:footer-menu />
 </div>

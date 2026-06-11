@@ -1,135 +1,132 @@
 <div
     x-data="cart"
     x-init="startWatcher()"
-    class="relative flex flex-col items-center justify-center mt-6"
 >
-    <!-- دکمه سبد خرید -->
-    <div>
-        <button
-            @click="showModal = true"
-            class="fixed flex justify-center items-center bottom-14 left-0 rounded-tr-xl bg-coral text-white p-3 shadow-lg hover:bg-orange-500 transition"
-        >
-            <!-- آیکون -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3
-                    2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6
-                    20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5
-                    0 .75.75 0 0 1 1.5 0Z"
-                />
-            </svg>
-            <span x-show="cartCount > 0" x-text="cartCount"
-                class="farsi-number font-iransans-bold absolute left-2 top-1 text-[9px]"
-            ></span>
-        </button>
-    </div>
+    <!-- دکمه سبد خرید شناور -->
+    <button
+        @click="showModal = true"
+        class="fixed flex items-center justify-center bottom-24 left-4 rounded-2xl bg-gradient-header text-coral-from p-3.5 shadow-glow-lg hover:shadow-soft hover:scale-110 active:scale-95 transition-all duration-300 z-30"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3
+                2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6
+                20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5
+                0 .75.75 0 0 1 1.5 0Z"
+            />
+        </svg>
+        <span x-show="cartCount > 0" x-text="cartCount"
+            class="farsi-number font-iransans-bold absolute -top-1 -right-1 bg-red-500 text-white text-[9px] rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1 shadow-lg"
+        ></span>
+    </button>
 
     <!-- مودال سبد خرید -->
     <div
         x-show="showModal"
-        x-transition
+        x-cloak
+        x-transition:enter="transition-all duration-300 ease-out"
+        x-transition:enter-start="opacity-0 translate-y-8"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition-all duration-200 ease-in"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 translate-y-8"
         @close-modal.window="(event.detail.includes('modal')) ? showModal = false : null"
-        class="fixed inset-0 bg-white z-50 flex flex-col max-h-screen overflow-y-auto px-6 py-10"
-        style="display: none;"
+        class="fixed inset-0 z-50 flex flex-col bg-coral-body overflow-y-auto"
+        dir="rtl"
     >
-        <livewire:back modal="modal"/>
-        <h3 class="font-iransans-extrabold text-center text-coral text-3xl mb-6">سبد خرید</h3>
+        <!-- هدر -->
+        <div class="sticky top-0 z-10 bg-coral-header/90 backdrop-blur-lg p-4 flex items-center">
+            <button @click="showModal = false" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/60 text-coral-from hover:bg-coral hover:text-white transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <h2 class="flex-1 text-center font-dastnevis text-coral-from text-lg">سبد خرید</h2>
+            <div class="w-8"></div>
+        </div>
 
-        <template x-if="items.length === 0">
-            <p class="text-center text-gray-500 font-iransans-bold">سبد خرید شما خالی است.</p>
-        </template>
-
-        <template x-for="item in items" :key="item.id">
-            <div dir="rtl" class="relative flex items-center justify-between border-b px-4 py-2 gap-4 shadow-sm shadow-coral rounded mt-4">
-
-                <!-- دکمه حذف -->
-                <button
-                    @click="removeItem(item.id)"
-                    class="absolute top-1 left-1 text-coral transition"
-                    title="حذف"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        <div class="flex-1 p-4">
+            <template x-if="items.length === 0">
+                <div class="flex flex-col items-center justify-center mt-20 text-coral-from/50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 mb-4 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/>
                     </svg>
-                </button>
-
-                <!-- تصویر محصول -->
-                <div class="w-16 h-16 flex-shrink-0">
-                    <img
-                        :src="item.image_url || '/images/category.jpg'"
-                        alt=""
-                        class="w-full h-full object-cover rounded"
-                    >
+                    <p class="font-iransans-thin">سبد خرید شما خالی است.</p>
                 </div>
+            </template>
 
-                <!-- اطلاعات محصول -->
-                <div class="flex-1 flex flex-col justify-between text-right">
-                    <h4 class="font-iransans-bold text-[11px] text-gray-800 mb-1" x-text="item.name"></h4>
+            <template x-for="item in items" :key="item.id">
+                <div class="card-coral p-3 mb-3 flex items-center gap-3 animate-fade-in-up">
+                    <button
+                        @click="removeItem(item.id)"
+                        class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-red-50 text-red-400 hover:bg-red-100 hover:text-red-600 transition"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
 
-                    <div class="farsi-number text-coral text-[11px] font-iransans-bold mb-1">
-                        <span class="farsi-number font-iransans-bold" x-text="formatPrice(item.price)"></span> تومان
+                    <img :src="item.image_url || '/images/placeholder.png'" alt=""
+                        class="w-14 h-14 rounded-xl object-cover shadow-soft flex-shrink-0">
+
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-iransans-thin text-sm text-coral-from truncate" x-text="item.name"></h4>
+                        <div class="farsi-number font-iransans-regular text-xs text-coral-to/70 mt-0.5">
+                            <span class="farsi-number" x-text="formatPrice(item.price)"></span> تومان
+                        </div>
                     </div>
 
-                    <div class="flex items-center gap-1 mt-1">
-
-                        <!-- دکمه افزایش -->
+                    <div class="flex items-center gap-1.5 flex-shrink-0">
                         <button
                             wire:loading.remove
                             @click="increaseQuantity(item)"
-                            class="bg-coral hover:bg-gray-300 text-white hover:text-black rounded w-6 h-6 text-sm font-bold"
+                            class="w-7 h-7 flex items-center justify-center bg-coral/20 text-coral-from rounded-lg hover:bg-coral hover:text-white transition text-sm"
                         >+</button>
-
-                        <!-- عدد -->
-                        <span class="farsi-number font-iransans-bold text-sm w-4 text-center" x-text="item.quantity"></span>
-
-                        <!-- دکمه کاهش -->
+                        <span class="min-w-[20px] text-center font-iransans-bold text-sm farsi-number text-coral-from" x-text="item.quantity"></span>
                         <button
                             wire:loading.remove
                             @click="decreaseQuantity(item)"
-                            class="bg-coral hover:bg-gray-300 text-white hover:text-black rounded w-6 h-6 text-sm font-bold"
+                            class="w-7 h-7 flex items-center justify-center bg-coral/20 text-coral-from rounded-lg hover:bg-coral hover:text-white transition text-sm"
                             :disabled="item.quantity <= 1"
                         >−</button>
-
                     </div>
-
                 </div>
-            </div>
-        </template>
+            </template>
+        </div>
 
         <template x-if="items.length > 0">
-            <div>
-                <!-- جمع کل -->
-                <div class="pt-2 mt-6 text-lg text-right text-gray-800 font-iransans-bold">
-                    جمع کل: <span class="farsi-number font-iransans-bold" x-text="formatPrice(totalPrice)"></span> تومان
+            <div class="sticky bottom-0 bg-coral-body/90 backdrop-blur-lg border-t border-coral/10 p-4 space-y-3">
+                <div class="flex items-center justify-between px-2">
+                    <span class="font-iransans-thin text-coral-from">جمع کل:</span>
+                    <span class="font-iransans-bold farsi-number text-coral-from text-lg" x-text="formatPrice(totalPrice)"></span>
                 </div>
 
-                <div class="text-coral text-center p-4 font-iransans-bold">
+                <div class="text-coral-from/60 text-xs text-center font-iransans-thin">
                     @error('cart') {{ $message }} @enderror
                 </div>
 
-                <!-- دکمه نهایی سازی -->
                 <button
                     wire:loading.remove
                     @click="finalizeOrder()"
-                    class="w-full bg-coral text-white font-iransans-thin mt-6 py-2 px-4 rounded shadow hover:bg-orange-500 transition"
+                    class="btn-secondary w-full py-2.5 rounded-xl text-sm"
                 >
                     نهایی‌سازی سفارش
                 </button>
 
-                <div wire:loading class="font-iransans-regular text-base text-center text-coral mt-6 py-2 px-4 transition">
+                <div wire:loading class="btn-secondary w-full py-2.5 rounded-xl text-sm text-center opacity-70 cursor-not-allowed">
                     در حال ثبت سفارش
                 </div>
             </div>
         </template>
 
-
-        <!-- دکمه برگشت -->
-        <button
-            @click="showModal = false"
-            class="text-coral border border-coral py-2 px-5 rounded mt-4 font-iransans-thin hover:bg-coral hover:text-white transition"
-        >
-            بازگشت
-        </button>
+        <div class="p-4" x-show="items.length === 0">
+            <button
+                @click="showModal = false"
+                class="btn-outline w-full py-2.5 rounded-xl text-sm"
+            >
+                بازگشت
+            </button>
+        </div>
     </div>
 </div>
 

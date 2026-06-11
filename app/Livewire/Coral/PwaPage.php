@@ -85,6 +85,7 @@ class PwaPage extends Component
             $byCat[$cat->id]['category'] = [
                 'id' => $cat->id,
                 'name' => $cat->name,
+                'image_url' => $cat->getFirstMediaUrl('image') ?: asset('images/placeholder.png'),
             ];
 
             $byCat[$cat->id]['products'] = ProductResource::collection($products)->resolve();

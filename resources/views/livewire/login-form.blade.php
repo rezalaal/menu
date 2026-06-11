@@ -1,24 +1,31 @@
-<form class="flex flex-col mb-10 items-center justify-center"  wire:submit="SendOtp">
-    <div dir="rtl" class="text-red-900 text-center p-4 font-iransans-black">@error('mobile') {{ $message }} @enderror</div>
-    <input
-        wire:loading.remove
-        wire:model="mobile"
-        class="farsi-number placeholder:font-iransans-thin flex justify-center items-center no-spinner placeholder-lime-900 font-iransans-extrabold bg-gray-100 w-80 text-right text-sm text-center outline-0 px-4 py-2 shadow-2xl text-lime-900"
-        dir="rtl"
-        type="tel"
-        inputmode="numeric"
-        minlength="11"
-        maxlength="11"
-        placeholder="شماره تلفن همراه">
+<form class="flex flex-col items-center justify-center w-full max-w-sm mx-auto space-y-4" wire:submit="SendOtp">
+    <div dir="rtl" class="text-red-400 text-sm text-center font-iransans-thin">@error('mobile') {{ $message }} @enderror</div>
+
+    <div class="w-full">
+        <input
+            wire:loading.remove
+            wire:model="mobile"
+            class="input-coral text-center farsi-number"
+            dir="rtl"
+            type="tel"
+            inputmode="numeric"
+            minlength="11"
+            maxlength="11"
+            placeholder="شماره تلفن همراه">
+    </div>
 
     <button
         wire:loading.remove
-        class="flex justify-center items-center border-1 font-iransans-thin bg-coral w-80 px-4  py-2 mt-2 shadow-2xl hover:bg-gray-200 text-white hover:text-black text-sm"
+        class="btn-secondary w-full py-3 rounded-2xl text-sm"
     >
-    ورود
+        ورود
     </button>
-    <a href="/" class="flex justify-center items-center border-1 font-iransans-thin bg-coral-to w-80 px-4 py-2 mt-2 shadow-2xl hover:bg-gray-200 text-white hover:text-black text-sm">
+
+    <a href="/" class="btn-outline w-full py-3 rounded-2xl text-sm text-center block">
         مشاهده منو بدون ثبت نام
     </a>
-    <span wire:loading class="loading text-center mt-2 loading-dots loading-lg px-4 py-1 w-full text-white bg-coral font-iransans-thin">در حال ارسال کد</span>
+
+    <span wire:loading class="btn-secondary w-full py-3 rounded-2xl text-sm text-center opacity-70 cursor-not-allowed">
+        در حال ارسال کد
+    </span>
 </form>

@@ -10,32 +10,35 @@
     <link rel="manifest" href="{{ asset('images/favicon/site.webmanifest') }}">
     <link rel="mask-icon" href="{{ asset('images/favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#f2e8cf">
 
     @vite('resources/css/app.css')
     @livewireStyles
 
-    <!-- Google Fonts -->
-    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&family=Mallanna&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Sacramento&display=swap" rel="stylesheet"> --}}
-
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <title>{{ $title ?? 'Coral Food کورال فود' }}</title>
 </head>
-<body class="bg-coral-to">
+<body class="min-h-screen overflow-x-hidden">
 
-    <livewire:header>
+    <!-- پس‌زمینه -->
+    <div class="fixed inset-0 bg-gradient-warm -z-10"></div>
 
-    <!-- Main Slot -->
-    <main class="max-w-screen-sm mx-auto">
-        {{ $slot }}
-    </main>
+    <!-- دایره‌های دکوراتیو گلس مورفیسم -->
+    <div class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-coral-from/15 blur-[100px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-[-5%] left-[-15%] w-[400px] h-[400px] rounded-full bg-coral/15 blur-[100px] pointer-events-none -z-10"></div>
+    <div class="fixed top-[40%] left-[30%] w-[250px] h-[250px] rounded-full bg-coral-to/20 blur-[100px] pointer-events-none -z-10"></div>
 
+    <div class="relative z-0">
+        <livewire:header>
 
-    <livewire:footer>
-        
-    <!-- Scripts -->
+        <main class="max-w-screen-sm mx-auto pb-24 animate-fade-in-up">
+            {{ $slot }}
+        </main>
+
+        <livewire:footer>
+        <livewire:footer-menu>
+    </div>
+
     @vite('resources/js/app.js')
     @stack('scripts')
     @livewireScripts

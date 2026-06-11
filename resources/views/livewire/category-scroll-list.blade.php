@@ -3,23 +3,24 @@
      class="flex flex-col w-full overflow-hidden">
 
     <template x-if="loading">
-        <div class="bg-yellow-100 text-yellow-800 p-2 text-center rounded shadow mb-2 font-dastnevis">
-            در حال بارگذاری دسته‌بندی، لطفاً صبر کنید...
+        <div class="bg-coral/20 text-coral-from text-xs p-2 text-center rounded-xl font-iransans-thin animate-pulse mx-4">
+            در حال بارگذاری دسته‌بندی...
         </div>
     </template>
 
-    <ul class="flex text-3xl scroll-smooth snap-start overflow-x-auto max-w-full box-border m-4 no-scrollbar">
+    <ul class="flex scroll-smooth snap-start overflow-x-auto max-w-full box-border px-4 py-2 no-scrollbar gap-2">
         @foreach ($categories as $category)
             @php
                 $isActive = $category->id == $categoryId;
-                $baseClass = 'font-dastnevis text-black text-sm cursor-pointer px-4 py-2 rounded-xl shadow-md flex flex-row mx-2 whitespace-nowrap';
-                $bgClass = $isActive ? 'bg-lime-100' : 'bg-lime-200';
             @endphp
-            <li>
-                <a 
-                    href="#" 
+            <li class="snap-start">
+                <a
+                    href="#"
                     wire:click.prevent="category({{ $category->id }})"
-                    class="{{ $baseClass }} {{ $bgClass }}">
+                    class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-iransans-thin transition-all duration-300 block
+                        {{ $isActive
+                            ? 'bg-coral text-white shadow-glow scale-105 font-iransans-bold'
+                            : 'bg-white/70 text-coral-from/70 hover:bg-white hover:text-coral-from shadow-soft' }}">
                     {{ $category->name }}
                 </a>
             </li>

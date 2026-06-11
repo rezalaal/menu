@@ -1,30 +1,32 @@
-<div        
-        class="fixed inset-0 z-50 flex items-center justify-center pt-16 pb-16 overflow-auto bg-coral-body"
-        dir="rtl"
-    >
-        <livewire:back to="/?page=menu" />
-        <div class="relative bg-coral-body rounded-lg w-full max-w-3xl mx-auto mt-16 px-6 py-12 overflow-y-auto max-h-screen">            
+<div class="min-h-screen bg-coral-body flex flex-col" dir="rtl">
+    <livewire:back to="/?page=menu" />
 
-            <!-- ظرف تصویر با نسبت 16:9 -->
-            <div class="relative aspect-video w-full mb-4 rounded-lg overflow-hidden">                
-                <img src="{{ $product->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}"
+    <div class="flex-1 p-4 pt-20 max-w-3xl mx-auto w-full">
+        <div class="relative rounded-3xl overflow-hidden mb-4 shadow-soft">
+            <div class="aspect-video">
+                <img src="{{ $product->getFirstMediaUrl() ?: asset('images/placeholder.png') }}"
                     alt="{{ $product->name }}"
-                    class="w-full h-full object-cover shadow" />
+                    class="w-full h-full object-cover" />
             </div>
+        </div>
 
-
-            <!-- عنوان، قیمت و توضیح -->
-            <h2 class="text-xl font-iransans-thin mb-2 text-center">{{ $product->name }}</h2>
-            <p class="text-center font-iransans-regular farsi-number mb-4">
-                {{ number_format($product->price) }} تومان   
-            </p>
-            <div>
+        <div class="card-coral p-5 mb-4">
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="font-iransans-thin text-xl text-coral-from">{{ $product->name }}</h2>
+                <span class="font-iransans-regular farsi-number text-sm px-3 py-1 rounded-full bg-coral/15 text-coral-from">
+                    {{ number_format($product->price) }} تومان
+                </span>
+            </div>
+            <div class="font-iransans-thin text-sm text-coral-from/70 leading-relaxed">
                 {!! Str::markdown(strip_tags($product->description)) !!}
             </div>
+        </div>
 
-            <!-- دکمه بازگشت -->
-            <button onclick="window.location.href='/?page=menu'"  class="text-white w-full bg-coral py-2 mb-16 px-5 rounded mt-10 font-iransans-thin transition">
+        <div class="card-coral p-4 sticky bottom-0">
+            <button onclick="window.location.href='/?page=menu'"
+                class="btn-secondary w-full py-2.5 rounded-xl text-sm">
                 بازگشت
             </button>
         </div>
+    </div>
 </div>

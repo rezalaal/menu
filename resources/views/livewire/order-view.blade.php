@@ -1,39 +1,42 @@
-<div dir="rtl" class="bg-gradient-to-b from-coral-from to-coral-to min-h-screen pb-48 flex flex-col">
-    <h1 class="font-dastnevis text-3xl font-black mt-10 px-4 text-white">
-        سفارش <span class="text-lg">{{ verta($order->created_at)->format("Y/m/d :: H:i")}}</span>
-    </h1>
+<div dir="rtl" class="min-h-screen pb-32">
+    <div class="bg-gradient-brand rounded-b-3xl shadow-soft p-6 pt-8">
+        <h1 class="font-dastnevis text-2xl text-white text-shadow">
+            سفارش <span class="text-sm font-iransans-thin">{{ verta($order->created_at)->format("Y/m/d :: H:i")}}</span>
+        </h1>
+    </div>
 
-    <livewire:search-input />
-    @foreach ($order->orderLines as $item)
-        <div class="bg-white mx-4 mt-4 rounded-2xl shadow-lg p-3 flex items-center">
-            <a href="/product/{{ $item->product->id }}">
-                <img class="w-24 h-24 object-cover rounded-xl border"
-                     src="{{ $item->product->getFirstMediaUrl() ?: config('app.url').'/images/category.jpg' }}"
-                     loading="lazy"
-                     alt="Product Picture">
-            </a>
-            <div class="mr-4 flex flex-col justify-between gap-1">
-                <h3 class="text-lime-950 text-xl font-dastnevis font-black">{{ $item->product->name }}</h3>
-                <span class="text-lime-800 font-dastnevis farsi-number">{{ number_format($item->price) }} تومان</span>
-                <div class="text-sm text-gray-700 flex items-center gap-2 mt-1 font-dastnevis">
-                    <span>تعداد:</span>
-                    <span class="farsi-number font-iransans-bold">{{ $item->qty }}</span>
+    <div class="px-4 mt-4 space-y-3">
+        @foreach ($order->orderLines as $item)
+            <div class="card-coral p-3 flex items-center gap-3">
+                <a href="/product/{{ $item->product->id }}" class="flex-shrink-0">
+                    <img class="w-16 h-16 object-cover rounded-xl shadow-soft"
+                         src="{{ $item->product->getFirstMediaUrl() ?: asset('images/placeholder.png') }}"
+                         loading="lazy"
+                         alt="Product Picture">
+                </a>
+                <div class="flex-1 min-w-0">
+                    <h3 class="font-iransans-thin text-sm text-coral-from truncate">{{ $item->product->name }}</h3>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="font-iransans-thin text-xs text-coral-from/60">تعداد:</span>
+                        <span class="farsi-number font-iransans-bold text-xs text-coral-from">{{ $item->qty }}</span>
+                    </div>
+                    <span class="font-iransans-regular text-xs farsi-number text-coral-from/70">{{ number_format($item->price) }} تومان</span>
                 </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
+    </div>
 
-    <div class="border-t border-dotted border-lime-950 mx-4 my-6"></div>
+    <div class="border-t border-coral/20 mx-4 my-6"></div>
 
-    <div class="bg-white mx-4 rounded-2xl shadow-md p-4 flex flex-col gap-3 font-dastnevis text-lg">
-        <div class="flex justify-between">
-            <span>وضعیت</span>
-            <span class="font-black">{{ $order->status }}</span>
+    <div class="card-coral mx-4 p-4 space-y-3">
+        <div class="flex items-center justify-between">
+            <span class="font-iransans-thin text-coral-from/60">وضعیت</span>
+            <span class="font-iransans-bold text-sm text-coral-from">{{ $order->status }}</span>
         </div>
-        <div class="flex justify-between">
-            <span>جمع کل</span>
-            <span class="font-iransans-bold farsi-number">
-                {{ number_format($order->total) }} <span class="font-dastnevis">تومان</span>
+        <div class="flex items-center justify-between">
+            <span class="font-iransans-thin text-coral-from/60">جمع کل</span>
+            <span class="font-iransans-bold farsi-number text-coral-from">
+                {{ number_format($order->total) }} <span class="font-iransans-thin text-xs">تومان</span>
             </span>
         </div>
     </div>
