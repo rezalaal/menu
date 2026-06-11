@@ -188,6 +188,7 @@ class AuthController extends Controller
         if (!$user) {
             // اگر وجود نداشت، می‌تونیم کاربر جدید بسازیم
             $user = User::create([
+                'name' => $sessionOtp['mobile'],
                 'username' => $sessionOtp['mobile'],
                 'password' => bcrypt(str()->random(16)), // رمز رندوم
             ]);

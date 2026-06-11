@@ -17,12 +17,10 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        $category = Category::inRandomOrder()->first();
-
         return [
             'name' => fake()->name,
             'description' => fake()->paragraph(1),
-            'category_id' => $category->id,
+            'category_id' => \App\Models\Category::factory(),
             'price' => fake()->numberBetween(20000,150000)
         ];
     }

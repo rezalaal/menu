@@ -17,7 +17,10 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => \App\Models\User::factory(),
+            'table_id' => \App\Models\Table::factory(),
+            'total' => fake()->numberBetween(50000, 500000),
+            'status' => \App\Enums\OrderStatus::PENDING,
         ];
     }
 }
