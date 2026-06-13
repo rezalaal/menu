@@ -86,7 +86,7 @@ class TableResource extends Resource
                     ->icon('heroicon-o-qr-code') // show custom icon
 
                     // direct HTML content
-                    ->content(fn($record) => new HtmlString(Qr::render(data:config('app.url').'/table/'.$record->id)))
+                    ->content(fn($record) => new HtmlString(Qr::render(data:config('app.url').'/table/'.$record->id, options:['type' => 'svg'])))
             ])
             ->filters([
                //
