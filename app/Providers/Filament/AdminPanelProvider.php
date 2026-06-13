@@ -17,6 +17,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Support\Facades\FilamentView;
 use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
 
 
@@ -43,6 +44,18 @@ class AdminPanelProvider extends PanelProvider
                 // Widgets\FilamentInfoWidget::class,
             ])
             ->plugin(FilamentSpatieLaravelBackupPlugin::make())
+            ->renderHook(
+                'head',
+                fn () => new \Illuminate\Support\HtmlString('
+                    <link rel="preconnect" href="https://fonts.bunny.net">
+                    <link href="https://fonts.bunny.net/css?family=vazirmatn:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+                    <style>
+                        [data-filament-app], .fi-body, .fi-sidebar, .fi-page-content, .fi-topbar, input, textarea, select, button, h1, h2, h3, h4, h5, h6, p, span, div, td, th, label, a {
+                            font-family: "Vazirmatn", sans-serif !important;
+                        }
+                    </style>
+                ')
+            )
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
