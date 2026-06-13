@@ -17,7 +17,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Filament\Support\Facades\FilamentView;
 use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
 
 
@@ -90,8 +89,8 @@ class AdminPanelProvider extends PanelProvider
                             font-style: normal;
                             font-display: swap;
                         }
-                        [data-filament-app], .fi-body, .fi-sidebar, .fi-page-content, .fi-topbar, input, textarea, select, button, h1, h2, h3, h4, h5, h6, p, span, div, td, th, label, a {
-                            font-family: "IRANSansX", sans-serif !important;
+                        :root {
+                            --font-family: "IRANSansX", sans-serif !important;
                         }
                     </style>
                 ')
