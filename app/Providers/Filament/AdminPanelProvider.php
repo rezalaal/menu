@@ -9,6 +9,8 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Facades\FilamentView;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -32,6 +34,7 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Lime,
             ])
+            ->font('IRANSansX')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -44,7 +47,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugin(FilamentSpatieLaravelBackupPlugin::make())
             ->renderHook(
-                'head',
+                PanelsRenderHook::STYLES_AFTER,
                 fn () => new \Illuminate\Support\HtmlString('
                     <style>
                         @font-face {
@@ -88,9 +91,6 @@ class AdminPanelProvider extends PanelProvider
                             font-weight: 100;
                             font-style: normal;
                             font-display: swap;
-                        }
-                        :root {
-                            --font-family: "IRANSansX", sans-serif !important;
                         }
                     </style>
                 ')
