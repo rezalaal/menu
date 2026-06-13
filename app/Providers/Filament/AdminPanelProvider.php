@@ -47,11 +47,51 @@ class AdminPanelProvider extends PanelProvider
             ->renderHook(
                 'head',
                 fn () => new \Illuminate\Support\HtmlString('
-                    <link rel="preconnect" href="https://fonts.bunny.net">
-                    <link href="https://fonts.bunny.net/css?family=vazirmatn:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
                     <style>
+                        @font-face {
+                            font-family: "IRANSansX";
+                            src: url("' . asset('fonts/woff2/IRANSansX-Regular.woff2') . '") format("woff2");
+                            font-weight: 400;
+                            font-style: normal;
+                            font-display: swap;
+                        }
+                        @font-face {
+                            font-family: "IRANSansX";
+                            src: url("' . asset('fonts/woff2/IRANSansX-Medium.woff2') . '") format("woff2");
+                            font-weight: 500;
+                            font-style: normal;
+                            font-display: swap;
+                        }
+                        @font-face {
+                            font-family: "IRANSansX";
+                            src: url("' . asset('fonts/woff2/IRANSansX-Bold.woff2') . '") format("woff2");
+                            font-weight: 700;
+                            font-style: normal;
+                            font-display: swap;
+                        }
+                        @font-face {
+                            font-family: "IRANSansX";
+                            src: url("' . asset('fonts/woff2/IRANSansX-ExtraBold.woff2') . '") format("woff2");
+                            font-weight: 800;
+                            font-style: normal;
+                            font-display: swap;
+                        }
+                        @font-face {
+                            font-family: "IRANSansX";
+                            src: url("' . asset('fonts/woff2/IRANSansX-Light.woff2') . '") format("woff2");
+                            font-weight: 300;
+                            font-style: normal;
+                            font-display: swap;
+                        }
+                        @font-face {
+                            font-family: "IRANSansX";
+                            src: url("' . asset('fonts/woff2/IRANSansX-Thin.woff2') . '") format("woff2");
+                            font-weight: 100;
+                            font-style: normal;
+                            font-display: swap;
+                        }
                         [data-filament-app], .fi-body, .fi-sidebar, .fi-page-content, .fi-topbar, input, textarea, select, button, h1, h2, h3, h4, h5, h6, p, span, div, td, th, label, a {
-                            font-family: "Vazirmatn", sans-serif !important;
+                            font-family: "IRANSansX", sans-serif !important;
                         }
                     </style>
                 ')
