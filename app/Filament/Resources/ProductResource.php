@@ -51,31 +51,31 @@ class ProductResource extends Resource
                         ->nullable()
                         ->columnSpan(10),
 
-                    Forms\Components\Actions::make([
-                        FormAction::make('generate_description')
-                            ->label('تولید خودکار با AI')
-                            ->icon('heroicon-m-sparkles')
-                            ->action(function ($state, callable $set, callable $get) {
-                                $title = $get('name');
+                    // Forms\Components\Actions::make([
+                    //     FormAction::make('generate_description')
+                    //         ->label('تولید خودکار با AI')
+                    //         ->icon('heroicon-m-sparkles')
+                    //         ->action(function ($state, callable $set, callable $get) {
+                    //             $title = $get('name');
 
-                                if (!$title) {
-                                    Notification::make()
-                                        ->title('عنوان پیام')
-                                        ->body('متن پیام')
-                                        ->warning()
-                                        ->send();
+                    //             if (!$title) {
+                    //                 Notification::make()
+                    //                     ->title('عنوان پیام')
+                    //                     ->body('متن پیام')
+                    //                     ->warning()
+                    //                     ->send();
 
-                                    return;
-                                }
+                    //                 return;
+                    //             }
 
-                                // سرویس OpenAI را صدا بزن
-                                $openAi = app(OpenAiService::class);
-                                $generated = $openAi->generateProductDescription($title);
+                    //             // سرویس OpenAI را صدا بزن
+                    //             $openAi = app(OpenAiService::class);
+                    //             $generated = $openAi->generateProductDescription($title);
 
-                                $set('description', $generated); // مقداردهی به فیلد description
-                            }),
-                    ])
-                    ->columnSpan(2),
+                    //             $set('description', $generated); // مقداردهی به فیلد description
+                    //         }),
+                    // ])
+                    // ->columnSpan(2),
                 ]),
 
             Forms\Components\TextInput::make('price')
