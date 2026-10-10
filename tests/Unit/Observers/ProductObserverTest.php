@@ -2,54 +2,46 @@
 
 namespace Tests\Unit\Observers;
 
-use Tests\TestCase;
 use App\Models\Product;
-use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
+use Tests\TestCase;
 
 class ProductObserverTest extends TestCase
 {
-    public function test_saved_clears_category_products_cache(): void
+    public function test_saved_clears_catalog_caches(): void
     {
-        $category = Category::factory()->create();
-        $cacheKey = "category_products_{$category->id}";
+        Cache::put('products_by_category_v2', ['cached'], 60);
+        Cache::put('categories_v2', ['cached'], 60);
 
-        Cache::put($cacheKey, ['cached'], 60);
-        $this->assertTrue(Cache::has($cacheKey));
+        Product::factory()->create();
 
-        Product::factory()->create(['category_id' => $category->id]);
-
-        $this->assertFalse(Cache::has($cacheKey));
+        $this->assertFalse(Cache::has('products_by_category_v2'));
+        $this->assertFalse(Cache::has('categories_v2'));
     }
 
-    public function test_saved_with_category_change_clears_original_cache(): void
+    public function test_price_change_clears_catalog_caches(): void
     {
-        $oldCategory = Category::factory()->create();
-        $newCategory = Category::factory()->create();
-        $oldCacheKey = "category_products_{$oldCategory->id}";
-        $newCacheKey = "category_products_{$newCategory->id}";
+        $product = Product::factory()->create(['price' => 1000]);
 
-        $product = Product::factory()->create(['category_id' => $oldCategory->id]);
+        Cache::put('products_by_category_v2', ['cached'], 60);
+        Cache::put('categories_v2', ['cached'], 60);
 
-        Cache::put($oldCacheKey, ['cached'], 60);
-        Cache::put($newCacheKey, ['cached'], 60);
+        $product->update(['price' => 2000]);
 
-        $product->update(['category_id' => $newCategory->id]);
-
-        $this->assertFalse(Cache::has($oldCacheKey));
-        $this->assertFalse(Cache::has($newCacheKey));
+        $this->assertFalse(Cache::has('products_by_category_v2'));
+        $this->assertFalse(Cache::has('categories_v2'));
     }
 
-    public function test_deleted_clears_category_products_cache(): void
+    public function test_deleted_clears_catalog_caches(): void
     {
         $product = Product::factory()->create();
-        $cacheKey = "category_products_{$product->category_id}";
 
-        Cache::put($cacheKey, ['cached'], 60);
-        $this->assertTrue(Cache::has($cacheKey));
+        Cache::put('products_by_category_v2', ['cached'], 60);
+        Cache::put('categories_v2', ['cached'], 60);
 
         $product->delete();
 
-        $this->assertFalse(Cache::has($cacheKey));
+        $this->assertFalse(Cache::has('products_by_category_v2'));
+        $this->assertFalse(Cache::has('categories_v2'));
     }
 }

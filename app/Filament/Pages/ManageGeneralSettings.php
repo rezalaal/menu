@@ -2,13 +2,13 @@
 
 namespace App\Filament\Pages;
 
-use Filament\Forms;
+use App\Settings\GeneralSettings;
 use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
-use App\Settings\GeneralSettings;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Tabs;
+use Illuminate\Support\Facades\Cache;
 
 class ManageGeneralSettings extends SettingsPage
 {
@@ -18,9 +18,9 @@ class ManageGeneralSettings extends SettingsPage
 
     protected static ?string $navigationGroup = 'تنظیمات';
 
-    protected static ?string $navigationLabel = "اطلاعات پایه";
+    protected static ?string $navigationLabel = 'اطلاعات پایه';
 
-    protected static ?string $title = "اطلاعات پایه";
+    protected static ?string $title = 'اطلاعات پایه';
 
     public function form(Form $form): Form
     {
@@ -63,8 +63,12 @@ class ManageGeneralSettings extends SettingsPage
                                     ->label('ساعات کاری')
                                     ->columnSpanFull(),
                             ]),
-                    ])
+                    ]),
             ]);
     }
 
+    protected function afterSave(): void
+    {
+        Cache::forget('general_settings');
+    }
 }

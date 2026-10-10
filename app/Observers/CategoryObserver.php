@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Observers;
 
 use App\Models\Category;
@@ -8,11 +9,17 @@ class CategoryObserver
 {
     public function saved(Category $category): void
     {
-        Cache::forget('categories_with_count');
+        $this->forgetCatalogCaches();
     }
 
     public function deleted(Category $category): void
     {
-        Cache::forget('categories_with_count');
+        $this->forgetCatalogCaches();
+    }
+
+    private function forgetCatalogCaches(): void
+    {
+        Cache::forget('products_by_category_v2');
+        Cache::forget('categories_v2');
     }
 }
