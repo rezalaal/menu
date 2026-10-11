@@ -2,11 +2,10 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Actions\Action;
+use App\Filament\Livewire\RefreshCatalogCache;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Notifications\Notification;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -19,9 +18,10 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Livewire\Livewire;
 use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -99,24 +99,9 @@ class AdminPanelProvider extends PanelProvider
             )
             ->renderHook(
                 PanelsRenderHook::TOPBAR_END,
-                fn () => Action::make('refreshCatalogCache')
-                    ->label('به‌روزرسانی کش')
-                    ->icon('heroicon-o-arrow-path')
-                    ->color('warning')
-                    ->requiresConfirmation()
-                    ->modalHeading('به‌روزرسانی کش کاتالوگ')
-                    ->modalDescription('کش محصولات و دسته‌بندی‌ها پاک می‌شود و در اولین بازدید بعدی سایت با اطلاعات تازه از دیتابیس بازسازی می‌شود.')
-                    ->modalSubmitActionLabel('پاک‌سازی کش')
-                    ->action(function () {
-                        Cache::forget('products_by_category_v2');
-                        Cache::forget('categories_v2');
-
-                        Notification::make()
-                            ->success()
-                            ->title('کش کاتالوگ با موفقیت پاک شد')
-                            ->send();
-                    })
-                    ->render(),
+                fn (): HtmlString => new HtmlString(
+                    Blade::render('<livewire:refresh-catalog-cache />'),
+                ),
             )
             ->middleware([
                 EncryptCookies::class,
@@ -132,5 +117,10 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
+    }
+
+    public function boot(): void
+    {
+        Livewire::component('refresh-catalog-cache', RefreshCatalogCache::class);
     }
 }

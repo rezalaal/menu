@@ -39,6 +39,49 @@ class CategoryResource extends Resource
                     ->label('ترتیب')
                     ->numeric()
                     ->default(0),
+
+                Forms\Components\Section::make('درصدهای قیمت‌گذاری')
+                    ->description('در صورت خالی بودن هر فیلد، مقدار پیش‌فرض تعیین شده در تنظیمات فرمول قیمت‌گذاری استفاده می‌شود.')
+                    ->columns(4)
+                    ->collapsed(fn (?Category $record): bool => blank([
+                        $record?->waste_percent,
+                        $record?->overhead_percent,
+                        $record?->profit_percent,
+                        $record?->tax_percent,
+                    ]))
+                    ->schema([
+                        Forms\Components\TextInput::make('waste_percent')
+                            ->label('درصد ریخت و پاش')
+                            ->numeric()
+                            ->minValue(0)
+                            ->maxValue(100)
+                            ->suffix('%')
+                            ->nullable(),
+
+                        Forms\Components\TextInput::make('overhead_percent')
+                            ->label('درصد سربار و دستمزد')
+                            ->numeric()
+                            ->minValue(0)
+                            ->maxValue(100)
+                            ->suffix('%')
+                            ->nullable(),
+
+                        Forms\Components\TextInput::make('profit_percent')
+                            ->label('درصد حاشیه سود')
+                            ->numeric()
+                            ->minValue(0)
+                            ->maxValue(100)
+                            ->suffix('%')
+                            ->nullable(),
+
+                        Forms\Components\TextInput::make('tax_percent')
+                            ->label('درصد مالیات')
+                            ->numeric()
+                            ->minValue(0)
+                            ->maxValue(100)
+                            ->suffix('%')
+                            ->nullable(),
+                    ]),
             ]);
     }
 
